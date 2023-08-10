@@ -1,6 +1,4 @@
-<div class="card">
-  <div class="card-body">
-    <form name="formQ1" method="post" action="check_regis.php">
+
       <h1>ข้อมูลส่วนตัว</h1>
       <!-- name surname form -->
       <div class="input-group mb-3">
@@ -147,8 +145,4 @@
       </div>
       <!-- end nationality form -->
 
-    </form>
-  </div>
-</div>
-
-<script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js"></script>
