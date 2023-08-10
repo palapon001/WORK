@@ -8,7 +8,7 @@ if(!$con){
    die("condb err");
 }
 else{
-    // echo "condb succ";
+    echo "condb succ";
 }
 mysqli_query($con, "SET NAMES 'utf8' "); 
 ?>
