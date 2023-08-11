@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <form id="stepperForm">
+    <form name="formRegister" method="post" action="check_question.php">
         <div class="step active" id="step1">
             <div class="container mt-3">
                 <div class="card">
