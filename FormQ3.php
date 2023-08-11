@@ -64,8 +64,8 @@
                 $label = sprintf('%02d:00 - %02d:00', $hour, $hour + 1);
             ?>
                 <div class="form-check">
-                    <label>
-                        <input type="checkbox" name="selected_hours[]" value="<?php echo $hour; ?>"><?php echo $label; ?>
+                    <label class="form-check-label">
+                        <input type="checkbox"  class="form-check-input" name="selected_hours[]" value="<?php echo $hour; ?>"><?php echo $label; ?>
                     </label>
                 </div>
             <?php
@@ -78,8 +78,8 @@
                 $label = sprintf('%02d:00 - %02d:00', $hour, $hour + 1);
             ?>
                 <div class="form-check">
-                    <label>
-                        <input type="checkbox" name="selected_hours[]" value="<?php echo $hour; ?>"><?php echo $label; ?>
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="selected_hours[]" value="<?php echo $hour; ?>"><?php echo $label; ?>
                     </label>
                 </div>
             <?php
