@@ -6,37 +6,36 @@
     <div class="row mt-4">
         <div class="col">
             <button type="button" class="zzz btn btn-light" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
-                <img src="https://cdn-icons-png.flaticon.com/512/3475/3475165.png" class="img-thumbnail rounded">
                 <h5>Interested-Individual</h5>
             </button>
         </div>
         <div class="col">
             <button type="button" class="zzz btn btn-light" id="Trainers" data-bs-toggle="modal" data-bs-target="#Modal">
-                <img src="https://cdn-icons-png.flaticon.com/512/3475/3475762.png" class="img-thumbnail rounded">
                 <h5>Trainers</h5>
             </button>
         </div>
-        <div class="col mt-4">
+        <div class="col">
             <button type="button" class="zzz btn btn-light" id="Sport-professionals" data-bs-toggle="modal" data-bs-target="#Modal">
-                <img src="https://cdn-icons-png.flaticon.com/512/3475/3475109.png" class="img-thumbnail rounded">
-                <h5>Sport professionals</h5>
+                <h5>Sport-professionals</h5>
             </button>
         </div>
         <div class="col">
             <button type="button" class="zzz btn btn-light" id="Volunteer" data-bs-toggle="modal" data-bs-target="#Modal">
-                <img src="https://cdn-icons-png.flaticon.com/512/3475/3475265.png" class="img-thumbnail rounded">
                 <h5>Volunteer</h5>
             </button>
         </div>
-        <div class="col mt-4">
+        <div class="col">
             <button type="button" class="zzz btn btn-light" id="Personnel-Support-Staff" data-bs-toggle="modal" data-bs-target="#Modal">
-                <img src="https://cdn-icons-png.flaticon.com/512/3475/3475144.png" class="img-thumbnail rounded">
-                <h5>Personnel/ Support Staff</h5>
+                <h5>Personnel/Support-Staff</h5>
+            </button>
+        </div>
+        <div class="col">
+            <button type="button" class="zzz btn btn-light" id="Suppliers/Partners" data-bs-toggle="modal" data-bs-target="#Modal">
+                <h5>Suppliers/Partners</h5>
             </button>
         </div>
         <div class="col">
             <button type="button" class="zzz btn btn-light" id="Community" data-bs-toggle="modal" data-bs-target="#Modal">
-                <img src="https://cdn-icons-png.flaticon.com/512/3475/3475360.png" class="img-thumbnail rounded">
                 <h5>Community</h5>
             </button>
         </div>
@@ -66,10 +65,10 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-                        <?php include "FormLogin.php"; ?>
+                        <?php include "form/FormLogin.php"; ?>
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-                        <?php include "FormRegister.php"; ?>
+                        <?php include "form/FormRegister.php"; ?>
                     </div>
                 </div>
             </div>
@@ -90,7 +89,7 @@
             button.addEventListener("click", function() {
                 const buttonText = button.textContent;
                 resultDiv.textContent = ` ${buttonText}`;
-                document.getElementById("typeSelect").value =  buttonText.replace(/\s/g, '');
+                document.getElementById("typeSelect").value = buttonText.replace(/\s/g, '');
             });
         });
     });

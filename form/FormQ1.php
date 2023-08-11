@@ -14,25 +14,25 @@
 <div class="form-control mb-3">
   <p>เพศ</p>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault">
+    <input class="form-check-input" type="radio" name="sex" value="ชาย" id="flexRadioDefault">
     <label class="form-check-label" for="flexRadioDefault">
       ชาย
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault">
+    <input class="form-check-input" type="radio" name="sex" value="หญิง" id="flexRadioDefault">
     <label class="form-check-label" for="flexRadioDefault">
       หญิง
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault">
+    <input class="form-check-input" type="radio" name="sex" value="อื่น ๆ" id="flexRadioDefault">
     <label class="form-check-label" for="flexRadioDefault">
       อื่น ๆ
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault">
+    <input class="form-check-input" type="radio" name="sex" value="ไม่ต้องการระบุ" id="flexRadioDefault">
     <label class="form-check-label" for="flexRadioDefault">
       ไม่ต้องการระบุ
     </label>
@@ -86,7 +86,7 @@
 <!-- edu form -->
 <div class="form-control mb-3">
   <p>การศึกษา </p>
-  <select class="form-select mb-3" id="eduOptions" onchange="showInputField('eduOptions','eduField','eduInput')">
+  <select class="form-select mb-3" id="eduOptions" name="eduOptions" onchange="showInputField('eduOptions','eduField','eduInput')">
     <option selected disabled>โปรดเลือก</option>
     <option value="ไม่เคยเรียน">ไม่เคยเรียน</option>
     <option value="ประถมศึกษา">ประถมศึกษา</option>
@@ -99,7 +99,7 @@
   </select>
   <div id="eduField" style="display: none;">
     <label for="eduInput">โปรดระบุ:</label>
-    <input type="text" id="eduInput" class="form-control" required>
+    <input type="text" id="eduInput" name="eduInput" class="form-control" required>
   </div>
 </div>
 <!-- end edu form -->
@@ -107,7 +107,7 @@
 <!-- occupation form -->
 <div class="form-control mb-3">
   <p>อาชีพ</p>
-  <select class="form-select mb-3" id="occOptions" onchange="showInputField('occOptions','occField','occInput')">
+  <select class="form-select mb-3" id="occOptions" name="occOptions" onchange="showInputField('occOptions','occField','occInput')">
     <option selected disabled>โปรดเลือก</option>
     <option value="รับราชการ/เจ้าหน้าที่ของรัฐ">รับราชการ/เจ้าหน้าที่ของรัฐ</option>
     <option value="เจ้าหน้าที่รัฐวิสาหกิจ">เจ้าหน้าที่รัฐวิสาหกิจ </option>
@@ -126,7 +126,7 @@
   </select>
   <div id="occField" style="display: none;">
     <label for="occInput">โปรดระบุ:</label>
-    <input type="text" id="occInput" class="form-control" required>
+    <input type="text" id="occInput" name="occInput" class="form-control" required>
   </div>
 </div>
 <!-- end occupation form -->
@@ -134,7 +134,7 @@
 <!-- marital status form -->
 <div class="form-control mb-3">
   <p>สถานภาพ</p>
-  <select class="form-select mb-3" id="maryOptions" onchange="showInputField('maryOptions','maryField','maryInput')">
+  <select class="form-select mb-3" id="maryOptions" name="maryOptions" onchange="showInputField('maryOptions','maryField','maryInput')">
     <option selected disabled>โปรดเลือก</option>
     <option value="โสด">โสด</option>
     <option value="สมรส">สมรส</option>
@@ -143,7 +143,7 @@
   </select>
   <div id="maryField" style="display: none;">
     <label for="maryInput">โปรดระบุ:</label>
-    <input type="text" id="maryInput" class="form-control" required>
+    <input type="text" id="maryInput" name="maryInput" class="form-control" required>
   </div>
 </div>
 <!-- end marital status form -->
@@ -151,15 +151,15 @@
 <!-- nationality form -->
 <div class="form-control mb-3">
   <p>สัญชาติ</p>
-  <select class="form-select mb-3" id="nationOptions" onchange="showInputField('nationOptions','nationField','nationInput')">
+  <select class="form-select mb-3" id="nationOptions" name="nationOptions" onchange="showInputField('nationOptions','nationField','nationInput')">
     <option selected disabled>โปรดเลือก</option>
-    <option value="โสด">ไทย</option>
-    <option value="สมรส">ไม่มีสัญชาติ</option>
+    <option value="ไทย">ไทย</option>
+    <option value="ไม่มีสัญชาติ">ไม่มีสัญชาติ</option>
     <option value="other">อื่น ๆ</option>
   </select>
   <div id="nationField" style="display: none;">
     <label for="nationInput">โปรดระบุ:</label>
-    <input type="text" id="nationInput" class="form-control" required>
+    <input type="text" id="nationInput" name="nationInput" class="form-control" required>
   </div>
 </div>
 <!-- end nationality form -->
