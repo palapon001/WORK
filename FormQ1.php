@@ -2,7 +2,10 @@
 <!-- name surname form -->
 <div class="input-group mb-3">
   <span class="input-group-text">ชื่อ</span>
-  <input name="surname" type="text" id="surname" class="form-control" required>
+  <input name="surname" type="text" id="name" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
+  <span class="input-group-text">นามสกุล</span>
+  <input name="surname" type="text" id="surname" value="<?php echo $_SESSION["surname"]; ?>" class="form-control" required>
+
 </div>
 <!-- end name surname form -->
 

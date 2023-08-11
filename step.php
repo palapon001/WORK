@@ -32,7 +32,7 @@
                 <div class="card">
                     <div class="card-body">
                         <?php include 'FormQ2.php'; ?>
-                        <button type="button" class="btn btn-primary btn-lg" onclick="prevStep(1)">ก่อนหน้า</button>
+                        <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(1)">ก่อนหน้า</button>
                         <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)">ถัดไป</button>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="card">
                     <div class="card-body">
                     <?php include 'FormQ3.php'; ?>
-                        <button type="button" class="btn btn-primary btn-lg" onclick="prevStep(2)">ก่อนหน้า</button>
+                        <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(2)">ก่อนหน้า</button>
                         <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
                     </div>
                 </div>

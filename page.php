@@ -35,7 +35,11 @@ if (!$_SESSION["username"]) {  //check session
       <h2>ยินต้อนรับคุณ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h2>
       <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo $_SESSION["level"]; ?>"></span></p>
       <p>
-        <a href="step.php" class="btn btn-primary btn-lg">ทำแบบสอบถาม</a>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          แบบสอบถาม
+        </button>
+        <!-- <a href="step.php" class="btn btn-primary btn-lg">ทำแบบสอบถาม</a> -->
       </p>
 
     </div>
@@ -452,7 +456,23 @@ if (!$_SESSION["username"]) {  //check session
     </div>
   </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">แบบสอบถาม</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <?php include 'step.php'; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 
