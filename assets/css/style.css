@@ -10,7 +10,8 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: 'Kanit', sans-serif;
   color: #272829;
 }
 
@@ -30,7 +31,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Raleway", sans-serif;
+  /* font-family: "Raleway", sans-serif; */
+  font-family: 'Kanit', sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -307,7 +309,8 @@ h6 {
   color: #45505b;
   margin: 15px 0 0 0;
   font-size: 26px;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: 'Kanit', sans-serif;
 }
 
 #hero p span {
@@ -471,7 +474,8 @@ section {
 .facts .count-box p {
   padding: 0;
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  /* font-family: "Raleway", sans-serif; */
+  font-family: 'Kanit', sans-serif;
   font-size: 14px;
 }
 
@@ -491,7 +495,8 @@ section {
   text-transform: uppercase;
   display: block;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: 'Kanit', sans-serif;
   color: #45505b;
 }
 
@@ -534,7 +539,8 @@ section {
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: 'Kanit', sans-serif;
   color: #0563bb;
   margin-bottom: 10px;
 }
@@ -1163,7 +1169,8 @@ section {
   font-size: 36px;
   font-weight: 700;
   position: relative;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: 'Kanit', sans-serif;
   padding: 0;
   margin: 0 0 15px 0;
 }

@@ -18,7 +18,7 @@ if (!$_SESSION["username"]) {  //check session
 
     <nav id="navbar" class="navbar nav-menu">
       <ul>
-        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>หน้าหลัก</span></a></li>
         <li><a href="#personal" class="nav-link scrollto"><i class="bx bx-user"></i> <span>ข้อมูลส่วนตัว</span></a></li>
         <li><a href="#health" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>ข้อมูลสุขภาพ</span></a></li>
         <li><a href="#exercise" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>ข้อมูลการออกกำลังกาย</span></a></li>
@@ -34,6 +34,10 @@ if (!$_SESSION["username"]) {  //check session
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
       <h2>ยินต้อนรับคุณ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h2>
       <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo $_SESSION["level"]; ?>"></span></p>
+      <p>
+        <a href="step.php" class="btn btn-primary btn-lg">ทำแบบสอบถาม</a>
+      </p>
+
     </div>
   </section><!-- End Hero -->
 
@@ -73,12 +77,6 @@ if (!$_SESSION["username"]) {  //check session
           </div>
         </div>
 
-      </div>
-    </section><!-- End personal Section -->
-
-    <section id="personal" class="about">
-      <div class="container" data-aos="fade-up">
-        <?php include 'FormQ1.php'; ?>
       </div>
     </section><!-- End personal Section -->
 
@@ -243,7 +241,7 @@ if (!$_SESSION["username"]) {  //check session
           </div>
 
           <div class="col-lg-3">
-            
+
             <div>
               <center>
                 <canvas id="myChart2"></canvas>

@@ -412,28 +412,28 @@
 <!-- end exercise type form -->
 
 <!-- pulse after exercise form -->
-<div class="form-control">
+<div class="form-control mb-3">
     <p>ชีพจรหลังการออกกำลังกาย (หากท่านทราบข้อมูล)* </p>
     <input name="pulse" type="text" id="pulse" class="form-control" required>
 </div>
 <!-- end pulse after exercise form -->
 
 <!-- days of exercise form -->
-<div class="form-control">
+<div class="form-control mb-3">
     <p>จำนวนวันที่ออกกำลังกายต่อสัปดาห์ </p>
     <input name="pulse" type="number" id="pulse" class="form-control" required>
 </div>
 <!-- end days of exercise form -->
 
 <!-- exercise intensity form -->
-<div class="form-control">
+<div class="form-control mb-3">
     <p>ความหนักของการออกกำลังกาย</p>
     <input name="pulse" type="number" id="pulse" class="form-control" required>
 </div>
 <!-- end exercise intensity form -->
 
 <!-- duration of exercise form -->
-<div class="form-control">
+<div class="form-control mb-3">
     <p>ระยะเวลาการออกกำลังกาย</p>
     <input name="pulse" type="number" id="pulse" class="form-control" required>
 </div>
