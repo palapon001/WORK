@@ -239,7 +239,7 @@ h6 {
 */
 .mobile-nav-toggle {
   position: fixed;
-  right: 10px;
+  /* right: 10px; */
   top: 10px;
   z-index: 9998;
   border: 0;
