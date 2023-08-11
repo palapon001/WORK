@@ -31,11 +31,15 @@
 <!-- congenital disease form -->
 <div class="form-control mb-3">
     <p>โรคประจำตัว</p>
-    <select class="form-select mb-3" id="selectInput">
-        <option selected>โปรดเลือก</option>
+    <select class="form-select mb-3" id="congenOptions" onchange="showInputField('congenOptions','congenField','congenInput')">
+        <option selected disabled>โปรดเลือก</option>
         <option value="มี">มี</option>
         <option value="ไม่มี">ไม่มี</option>
+        <option value="other">อื่น ๆ</option>
     </select>
-    <input type="text" class="form-control" id="textInput" placeholder="อื่น ๆ โปรดระบุ" require>
+    <div id="congenField" style="display: none;">
+        <label for="congenInput">โปรดระบุ:</label>
+        <input type="text" id="congenInput" class="form-control" required>
+    </div>
 </div>
 <!-- end congenital disease form -->

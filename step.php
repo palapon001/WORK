@@ -51,6 +51,7 @@
         </div>
     </form>
 
+    <script src="assets/js/showInputField.js"></script>
     <script>
         let currentStep = 1;
         const form = document.getElementById('stepperForm');

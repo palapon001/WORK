@@ -239,8 +239,8 @@
 <!-- motivation form -->
 <div class="form-control mb-3">
     <p>คุณคิดว่าอะไรที่จูงใจให้คุณ และครอบครัว หรือคนรอบข้างคุณ มาออกกำลังกายหรือเล่นกีฬา (ตอบเพียงคำตอบเดียว)</p>
-    <select class="form-select mb-3" id="selectInput">
-        <option selected>โปรดเลือก</option>
+    <select class="form-select mb-3" id="motiOptions" onchange="showInputField('motiOptions','motiField','motiInput')">
+        <option selected disabled>โปรดเลือก</option>
         <option value="ความรู้ในการออกกำลังกาย">ความรู้ในการออกกำลังกาย</option>
         <option value="ทัศนคติในการออกกำลังกาย">ทัศนคติในการออกกำลังกาย</option>
         <option value="สนามกีฬาหรือสถานที่มีความสวยงามมีมาตรฐาน">สนามกีฬาหรือสถานที่มีความสวยงามมีมาตรฐาน</option>
@@ -249,8 +249,12 @@
         <option value="ดารา/นักร้อง/บุคคลที่มีชื่อเสียง">ดารา/นักร้อง/บุคคลที่มีชื่อเสียง</option>
         <option value="ญาติพี่น้อง/เพื่อน">ญาติพี่น้อง/เพื่อน</option>
         <option value="ไม่มีสถานที่อาสาสมัครทางการกีฬามาให้ความรู้">ไม่มีสถานที่อาสาสมัครทางการกีฬามาให้ความรู้</option>
+        <option value="other">อื่น ๆ</option>
     </select>
-    <input type="text" class="form-control" id="textInput" placeholder="อื่น ๆ โปรดระบุ" require>
+    <div id="motiField" style="display: none;">
+        <label for="motiInput">โปรดระบุ:</label>
+        <input type="text" id="motiInput" class="form-control" required>
+    </div>
 </div>
 <!-- end motivation form -->
 
