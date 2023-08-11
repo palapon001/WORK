@@ -418,7 +418,7 @@
 <!-- pulse after exercise form -->
 <div class="form-control mb-3">
     <p>ชีพจรหลังการออกกำลังกาย (หากท่านทราบข้อมูล)* </p>
-    <input name="pulse" type="text" id="pulse" class="form-control" required>
+    <input name="pulse" type="text" id="pulse" class="form-control">
 </div>
 <!-- end pulse after exercise form -->
 
