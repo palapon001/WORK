@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <?php switch ($_SESSION["level"]) { 
+    <?php switch ($_SESSION["level"]) {
         case "Interested-Individual": ?>
             <!-- case Interested-Individual form -->
             <form name="formQ" method="post" action="check_question.php">
@@ -46,6 +46,30 @@
                         <div class="card">
                             <div class="card-body">
                                 <?php include 'form/FormQ3.php'; ?>
+                                <!-- ข้อมูลหน่วยงาน -->
+                                <input name="agency_name1" type="hidden" id="agency_name1" value="---">
+                                <input name="agency_name2" type="hidden" id="agency_name2" value="---">
+                                <input name="community" type="hidden" id="community" value="---">
+                                <input name="loc_agency" type="hidden" id="loc_agency" value="---">
+                                <input name="business" type="hidden" id="business" value="---">
+
+                                <!-- ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน -->
+                                <input name="exper_sports" type="hidden" id="exper_sports" value="---">
+                                <input name="res" type="hidden" id="res" value="---">
+                                <input name="pub_res" type="hidden" id="pub_res" value="---">
+
+                                <!-- ข้อมูลประสบการณ์การอบรม -->
+                                <input name="train_exper_exer" type="hidden" id="train_exper_exer" value="---">
+                                <input name="train_exper" type="hidden" id="train_exper" value="---" >
+
+                                <!-- ข้อมูลประสบการณ์การเป็นอาสาสม้คร -->
+                                <input name="vol_exper" type="hidden" value="---">
+
+                                <!-- ข้อมูลประสบการณ์การจัดกิจกรรม/โครงการการออกกำล้งกายเพื่อสุขภาพ -->
+                                <input name="org_heal" type="hidden" value="---">
+                                <input name="pro_org_exer" type="hidden"  value="---">
+                                <input name="activity" type="hidden" value="---">
+
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(2)">ก่อนหน้า</button>
                                 <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
                             </div>

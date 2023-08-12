@@ -19,17 +19,19 @@
 <!-- end org_heal form -->
 
 <!-- pro_org_exer form -->
-<p>โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ</p>
-<div class="input-group mb-3">
-    <input name="pro_org_exer" type="text" id="pro_org_exer" class="form-control" required>
+<div class=" mb-3">
+    <p>โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ</p>
+    <div class="input-group ">
+        <input name="pro_org_exer" type="text" id="pro_org_exer" class="form-control" required>
+    </div>
 </div>
 <!-- end pro_org_exer form -->
 
 <!-- activity form -->
-<p>กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม	</p>
-<div class="input-group mb-3">
-    <input name="activity" type="text" id="activity" class="form-control" required>
+<div class=" mb-3">
+    <p>กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม </p>
+    <div class="input-group ">
+        <input name="activity" type="text" id="activity" class="form-control" required>
+    </div>
 </div>
 <!-- end activity form -->
-	
-

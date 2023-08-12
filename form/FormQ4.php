@@ -16,11 +16,15 @@
 <!-- end agency_name2 form -->
 
 <!-- community form -->
-<div class="input-group mb-3">
-    <span class="input-group-text">ชื่อชุมชน (ถ้ามี)
-    </span>
-    <input name="community" type="text" id="community" class="form-control" >
-</div>
+<?php if ($_SESSION["level"] == 'Trainers') { ?>
+    <input name="community" type="hidden" id="community" value="---">
+<?php } else { ?>
+    <div class="input-group mb-3">
+        <span class="input-group-text">ชื่อชุมชน (ถ้ามี)
+        </span>
+        <input name="community" type="text" id="community" class="form-control">
+    </div>
+<?php } ?>
 <!-- end community form -->
 
 <!-- loc_agency form -->
@@ -32,12 +36,15 @@
 <!-- end loc_agency form -->
 
 <!-- business form -->
-<p>บริบทการดำเนินธุรกิจ (สำหรับองค์กรธุรกิจ)</p>
-<div class="input-group mb-3">
-    <input name="business" type="text" id="business" class="form-control" >
-</div>
+<?php if ($_SESSION["level"] == 'Trainers') { ?>
+    <input name="business" type="hidden" id="business" value="---">
+<?php } else { ?>
+
+    <div class="mb-3">
+        <p>บริบทการดำเนินธุรกิจ (สำหรับองค์กรธุรกิจ)</p>
+        <div class="input-group ">
+            <input name="business" type="text" id="business" class="form-control">
+        </div>
+    </div>
+<?php } ?>
 <!-- end business form -->
-
-
-
-
