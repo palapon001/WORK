@@ -3,10 +3,22 @@
 <div class="input-group mb-3">
   <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>" >
   <span class="input-group-text">ชื่อ</span>
-  <input name="name" type="text" id="name" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
+  <input name="name" type="text" id="inputValue" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
   <span class="input-group-text">นามสกุล</span>
-  <input name="surname" type="text" id="surname" value="<?php echo $_SESSION["surname"]; ?>" class="form-control" required>
+  <input name="surname" type="text" id="" value="<?php echo $_SESSION["surname"]; ?>" class="form-control" required>
 </div>
+<div class="container mb-3">
+        <div class="form-group">
+            <label for="inputValue">กรอกข้อมูล:</label>
+            <input type="text" class="form-control" id="inputValue">
+            <small class="form-text text-danger" id="inputValueAlert" style="display:none;" >กรุณาพิมพ์ข้อมูลให้ครบ</small>
+        </div>
+</div>
+
+<script>
+    
+</script>
+
 <!-- end name surname form -->
 
 <!-- sex form -->
