@@ -134,6 +134,11 @@
                     <center>
                         <canvas id="myChart2"></canvas>
                         <p>ผลการประเมินการออกกำลังกาย รายจังหวัด ของทุกกลุ่ม</p>
+                        <?php
+                        $sql_qusername = " SELECT * FROM question where username = '1' ";
+                        $queryQusername = mysqli_query($con, $sql_qusername);
+                        list($resU1, $resU2) = countQexer($queryQusername);
+                        ?>
                     </center>
                 </div>
                 <script>
@@ -142,10 +147,10 @@
                     new Chart(ctx2, {
                         type: 'doughnut',
                         data: {
-                            labels: ['ผ่าน', 'ไม่ผ่าน'],
+                            labels: ['ผ่าน <?php echo $resU1; ?>', 'ไม่ผ่าน<?php echo $resU2; ?>'],
                             datasets: [{
                                 label: '',
-                                data: [50, 25, 25],
+                                data: [<?php echo $resU1; ?>, <?php echo $resU2; ?>],
                                 borderWidth: 1
                             }]
                         },
