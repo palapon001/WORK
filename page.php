@@ -33,7 +33,7 @@ if (!$_SESSION["username"]) {  //check session
   <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
       <h2>ยินต้อนรับคุณ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h2>
-      <h2>Username <?php echo $_SESSION["username"] ; ?> </h2>
+      <h2>Username <?php echo $_SESSION["username"]; ?> </h2>
       <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo $_SESSION["level"]; ?>"></span></p>
       <p>
         <!-- Button trigger modal -->
@@ -61,24 +61,44 @@ if (!$_SESSION["username"]) {  //check session
             <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
           </div> -->
           <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3>ชื่อ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h3>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>เพศ:</strong> <span>...</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>ภูมิลำเนา:</strong> <span>...</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>อายุ:</strong> <span>...</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>การศึกษา:</strong> <span>...</span></li>
-                </ul>
+            <h3> ชื่อ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h3>
+            <?php
+            $q_user = $_SESSION["username"];
+            $sql_ques = " SELECT * FROM question where username = $q_user ";
+            $queryQues = mysqli_query($con, $sql_ques);
+            while ($fetch = mysqli_fetch_assoc($queryQues)) {
+              $provin = $fetch['province_id'];
+              $sql_provin = " SELECT * FROM provinces where id = $provin ";
+              $queryProvin = mysqli_query($con, $sql_provin);
+              $amphure = $fetch['amphure_id'];
+              $sql_amphure = " SELECT * FROM amphures where id = $amphure ";
+              $queryAmphure = mysqli_query($con, $sql_amphure);
+
+            ?>
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul>
+                    <li><i class="bi bi-chevron-right"></i> <strong>เพศ:</strong> <span> <?php echo $fetch['sex']; ?> </span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>ภูมิลำเนา:</strong> <span>
+                        <?php while ($fetchProvin = mysqli_fetch_assoc($queryProvin)) { ?>
+                          <?php echo $fetchProvin['name_th']; ?>
+                        <?php } ?>
+                        <?php while ($fetchAmphure = mysqli_fetch_assoc($queryAmphure)) { ?>
+                          <?php echo $fetchAmphure['name_th']; ?>
+                        <?php } ?>
+                      </span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>อายุ:</strong> <?php echo $fetch['age']; ?> <span></span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>การศึกษา:</strong> <span><?php echo $fetch['eduOptions']; ?></span></li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul>
+                    <li><i class="bi bi-chevron-right"></i> <strong>อาชีพ:</strong> <span><?php echo $fetch['occOptions']; ?></span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>สัญชาติ:</strong> <span><?php echo $fetch['nationOptions']; ?></span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>สถานภาพ:</strong> <span><?php echo $fetch['maryOptions']; ?></span></li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>อาชีพ:</strong> <span>...</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>สัญชาติ:</strong> <span>...</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>สถานภาพ:</strong> <span>...</span></li>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -98,7 +118,7 @@ if (!$_SESSION["username"]) {  //check session
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="172" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?php echo $fetch['height']; ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p>ส่วนสูง (ซม.)</p>
             </div>
           </div>
@@ -106,7 +126,7 @@ if (!$_SESSION["username"]) {  //check session
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
             <div class="count-box">
               <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="83" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?php echo $fetch['weight']; ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p>น้ำหนัก (กก.)</p>
             </div>
           </div>
@@ -114,7 +134,22 @@ if (!$_SESSION["username"]) {  //check session
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+              <?php
+              $w = $fetch['weight'];
+              $h = $fetch['height'];
+              function calculateBMI($weight, $height)
+              {
+                // Convert height to meters
+                $heightMeters = $height / 100;
+
+                // Calculate BMI
+                $bmi = $weight / ($heightMeters * $heightMeters);
+
+                return round($bmi, 2);
+              }
+              $bmi = calculateBMI($w, $h);
+              ?>
+              <span data-purecounter-start="0" data-purecounter-end="<?php echo $bmi; ?>" data-purecounter-duration="1" data-purecounter-separator="true" data-purecounter-decimals="2" class="purecounter"></span>
               <p>BMI</p>
             </div>
           </div>
@@ -122,7 +157,7 @@ if (!$_SESSION["username"]) {  //check session
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-award"></i>
-              <span data-purecounter-start="0" data-purecounter-end="25" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?php echo $fetch['pressure']; ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p>ความดัน</p>
             </div>
           </div>
@@ -130,7 +165,7 @@ if (!$_SESSION["username"]) {  //check session
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-award"></i>
-              <span data-purecounter-start="0" data-purecounter-end="25" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?php echo $fetch['pulse']; ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p>ชีพจร</p>
             </div>
           </div>
@@ -138,7 +173,7 @@ if (!$_SESSION["username"]) {  //check session
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-award"></i>
-              <span data-purecounter-start="0" data-purecounter-end="25" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?php echo 220 - $fetch['age']; ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p>ชีพจรสูงสุด</p>
             </div>
           </div>
@@ -146,7 +181,7 @@ if (!$_SESSION["username"]) {  //check session
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <div class="col-lg-6">
               <ul>
-                <i class="bi bi-chevron-right"></i> <strong>โรคประจำตัว:</strong> <span>...</span>
+                <i class="bi bi-chevron-right"></i> <strong>โรคประจำตัว:</strong> <span><?php echo $fetch['congenOptions']; ?></span>
               </ul>
             </div>
           </div>
@@ -163,49 +198,66 @@ if (!$_SESSION["username"]) {  //check session
         <div class="section-title">
           <h2>ข้อมูลการออกกำลังกาย</h2>
           <p>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">สถานที่ใดที่คุณใช้ออกกำลังกายหรือเล่นกีฬาเป็นประจำ (ตอบได้มากกว่า 1 คำตอบ)</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          <div class="form-group mb-3">
+            <span class="input-group-text" id="basic-addon1">สถานที่ใดที่คุณใช้ออกกำลังกายหรือเล่นกีฬาเป็นประจำ</span>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled><?php echo $fetch['location']; ?></textarea>
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1"> ช่วงเวลาที่คุณออกกำลังกายหรือเล่นกีฬาเป็นประจำ (ตอบได้มากกว่า 1 คำตอบ)</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          <div class="form-group mb-3">
+            <span class="input-group-text" id="basic-addon1"> ช่วงเวลาที่คุณออกกำลังกายหรือเล่นกีฬาเป็นประจำ </span>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled><?php echo $fetch['period']; ?></textarea>
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          <div class="form-group mb-3">
+            <span class="input-group-text" id="basic-addon1">เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา </span>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled><?php echo $fetch['reason1']; ?></textarea>
           </div>
-          <div class="input-group mb-3">
+          <div class="form-group mb-3">
             <span class="input-group-text" id="basic-addon1">คุณคิดว่าอะไรที่จูงใจให้คุณ และครอบครัว หรือคนรอบข้างคุณ มาออกกำลังกายหรือเล่นกีฬา (ตอบเพียงคำตอบเดียว)</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" value="<?php echo $fetch['motiOptions']; ?>" disabled>
           </div>
-          <div class="input-group mb-3">
+          <div class="form-group mb-3">
             <span class="input-group-text" id="basic-addon1">รายการตัวเลือก ประเภทการออกกำลังกายเพื่อสุขภาพ (ตอบได้มากกว่า 1 ข้อ)</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled><?php echo $fetch['exer']; ?></textarea>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">ชีพจรหลังการออกกำลังกาย</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" value="<?php echo $fetch['pulseAfter']; ?>" disabled>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">จำนวนวันที่ออกกำลังกายต่อสัปดาห์ (กี่วัน/ส้ปดาห์)</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" value="<?php echo $fetch['week']; ?>" disabled>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">ความหนักของการออกกำลังกาย</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" value="<?php echo $fetch['intensityOptions']; ?>" disabled>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">
               ระยะเวลาการออกกำลังกาย (นาที)</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" value="<?php echo $fetch['duration']; ?>" disabled>
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">
+          <div class="form-group mb-3">
+            <span class="input-group-text"> ผลการประเมินการออกกำลังกาย</span>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              (พิจารณาจากจำนวนวัน 3 วันต่อสัปดาห์ ความหนักของการออกกำลังกาย ระดับปานกลางถึงระดับหนัก และระยะเวลาการออกกำล้งกาย 10-20 นาทีต่อเนื่อง) => ผ่านเกณฑ์ หรือต่ำกว่าเกณฑ์
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
 
-              ผลการประเมินการออกกำลังกาย (พิจารณาจากจำนวนวัน 3 วันต่อสัปดาห์ ความหนักของการออกกำลังกาย ระดับปานกลางถึงระดับหนัก และระยะเวลาการออกกำล้งกาย 10-20 นาทีต่อเนื่อง) => ผ่านเกณฑ์ หรือต่ำกว่าเกณฑ์
-            </span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <?php
+              $week = $fetch['week'];
+              $intensity = $fetch['intensityOptions'];
+              $duration = $fetch['duration'];
+              function evaluateExercise($daysPerWeek, $intensity, $duration)
+              {
+                if ($daysPerWeek >= 3 && ($intensity >= 'ระดับปานกลาง' && $intensity <= 'ระดับหนัก') && $duration >= 10 && $duration <= 20) {
+                  return "ผ่านเกณฑ์";
+                } else {
+                  return "ต่ำกว่าเกณฑ์";
+                }
+              }
+              $result = evaluateExercise($week, $intensity, $duration);
+
+            ?>
+            <input type="text" class="form-control bg-info" value="<?php echo $result; ?>" disabled>
           </div>
 
           </p>
@@ -443,6 +495,10 @@ if (!$_SESSION["username"]) {  //check session
 
       </div>
     </section><!-- End Services Section -->
+
+  <?php
+            }
+  ?>
 
   </main><!-- End #main -->
 

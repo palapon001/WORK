@@ -35,7 +35,7 @@
         <!-- end loc_agency form -->
 
         <!-- business form -->
-        <input name="business" type="hidden" id="business">
+        <input name="business" type="hidden" id="business" value="---">
         <!-- end business form -->
 
         <?php break; ?>
@@ -77,7 +77,7 @@
         <!-- end loc_agency form -->
 
         <!-- business form -->
-        <input name="business" type="hidden" id="business">
+        <input name="business" type="hidden" id="business" value="---">
         <!-- end business form -->
 
         <?php break; ?>
@@ -103,7 +103,7 @@
         <!-- end agency_name2 form -->
 
         <!-- community form -->
-        <input name="community" type="hidden" id="community">
+        <input name="community" type="hidden" id="community" value="---">
         <!-- end community form -->
 
         <!-- loc_community form -->
@@ -131,7 +131,6 @@
         <!-- end case Suppliers/Partners form -->
     <?php
     case "Community": ?>
-        <h1>Community</h1>
         <!-- case Community form -->
         <h1>ข้อมูลหน่วยงาน</h1>
         <!-- community form -->
@@ -149,6 +148,12 @@
             <input name="loc_community" type="text" id="loc_community" class="form-control" required>
         </div>
         <!-- end loc_community form -->
+
+        <input name="agency_name1" type="hidden" id="agency_name1" value="---">
+        <input name="agency_name2" type="hidden" id="agency_name2" value="---">
+        <input name="loc_agency" type="hidden" id="loc_agency" value="---">
+        <input name="business" type="hidden" id="business" value="---">
+
         <?php break; ?>
         <!-- end case Community form -->
     <?php
