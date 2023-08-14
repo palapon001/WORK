@@ -50,6 +50,7 @@
                                 <input name="agency_name1" type="hidden" id="agency_name1" value="---">
                                 <input name="agency_name2" type="hidden" id="agency_name2" value="---">
                                 <input name="community" type="hidden" id="community" value="---">
+                                <input name="loc_community" type="hidden" id="loc_community" value="---">
                                 <input name="loc_agency" type="hidden" id="loc_agency" value="---">
                                 <input name="business" type="hidden" id="business" value="---">
 
@@ -60,14 +61,14 @@
 
                                 <!-- ข้อมูลประสบการณ์การอบรม -->
                                 <input name="train_exper_exer" type="hidden" id="train_exper_exer" value="---">
-                                <input name="train_exper" type="hidden" id="train_exper" value="---" >
+                                <input name="train_exper" type="hidden" id="train_exper" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การเป็นอาสาสม้คร -->
                                 <input name="vol_exper" type="hidden" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การจัดกิจกรรม/โครงการการออกกำล้งกายเพื่อสุขภาพ -->
                                 <input name="org_heal" type="hidden" value="---">
-                                <input name="pro_org_exer" type="hidden"  value="---">
+                                <input name="pro_org_exer" type="hidden" value="---">
                                 <input name="activity" type="hidden" value="---">
 
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(2)">ก่อนหน้า</button>
@@ -99,7 +100,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <?php include 'form/FormQ3.php'; ?>
-                                <?php include 'form/FormQ4.php'; ?>
+                                <?php include 'form/FormQ4Switch.php'; ?>
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(1)">ก่อนหน้า</button>
                                 <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)">ถัดไป</button>
                             </div>
@@ -141,7 +142,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <?php include 'form/FormQ3.php'; ?>
-                                <?php include 'form/FormQ4.php'; ?>
+                                <?php include 'form/FormQ4Switch.php'; ?>
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(1)">ก่อนหน้า</button>
                                 <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)">ถัดไป</button>
                             </div>
@@ -225,7 +226,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <?php include 'form/FormQ3.php'; ?>
-                                <?php include 'form/FormQ4.php'; ?>
+                                <?php include 'form/FormQ4Switch.php'; ?>
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(1)">ก่อนหน้า</button>
                                 <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)">ถัดไป</button>
                             </div>
@@ -268,6 +269,7 @@
                             <div class="card-body">
                                 <?php include 'form/FormQ3.php'; ?>
                                 <?php include 'form/FormQ4.php'; ?>
+                                <?php include 'form/FormQ4Switch.php'; ?>
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(1)">ก่อนหน้า</button>
                                 <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)">ถัดไป</button>
                             </div>
@@ -309,7 +311,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <?php include 'form/FormQ3.php'; ?>
-                                <?php include 'form/FormQ4.php'; ?>
+                                <?php include 'form/FormQ4Switch.php'; ?>
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(1)">ก่อนหน้า</button>
                                 <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)">ถัดไป</button>
                             </div>
@@ -335,6 +337,7 @@
 
     <script src="assets/js/showInputField.js"></script>
     <script src="assets/js/stepperForm.js"></script>
+
 </body>
 
 </html>

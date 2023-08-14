@@ -25,6 +25,7 @@ $duration = $_POST["duration"];
 $agency_name1 = $_POST["agency_name1"];
 $agency_name2 = $_POST["agency_name2"];
 $community = $_POST["community"];
+$loc_community = $_POST["loc_community"];
 $loc_agency = $_POST["loc_agency"];
 $business = $_POST["business"];
 
@@ -191,12 +192,12 @@ function checkOption($option, $checkText, $IP)
 function checkEmpty($array, $arrayIP)
 {
 	$countArray = count($array);
-	if ($array == '') {
-		return implode(",", $array);
+	if (empty($array)) {
+		return $arrayIP;
 	} else {
-		if($countArray = 1){
+		if ($arrayIP == '') {
 			return implode(",", $array);
-		}else{
+		} else {
 			return implode(",", $array) . ',' . $arrayIP;
 		}
 	}
@@ -229,14 +230,14 @@ if ($num > 0) {
 	//เพิ่มเข้าไปในฐานข้อมูล
 	$sql = "INSERT INTO question(username,name,surname,sex,province_id,amphure_id,age,height,weight,pressure,
 								 pulse,location,period,reason1,reason2,exer,pulseAfter,week,duration,agency_name1,agency_name2,
-								 community,loc_agency,business,exper_sports,res,pub_res,train_exper_exer,train_exper,vol_exper,
+								 community,loc_community,loc_agency,business,exper_sports,res,pub_res,train_exper_exer,train_exper,vol_exper,
 								 org_heal,pro_org_exer,activity,eduOptions,occOptions,maryOptions,nationOptions,congenOptions,
 								 motiOptions,intensityOptions)
 			 VALUES('$user','$name', '$surname','$sex','$province_id','$amphure_id','$age','$height','$weight','$pressure',
 								 '$pulse','$checkLoc','$checkPer','$checkRes1','$checkRes2','$checkExer','$pulseAfter','$week','$duration','$agency_name1','$agency_name2',
-								 '$community','$loc_agency','$business','$exper_sports','$res','$pub_res','$train_exper_exer','$train_exper','$vol_exper',
+								 '$community','$loc_community','$loc_agency','$business','$exper_sports','$res','$pub_res','$train_exper_exer','$train_exper','$vol_exper',
 								 '$org_heal','$pro_org_exer','$activity','$checkEDU','$checkOCC','$checkMary','$checkNation','$checkCongen',
-								 '$checkMoti','$checkIntensity')";
+								 '$checkMoti','$intensityOptions')";
 
 	$result = mysqli_query($con, $sql) or die("Error in query: $sql ");
 }
