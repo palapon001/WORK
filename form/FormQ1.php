@@ -7,17 +7,6 @@
   <span class="input-group-text">นามสกุล</span>
   <input name="surname" type="text" id="" value="<?php echo $_SESSION["surname"]; ?>" class="form-control" required>
 </div>
-<div class="container mb-3">
-        <div class="form-group">
-            <label for="inputValue">กรอกข้อมูล:</label>
-            <input type="text" class="form-control" id="inputValue">
-            <small class="form-text text-danger" id="inputValueAlert" style="display:none;" >กรุณาพิมพ์ข้อมูลให้ครบ</small>
-        </div>
-</div>
-
-<script>
-    
-</script>
 
 <!-- end name surname form -->
 
