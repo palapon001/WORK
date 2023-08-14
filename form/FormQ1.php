@@ -14,25 +14,25 @@
 <div class="form-control mb-3">
   <p>เพศ</p>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="ชาย" id="flexRadioDefault">
+    <input class="form-check-input" type="radio" name="sex" value="ชาย" id="flexRadioDefault" required>
     <label class="form-check-label" for="flexRadioDefault">
       ชาย
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="หญิง" id="flexRadioDefault">
+    <input class="form-check-input" type="radio" name="sex" value="หญิง" id="flexRadioDefault" required>
     <label class="form-check-label" for="flexRadioDefault">
       หญิง
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="อื่น ๆ" id="flexRadioDefault">
+    <input class="form-check-input" type="radio" name="sex" value="อื่น ๆ" id="flexRadioDefault" required>
     <label class="form-check-label" for="flexRadioDefault">
       อื่น ๆ
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="ไม่ต้องการระบุ" id="flexRadioDefault">
+    <input class="form-check-input" type="radio" name="sex" value="ไม่ต้องการระบุ" id="flexRadioDefault" required>
     <label class="form-check-label" for="flexRadioDefault">
       ไม่ต้องการระบุ
     </label>
@@ -52,7 +52,7 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="province">จังหวัด</label>
-      <select name="province_id" id="province" class="form-control">
+      <select name="province_id" id="province" class="form-control" required>
         <option value="">เลือกจังหวัด</option>
         <?php while ($resultProvin = mysqli_fetch_assoc($queryProvin)) : ?>
           <option value="<?= $resultProvin['id'] ?>"><?= $resultProvin['name_th'] ?></option>
@@ -61,7 +61,7 @@
     </div>
     <div class="form-group col-md-4">
       <label for="amphure">อำเภอ</label>
-      <select name="amphure_id" id="amphure" class="form-control">
+      <select name="amphure_id" id="amphure" class="form-control" required>
         <option value="">เลือกอำเภอ</option>
       </select>
     </div>
@@ -86,7 +86,7 @@
 <!-- edu form -->
 <div class="form-control mb-3">
   <p>การศึกษา </p>
-  <select class="form-select mb-3" id="eduOptions" name="eduOptions" onchange="showInputField('eduOptions','eduField','eduInput')">
+  <select class="form-select mb-3" id="eduOptions" name="eduOptions" onchange="showInputField('eduOptions','eduField','eduInput')" required>
     <option selected disabled>โปรดเลือก</option>
     <option value="ไม่เคยเรียน">ไม่เคยเรียน</option>
     <option value="ประถมศึกษา">ประถมศึกษา</option>
