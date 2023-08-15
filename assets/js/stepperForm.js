@@ -20,9 +20,6 @@ function prevStep(prevStepNumber) {
     }
 }
 
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    alert('Form submitted!');
-});
+
 
 showStep(currentStep);

@@ -1,56 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <?php
-    include 'bootstrap.php';
-    include 'condb.php';
-    ?>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+  <?php
+  include 'bootstrap.php';
+  include 'condb.php';
+  ?>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Home</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
+  <link rel="stylesheet" href="assets/css/homeCSS.css">
+
 </head>
 
-<body style="background: linear-gradient(90deg, #C7C5F4, #776BCC);	">
-    <div class="mt-5 h-75 d-flex align-items-center justify-content-center">
-        <div class="">
-            <div class="card-body">
-                <center>
-                    <div class="card" style="width: 25rem;">
-                        <!-- <img src="assets/img/apple-touch-icon.png" class="card-img-top" alt="img"> -->
-                        <div class="card-body">
-                            <h5 class="card-title">Welcome</h5>
-                            <p class="card-text">Who Are You ?</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <button type="button" class="zzz btn btn-light list-group-item" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
-                                <h5>Interested-Individual</h5>
-                            </button>
-                            <button type="button" class="zzz btn btn-light list-group-item" id="Trainers" data-bs-toggle="modal" data-bs-target="#Modal">
-                                <h5>Trainers</h5>
-                            </button>
-                            <button type="button" class="zzz btn btn-light list-group-item" id="Sport-professionals" data-bs-toggle="modal" data-bs-target="#Modal">
-                                <h5>Sport-professionals</h5>
-                            </button>
-                            <button type="button" class="zzz btn btn-light list-group-item" id="Volunteer" data-bs-toggle="modal" data-bs-target="#Modal">
-                                <h5>Volunteer</h5>
-                            </button>
-                            <button type="button" class="zzz btn btn-light list-group-item" id="Personnel-Support-Staff" data-bs-toggle="modal" data-bs-target="#Modal">
-                                <h5>Personnel/Support-Staff</h5>
-                            </button>
-                            <button type="button" class="zzz btn btn-light list-group-item" id="Suppliers/Partners" data-bs-toggle="modal" data-bs-target="#Modal">
-                                <h5>Suppliers/Partners</h5>
-                            </button>
-                            <button type="button" class="zzz btn btn-light list-group-item" id="Community" data-bs-toggle="modal" data-bs-target="#Modal">
-                                <h5>Community</h5>
-                            </button>
-                        </ul>
-                    </div>
-                    <?php include "tapSelect.php" ?>
-                </center>
-            </div>
+<body>
+  <!-- partial:index.partial.html -->
+  <div class="gtco-testimonials">
+    <h2>Welcome</h2>
+    <h2>Who Are You ?</h2>
+    <div class="owl-carousel owl-carousel1 owl-theme">
+
+      <div>
+        <div class="card text-center">
+            <img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
+          <div class="card-body">
+            <!-- <p class="card-text">" ... " </p> -->
+            <button type="button" class="zzz btn btn-primary rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <span class="">Interested-Individual</span>
+            </button>
+          </div>
         </div>
+      </div>
+
+      <div>
+        <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
+          <div class="card-body">
+            <!-- <p class="card-text">" ... " </p> -->
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <h5>Trainers</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
+          <div class="card-body">
+            <!-- <p class="card-text">" ... " </p> -->
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <h5>Sport-professionals</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
+          <div class="card-body">
+            <!-- <p class="card-text">" ... " </p> -->
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <h5>Volunteer</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
+          <div class="card-body">
+            <!-- <p class="card-text">" ... " </p> -->
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <h5>Personnel/Support-Staff</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
+          <div class="card-body">
+            <!-- <p class="card-text">" ... " </p> -->
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <h5>Suppliers/Partners</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
+          <div class="card-body">
+            <!-- <p class="card-text">" ... " </p> -->
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <h5>Community</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
+  </div>
+  <center>
+    <?php include "tapSelect.php" ?>
+  </center>
+
+  <!-- partial -->
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
+  <script src="assets/js/homeJS.js"></script>
+
 </body>
 
 </html>
