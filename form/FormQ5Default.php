@@ -12,7 +12,11 @@
 <div class="input-group mb-3">
     <span class="input-group-text">งานวิจัย
     </span>
-    <input name="res" type="text" id="res" class="form-control" required>
+    <input name="resInput" type="text" id="resInput" class="form-control" required>
+</div>
+
+<div class="form-group mb-3" id="formContainer">
+    <a href="#" class="btn btn-primary mb-1" onclick="createInputForm();">เพิ่มข้อมูลงานวิจัย</a>
 </div>
 <!-- end res form -->
 
@@ -23,3 +27,5 @@
     <input name="pub_res" type="text" id="pub_res" class="form-control" required>
 </div>
 <!-- end pub_res form -->
+
+<script src="assets/js/createInputForm.js"></script>
