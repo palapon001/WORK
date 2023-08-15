@@ -38,8 +38,8 @@
         <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
-              <h5>Trainers</h5>
+            <button type="button" class="zzz btn btn-warning rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <span>Trainers</span>
             </button>
           </div>
         </div>
@@ -49,8 +49,8 @@
         <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
-              <h5>Sport-professionals</h5>
+            <button type="button" class="zzz btn btn-danger rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+              <span>Sport-professionals</span>
             </button>
           </div>
         </div>
