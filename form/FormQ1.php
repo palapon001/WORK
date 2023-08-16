@@ -18,7 +18,6 @@
 
       if (name.trim() === "" || surname.trim() === "") {
         $("#emptyAlert-name-surname").show();
-        $("#next1").prop('disabled', true);
       } else {
         $("#emptyAlert-name-surname").hide();
       }
@@ -65,7 +64,6 @@
 
       if (!sex) {
         $("#emptyAlert-sex").show();
-        $("#next1").prop('disabled', true);
       } else {
         $("#emptyAlert-sex").hide();
       }
@@ -122,7 +120,6 @@
 
       if (provin.trim() === "" || amp.trim() === "") {
         $("#emptyAlert-provin").show();
-        $("#next1").prop('disabled', true);
       } else {
         $("#emptyAlert-provin").hide();
       }
@@ -155,7 +152,6 @@
 
       if (age.trim() === "") {
         $("#emptyAlert-age").show();
-        $("#next1").prop('disabled', true);
       } else {
         $("#emptyAlert-age").hide();
       }
@@ -193,7 +189,6 @@
 
       if (eduOptions === "") {
         $("#emptyAlert-edu").show();
-        $("#next1").prop('disabled', true);
       } else {
         $("#emptyAlert-edu").hide();
       }
@@ -238,7 +233,6 @@
 
       if (occOptions === "") {
         $("#emptyAlert-occ").show();
-        $("#next1").prop('disabled', true);
       } else {
         $("#emptyAlert-occ").hide();
       }
@@ -273,7 +267,6 @@
 
       if (maryOptions === "") {
         $("#emptyAlert-mary").show();
-        $("#next1").prop('disabled', true);
       } else {
         $("#emptyAlert-mary").hide();
       }
@@ -307,7 +300,6 @@
 
       if (nationOptions === "") {
         $("#emptyAlert-nation").show();
-        $("#next1").prop('disabled', true);
       } else {
         $("#emptyAlert-nation").hide();
       }
@@ -334,8 +326,8 @@
 
       if (name.trim() === "" ||
         surname.trim() === "" ||
-        !sex ||
-        province.trim() === "" || 
+        sex ||
+        province === "" || 
         amphure.trim() === "" ||
         age.trim() === "" ||
         eduOptions === "" ||
