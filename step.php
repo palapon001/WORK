@@ -55,9 +55,12 @@
                                 <input name="business" type="hidden" id="business" value="---">
 
                                 <!-- ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน -->
-                                <input name="exper_sports" type="hidden" id="exper_sports" value="---">
-                                <input name="res" type="hidden" id="res" value="---">
-                                <input name="pub_res" type="hidden" id="pub_res" value="---">
+                                <input name="exper_sports[]" type="hidden" id="exper_sports" value="---">
+                                <input name="exper_sports_input" type="hidden" id="exper_sports" value="---">
+                                <input name="res[]" type="hidden" id="res" value="---">
+                                <input name="resInput" type="hidden" id="res" value="---">
+                                <input name="pub_res[]" type="hidden" id="pub_res" value="---">
+                                <input name="pub_res_input" type="hidden" id="pub_res" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การอบรม -->
                                 <input name="train_exper_exer" type="hidden" id="train_exper_exer" value="---">

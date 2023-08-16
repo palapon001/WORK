@@ -1,21 +1,19 @@
-let formCount = 0;
-function createInputForm() {
-  const resInput = document.getElementById('resInput');
-  formCount++;
 
-  const formContainer = document.getElementById("formContainer");
+function createInputForm(nameText,nameInput,nameContainer) {
+
+  const formContainer = document.getElementById(nameContainer);
 
    const div = document.createElement("div");
   div.className = 'input-group mb-3';
 
   const label = document.createElement("label");
-  label.textContent = `งานวิจัยที่ ${formCount}: `;
+  label.textContent = `${nameText} : `;
   label.className = 'input-group-text' ;
   div.appendChild(label);
 
   const input = document.createElement("input");
   input.type = "text";
-  input.name = `res[]`;
+  input.name = `${nameInput}[]`;
   input.className = "form-control";
 
   div.appendChild(input);
@@ -29,7 +27,6 @@ function createInputForm() {
     div.removeChild(input);
     div.removeChild(deleteButton);
     div.remove();
-    formCount--;
   });
 
   div.appendChild(deleteButton);

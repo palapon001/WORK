@@ -110,7 +110,7 @@
                     new Chart(ctx1, {
                         type: 'doughnut',
                         data: {
-                            labels: ['ผ่าน <?php echo $res1; ?>', 'ไม่ผ่าน<?php echo $res2; ?>'],
+                            labels: ['ผ่าน <?php echo $res1; ?> คน (<?php echo round($res1*100/($res1+$res2),2) ; ?> %)', 'ไม่ผ่าน<?php echo $res2; ?> คน (<?php echo round($res2*100/($res1+$res2),2) ; ?> %)'],
                             datasets: [{
                                 label: '',
                                 data: [<?php echo $res1; ?>, <?php echo $res2; ?>],

@@ -27,6 +27,7 @@ if (isset($_POST['username'])) {
       $_SESSION["name"] = $row["name"];
       $_SESSION["surname"] = $row["surname"];
       $_SESSION["level"] = $row["level"];
+      $_SESSION["bday"] = $row["bday"];
       Header("Location: page.php");
     }
   } else {

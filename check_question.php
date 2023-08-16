@@ -67,6 +67,8 @@ $reason1Input = $_POST["reason1Input"];
 $reason2Input = $_POST["reason2Input"];
 $exerInput = $_POST["exerInput"];
 $resInput = $_POST["resInput"];
+$exper_sports_input = $_POST["exper_sports_input"];
+$pub_res_input = $_POST["pub_res_input"];
 //echo ข้อมูล
 
 echo "user = " . $user . '<br>';
@@ -104,6 +106,9 @@ echo "motiInput = " . $motiInput . '<br>';
 echo "exer = " . serialize($exer) . '<br>';
 echo "exerInput = " . $exerInput . '<br>';
 echo "resInput = " . $resInput . '<br>';
+echo "exper_sports_input = " . $exper_sports_input . '<br>';
+echo "pub_res_input = " . $pub_res_input . '<br>';
+
 echo "pulseAfter = " . $pulseAfter . '<br>';
 echo "week = " . $week . '<br>';
 echo "intensityOptions = " . $intensityOptions . '<br>';
@@ -173,9 +178,9 @@ echo "loc_agency = " . $loc_agency . '<br>';
 echo "business = " . $business . '<br>';
 
 // F5
-echo "exper_sports = " . $exper_sports . '<br>';
+echo "exper_sports = " . serialize($exper_sports) . '<br>';
 echo "res = " . serialize($res) . '<br>';
-echo "pub_res = " . $pub_res . '<br>';
+echo "pub_res = " . serialize($pub_res) . '<br>';
 
 // F6
 echo "train_exper_exer = " . $train_exper_exer . '<br>';
@@ -219,6 +224,8 @@ $checkRes1 = checkEmpty($reason1, $reason1Input);
 $checkRes2 = checkEmpty($reason2, $reason2Input);
 $checkExer = checkEmpty($exer, $exerInput);
 $checkRes = checkEmpty($res, $resInput);
+$checkExper_sports = checkEmpty($exper_sports, $exper_sports_input);
+$checkPub_res = checkEmpty($pub_res, $pub_res_input);
 
 $checkEDU = checkOption($eduOptions, 'other', $eduInput);
 $checkOCC = checkOption($occOptions, 'other', $eduInput);
@@ -246,7 +253,7 @@ if ($num > 0) {
 								 motiOptions,intensityOptions)
 			 VALUES('$user','$name', '$surname','$sex','$province_id','$amphure_id','$age','$height','$weight','$pressure',
 								 '$pulse','$checkLoc','$checkPer','$checkRes1','$checkRes2','$checkExer','$pulseAfter','$week','$duration','$agency_name1','$agency_name2',
-								 '$community','$loc_community','$loc_agency','$business','$exper_sports','$checkRes','$pub_res','$train_exper_exer','$train_exper','$vol_exper',
+								 '$community','$loc_community','$loc_agency','$business','$checkExper_sports','$checkRes','$checkPub_res','$train_exper_exer','$train_exper','$vol_exper',
 								 '$org_heal','$pro_org_exer','$activity','$checkEDU','$checkOCC','$checkMary','$checkNation','$checkCongen',
 								 '$checkMoti','$intensityOptions')";
 

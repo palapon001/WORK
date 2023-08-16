@@ -1,7 +1,7 @@
 <h1>ข้อมูลส่วนตัว</h1>
 <!-- name surname form -->
 <div class="input-group mb-3">
-  <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>" >
+  <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
   <span class="input-group-text">ชื่อ</span>
   <input name="name" type="text" id="inputValue" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
   <span class="input-group-text">นามสกุล</span>
@@ -78,8 +78,16 @@
 
 <!-- age form -->
 <div class="input-group mb-3">
+  <?php
+  $birthdate =  $_SESSION["bday"];
+  $today = date("Y-m-d");
+  // คำนวณอายุ
+  $diff = date_diff(date_create($birthdate), date_create($today));
+  $age = $diff->format("%y");
+  ?>
   <span class="input-group-text">อายุ</span>
-  <input name="age" type="number" id="age" class="form-control" required>
+
+  <input name="age" type="number" id="age" class="form-control" min="0" max="120" value="<?php echo $age; ?>" required>
 </div>
 <!-- end age form -->
 
