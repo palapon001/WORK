@@ -2,42 +2,80 @@
 <!-- name surname form -->
 <div class="input-group mb-3">
   <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
-  <span class="input-group-text">ชื่อ</span>
-  <input name="name" type="text" id="inputValue" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
+  <span class="input-group-text">ชื่อ </span>
+  <input name="name" type="text" id="name" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
   <span class="input-group-text">นามสกุล</span>
-  <input name="surname" type="text" id="" value="<?php echo $_SESSION["surname"]; ?>" class="form-control" required>
+  <input name="surname" type="text" id="surname" value="<?php echo $_SESSION["surname"]; ?>" class="form-control" required>
 </div>
+<div class="alert alert-danger mb-3" style="display: none;" id="emptyAlert-name-surname">
+  กรุณากรอกข้อมูล ชื่อ - นามสกุล ให้ครบถ้วน
+</div>
+<script>
+  $(document).ready(function() {
+    $("#name, #surname").on("input change", function() {
+      var name = $("#name").val();
+      var surname = $("#surname").val();
 
+      if (name.trim() === "" || surname.trim() === "") {
+        $("#emptyAlert-name-surname").show();
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#emptyAlert-name-surname").hide();
+      }
+    });
+  });
+</script>
 <!-- end name surname form -->
 
 <!-- sex form -->
 <div class="form-control mb-3">
   <p>เพศ</p>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="ชาย" id="flexRadioDefault" required>
+    <input class="form-check-input" type="radio" name="sex" value="ชาย" id="sex" required>
     <label class="form-check-label" for="flexRadioDefault">
       ชาย
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="หญิง" id="flexRadioDefault" required>
+    <input class="form-check-input" type="radio" name="sex" value="หญิง" id="sex" required>
     <label class="form-check-label" for="flexRadioDefault">
       หญิง
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="อื่น ๆ" id="flexRadioDefault" required>
+    <input class="form-check-input" type="radio" name="sex" value="อื่น ๆ" id="sex" required>
     <label class="form-check-label" for="flexRadioDefault">
       อื่น ๆ
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="ไม่ต้องการระบุ" id="flexRadioDefault" required>
+    <input class="form-check-input" type="radio" name="sex" value="ไม่ต้องการระบุ" id="sex" required>
     <label class="form-check-label" for="flexRadioDefault">
       ไม่ต้องการระบุ
     </label>
   </div>
+  <div class="alert alert-danger mt-3" id="emptyAlert-sex">
+    กรุณาระบุข้อมูลให้ครบถ้วน
+  </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $("input[name='sex']:checked").on("input change", function() {
+      var sex = $("input[name='sex']:checked").val();
+
+      if (!sex) {
+        $("#emptyAlert-sex").show();
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#emptyAlert-sex").hide();
+      }
+    });
+
+    $("input[name='sex']").change(function() {
+      $("#emptyAlert-sex").hide();
+    });
+  });
+</script>
 <!-- end sex form -->
 
 <!-- provin form -->
@@ -50,7 +88,7 @@
   $queryProvin = mysqli_query($con, $sqlProvin);
   ?>
   <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group">
       <label for="province">จังหวัด</label>
       <select name="province_id" id="province" class="form-control" required>
         <option value="">เลือกจังหวัด</option>
@@ -59,7 +97,7 @@
         <?php endwhile; ?>
       </select>
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group">
       <label for="amphure">อำเภอ</label>
       <select name="amphure_id" id="amphure" class="form-control" required>
         <option value="">เลือกอำเภอ</option>
@@ -72,8 +110,26 @@
         </select>
       </div> -->
   </div>
-
+  <div class="alert alert-danger mt-3" id="emptyAlert-provin">
+    กรุณาระบุข้อมูลให้ครบถ้วน
+  </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $("#province, #amphure").on("input change", function() {
+      var provin = $("#province").val();
+      var amp = $("#amphure").val();
+
+      if (provin.trim() === "" || amp.trim() === "") {
+        $("#emptyAlert-provin").show();
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#emptyAlert-provin").hide();
+      }
+    });
+
+  });
+</script>
 <!-- end provin form -->
 
 <!-- age form -->
@@ -89,6 +145,23 @@
 
   <input name="age" type="number" id="age" class="form-control" min="0" max="120" value="<?php echo $age; ?>" required>
 </div>
+<div class="alert alert-danger mt-3" style="display: none;" id="emptyAlert-age">
+  กรุณากรอกข้อมูล อายุ
+</div>
+<script>
+  $(document).ready(function() {
+    $("#age").on("input change", function() {
+      var age = $("#age").val();
+
+      if (age.trim() === "") {
+        $("#emptyAlert-age").show();
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#emptyAlert-age").hide();
+      }
+    });
+  });
+</script>
 <!-- end age form -->
 
 <!-- edu form -->
@@ -107,9 +180,27 @@
   </select>
   <div id="eduField" style="display: none;">
     <label for="eduInput">โปรดระบุ:</label>
-    <input type="text" id="eduInput" name="eduInput" class="form-control" required>
+    <input type="text" id="eduInput" name="eduInput" class="form-control">
+  </div>
+  <div class="alert alert-danger mb-3" id="emptyAlert-edu">
+    กรุณาระบุข้อมูลการศึกษา
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $("#eduOptions").on("input change", function() {
+      var eduOptions = $("#eduOptions").val();
+
+      if (eduOptions === "") {
+        $("#emptyAlert-edu").show();
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#emptyAlert-edu").hide();
+      }
+    });
+
+  });
+</script>
 <!-- end edu form -->
 
 <!-- occupation form -->
@@ -136,7 +227,25 @@
     <label for="occInput">โปรดระบุ:</label>
     <input type="text" id="occInput" name="occInput" class="form-control" required>
   </div>
+  <div class="alert alert-danger mb-3" id="emptyAlert-occ">
+    กรุณาระบุข้อมูลอาชีพ
+  </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $("#occOptions").on("input change", function() {
+      var occOptions = $("#occOptions").val();
+
+      if (occOptions === "") {
+        $("#emptyAlert-occ").show();
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#emptyAlert-occ").hide();
+      }
+    });
+
+  });
+</script>
 <!-- end occupation form -->
 
 <!-- marital status form -->
@@ -153,7 +262,25 @@
     <label for="maryInput">โปรดระบุ:</label>
     <input type="text" id="maryInput" name="maryInput" class="form-control" required>
   </div>
+  <div class="alert alert-danger mb-3" id="emptyAlert-mary">
+    กรุณาระบุข้อมูลสถานภาพ
+  </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $("#maryOptions").on("input change", function() {
+      var maryOptions = $("#maryOptions").val();
+
+      if (maryOptions === "") {
+        $("#emptyAlert-mary").show();
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#emptyAlert-mary").hide();
+      }
+    });
+
+  });
+</script>
 <!-- end marital status form -->
 
 <!-- nationality form -->
@@ -169,7 +296,64 @@
     <label for="nationInput">โปรดระบุ:</label>
     <input type="text" id="nationInput" name="nationInput" class="form-control" required>
   </div>
+  <div class="alert alert-danger mb-3" id="emptyAlert-nation">
+    กรุณาระบุข้อมูลสถานภาพ
+  </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $("#nationOptions").on("input change", function() {
+      var nationOptions = $("#nationOptions").val();
+
+      if (nationOptions === "") {
+        $("#emptyAlert-nation").show();
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#emptyAlert-nation").hide();
+      }
+    });
+
+  });
+</script>
 <!-- end nationality form -->
+
+<script>
+  $(document).ready(function() {
+    $("#next1").prop('disabled', true);
+    $("#name, #surname, input[name='sex']:checked, #province, #amphure, #age, #eduOptions, #occOptions, #maryOptions, #nationOptions").on("input change", function() {
+      var name = $("#name").val();
+      var surname = $("#surname").val();
+      var sex = $("input[name='sex']:checked").val();
+      var province = $("#province").val();
+      var amphure = $("#amphure").val();
+      var age = $("#age").val();
+      var eduOptions = $("#eduOptions").val();
+      var occOptions = $("#occOptions").val();
+      var maryOptions = $("#maryOptions").val();
+      var nationOptions = $("#nationOptions").val();
+
+      if (name.trim() === "" ||
+        surname.trim() === "" ||
+        !sex ||
+        province.trim() === "" || 
+        amphure.trim() === "" ||
+        age.trim() === "" ||
+        eduOptions === "" ||
+        occOptions === "" ||
+        maryOptions === "" ||
+        nationOptions === "" 
+      ) {
+        $("#next1").prop('disabled', true);
+      } else {
+        $("#next1").prop('disabled', false);
+      }
+    });
+
+    $("input[name='sex']").change(function() {
+      $("#emptyAlert-sex").hide();
+    });
+
+  });
+</script>
 
 <script src="assets/js/script.js"></script>

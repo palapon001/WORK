@@ -25,7 +25,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <?php include 'form/FormQ1.php'; ?>
-                                <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(2)">ถัดไป</button>
+                                <button type="button" class="btn btn-primary btn-lg" id="next1" onclick="nextStep(2)">ถัดไป</button>
                             </div>
                         </div>
                     </div>
