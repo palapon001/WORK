@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <?php include 'form/FormQ2.php'; ?>
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(1)">ก่อนหน้า</button>
-                                <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)">ถัดไป</button>
+                                <button type="button" class="btn btn-primary btn-lg" id="next2" onclick="nextStep(3)">ถัดไป</button>
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                                 <input name="activity" type="hidden" value="---">
 
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(2)">ก่อนหน้า</button>
-                                <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
+                                <button type="submit" class="btn btn-primary btn-lg" id="success">ยืนยัน</button>
                             </div>
                         </div>
                     </div>

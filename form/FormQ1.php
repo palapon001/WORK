@@ -10,20 +10,6 @@
 <div class="alert alert-danger mb-3" style="display: none;" id="emptyAlert-name-surname">
   กรุณากรอกข้อมูล ชื่อ - นามสกุล ให้ครบถ้วน
 </div>
-<script>
-  $(document).ready(function() {
-    $("#name, #surname").on("input change", function() {
-      var name = $("#name").val();
-      var surname = $("#surname").val();
-
-      if (name.trim() === "" || surname.trim() === "") {
-        $("#emptyAlert-name-surname").show();
-      } else {
-        $("#emptyAlert-name-surname").hide();
-      }
-    });
-  });
-</script>
 <!-- end name surname form -->
 
 <!-- sex form -->
@@ -57,23 +43,6 @@
     กรุณาระบุข้อมูลให้ครบถ้วน
   </div>
 </div>
-<script>
-  $(document).ready(function() {
-    $("input[name='sex']:checked").on("input change", function() {
-      var sex = $("input[name='sex']:checked").val();
-
-      if (!sex) {
-        $("#emptyAlert-sex").show();
-      } else {
-        $("#emptyAlert-sex").hide();
-      }
-    });
-
-    $("input[name='sex']").change(function() {
-      $("#emptyAlert-sex").hide();
-    });
-  });
-</script>
 <!-- end sex form -->
 
 <!-- provin form -->
@@ -112,21 +81,6 @@
     กรุณาระบุข้อมูลให้ครบถ้วน
   </div>
 </div>
-<script>
-  $(document).ready(function() {
-    $("#province, #amphure").on("input change", function() {
-      var provin = $("#province").val();
-      var amp = $("#amphure").val();
-
-      if (provin.trim() === "" || amp.trim() === "") {
-        $("#emptyAlert-provin").show();
-      } else {
-        $("#emptyAlert-provin").hide();
-      }
-    });
-
-  });
-</script>
 <!-- end provin form -->
 
 <!-- age form -->
@@ -145,19 +99,6 @@
 <div class="alert alert-danger mt-3" style="display: none;" id="emptyAlert-age">
   กรุณากรอกข้อมูล อายุ
 </div>
-<script>
-  $(document).ready(function() {
-    $("#age").on("input change", function() {
-      var age = $("#age").val();
-
-      if (age.trim() === "") {
-        $("#emptyAlert-age").show();
-      } else {
-        $("#emptyAlert-age").hide();
-      }
-    });
-  });
-</script>
 <!-- end age form -->
 
 <!-- edu form -->
@@ -182,20 +123,6 @@
     กรุณาระบุข้อมูลการศึกษา
   </div>
 </div>
-<script>
-  $(document).ready(function() {
-    $("#eduOptions").on("input change", function() {
-      var eduOptions = $("#eduOptions").val();
-
-      if (eduOptions === "") {
-        $("#emptyAlert-edu").show();
-      } else {
-        $("#emptyAlert-edu").hide();
-      }
-    });
-
-  });
-</script>
 <!-- end edu form -->
 
 <!-- occupation form -->
@@ -226,20 +153,6 @@
     กรุณาระบุข้อมูลอาชีพ
   </div>
 </div>
-<script>
-  $(document).ready(function() {
-    $("#occOptions").on("input change", function() {
-      var occOptions = $("#occOptions").val();
-
-      if (occOptions === "") {
-        $("#emptyAlert-occ").show();
-      } else {
-        $("#emptyAlert-occ").hide();
-      }
-    });
-
-  });
-</script>
 <!-- end occupation form -->
 
 <!-- marital status form -->
@@ -260,20 +173,6 @@
     กรุณาระบุข้อมูลสถานภาพ
   </div>
 </div>
-<script>
-  $(document).ready(function() {
-    $("#maryOptions").on("input change", function() {
-      var maryOptions = $("#maryOptions").val();
-
-      if (maryOptions === "") {
-        $("#emptyAlert-mary").show();
-      } else {
-        $("#emptyAlert-mary").hide();
-      }
-    });
-
-  });
-</script>
 <!-- end marital status form -->
 
 <!-- nationality form -->
@@ -293,20 +192,6 @@
     กรุณาระบุข้อมูลสถานภาพ
   </div>
 </div>
-<script>
-  $(document).ready(function() {
-    $("#nationOptions").on("input change", function() {
-      var nationOptions = $("#nationOptions").val();
-
-      if (nationOptions === "") {
-        $("#emptyAlert-nation").show();
-      } else {
-        $("#emptyAlert-nation").hide();
-      }
-    });
-
-  });
-</script>
 <!-- end nationality form -->
 
 <script>
@@ -324,16 +209,64 @@
       var maryOptions = $("#maryOptions").val();
       var nationOptions = $("#nationOptions").val();
 
+      if (name.trim() === "" || surname.trim() === "") {
+        $("#emptyAlert-name-surname").show();
+      } else {
+        $("#emptyAlert-name-surname").hide();
+      }
+
+      if (!sex) {
+        $("#emptyAlert-sex").show();
+      } else {
+        $("#emptyAlert-sex").hide();
+      }
+
+      if (province.trim() === "" || amphure.trim() === "") {
+        $("#emptyAlert-provin").show();
+      } else {
+        $("#emptyAlert-provin").hide();
+      }
+
+      if (age.trim() === "") {
+        $("#emptyAlert-age").show();
+      } else {
+        $("#emptyAlert-age").hide();
+      }
+
+      if (eduOptions === null) {
+        $("#emptyAlert-edu").show();
+      } else {
+        $("#emptyAlert-edu").hide();
+      }
+
+      if (occOptions === null) {
+        $("#emptyAlert-occ").show();
+      } else {
+        $("#emptyAlert-occ").hide();
+      }
+
+      if (maryOptions === null) {
+        $("#emptyAlert-mary").show();
+      } else {
+        $("#emptyAlert-mary").hide();
+      }
+
+      if (nationOptions === null) {
+        $("#emptyAlert-nation").show();
+      } else {
+        $("#emptyAlert-nation").hide();
+      }
+
       if (name.trim() === "" ||
         surname.trim() === "" ||
         !sex ||
-        province === "" || 
+        province.trim() === "" || 
         amphure.trim() === "" ||
         age.trim() === "" ||
-        eduOptions.trim() === "" ||
-        occOptions.trim() === "" ||
-        maryOptions.trim() === "" ||
-        nationOptions.trim() === "" 
+        eduOptions === null ||
+        occOptions === null ||
+        maryOptions === null ||
+        nationOptions === null 
       ) {
         $("#next1").prop('disabled', true);
       } else {

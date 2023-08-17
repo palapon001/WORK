@@ -1,57 +1,28 @@
+<?php
+include 'assets/php/createVarJSON.php';
+include 'assets/php/generateFormCheck.php';
+?>
 <h1>ข้อมูลการออกกำลังกาย</h1>
 <!-- location form -->
-<div class="form-control mb-3">
-    <p>สถานที่ใดที่คุณใช้ออกกำลังกายหรือเล่นกีฬาเป็นประจำ (ตอบได้มากกว่า 1 คำตอบ)</p>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="location[]" value="บ้าน/บริเวณที่พักอาศัย" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            บ้าน/บริเวณที่พักอาศัย
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="location[]" value="ที่ทำงาน" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ที่ทำงาน
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="location[]" value="โรงเรียน/สถานศึกษา" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            โรงเรียน/สถานศึกษา
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="location[]" value="พื้นที่ทำการเกษตร เช่น สวน ไร่ นา เป็นต้น" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            พื้นที่ทำการเกษตร เช่น สวน ไร่ นา เป็นต้น
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="location[]" value="สนามกีฬำประจำตำบล/อำเภอ/จังหวัด" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            สนามกีฬำประจำตำบล/อำเภอ/จังหวัด
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="location[]" value="ฟิตเนสหรือยิม" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ฟิตเนสหรือยิม
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="location[]" value="สวนสาธารณะ" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            สวนสาธารณะ
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="location[]" value="ถนน/ทางสาธารณะ/ซอย" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ถนน/ทางสาธารณะ/ซอย
-        </label>
-    </div>
-    <input type="text" class="form-control" id="textInput" name="locationInput" placeholder="อื่น ๆ โปรดระบุ">
-</div>
+<?php
+$locations = array(
+    "บ้าน/บริเวณที่พักอาศัย",
+    "ที่ทำงาน",
+    "โรงเรียน/สถานศึกษา",
+    "พื้นที่ทำการเกษตร เช่น สวน ไร่ นา เป็นต้น",
+    "สนามกีฬาประจำตำบล/อำเภอ/จังหวัด",
+    "ฟิตเนสหรือยิม",
+    "สวนสาธารณะ",
+    "ถนน/ทางสาธารณะ/ซอย"
+);
+$locationHTML = generateFormCheck(
+    $locations,
+    'location',
+    'สถานที่ใดที่คุณใช้ออกกำลังกายหรือเล่นกีฬาเป็นประจำ (ตอบได้มากกว่า 1 คำตอบ)',
+    'กรุณาเลือกข้อมูลสถานที่'
+);
+echo $locationHTML;
+?>
 <!-- end location form -->
 
 <!-- period form -->
@@ -65,7 +36,7 @@
             ?>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="selected_hours[]" value="<?php echo $label; ?>"><?php echo $label; ?>
+                        <input type="checkbox" class="form-check-input" name="selected_hours[]" id="hours-<?php echo $hour; ?>" value="<?php echo $label; ?>"><?php echo $label; ?>
                     </label>
                 </div>
             <?php
@@ -79,7 +50,7 @@
             ?>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="selected_hours[]" value="<?php echo $label; ?>"><?php echo $label; ?>
+                        <input type="checkbox" class="form-check-input" name="selected_hours[]" id="hours-<?php echo $hour; ?>" value="<?php echo $label; ?>"><?php echo $label; ?>
                     </label>
                 </div>
             <?php
@@ -87,153 +58,50 @@
             ?>
         </div>
     </div>
+    <div class="alert alert-danger mt-3" id="emptyAlert-hours">
+        กรุณาเลือกข้อมูลช่วงเวลา
+    </div>
 </div>
 <!-- end period form -->
 
 <!-- reason1 form -->
-<div class="form-control mb-3">
-    <p>เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ) </p>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="ต้องการให้ร่างกายแข็งแรง" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ต้องการให้ร่างกายแข็งแรง
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="เป็นงานต้องทำ/เป็นอาชีพ" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            เป็นงานต้องทำ/เป็นอาชีพ
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="ทำกิจกรรมร่วมกับเพื่อน/เพื่อนชวน" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ทำกิจกรรมร่วมกับเพื่อน/เพื่อนชวน
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="รักษา/บรรเทาอาการเจ็บป่วย" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            รักษา/บรรเทาอาการเจ็บป่วย
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="ใช้เวลาว่างให้เป็นประโยชน์" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ใช้เวลาว่างให้เป็นประโยชน์
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="ต้องการรูปร่างที่ดี/หุ่นดี" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ต้องการรูปร่างที่ดี/หุ่นดี
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="กำลังเป็นที่นิยม/ตามกระแสนิยม" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            กำลังเป็นที่นิยม/ตามกระแสนิยม
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="ควบคุมน้ำหนัก/ลดน้ำหนัก" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ควบคุมน้ำหนัก/ลดน้ำหนัก
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="คลายเครียด/พักผ่อน" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            คลายเครียด/พักผ่อน
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="ชอบในกีฬานั้นๆ" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ชอบในกีฬานั้นๆ
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason1[]" value="ชอบออกกำลังกาย" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ชอบออกกำลังกาย
-        </label>
-    </div>
-    <input type="text" class="form-control" id="textInput" name="reason1Input" placeholder="อื่น ๆ โปรดระบุ" require>
-</div>
+<?php
+$reason1 = array(
+    "ต้องการให้ร่างกายแข็งแรง",
+    "เป็นงานต้องทำ/เป็นอาชีพ",
+    "ทำกิจกรรมร่วมกับเพื่อน/เพื่อนชวน",
+    "รักษา/บรรเทาอาการเจ็บป่วย",
+    "ใช้เวลาว่างให้เป็นประโยชน์",
+    "ต้องการรูปร่างที่ดี/หุ่นดี",
+    "กำลังเป็นที่นิยม/ตามกระแสนิยม",
+    "ควบคุมน้ำหนัก/ลดน้ำหนัก",
+    "คลายเครียด/พักผ่อน",
+    "ชอบในกีฬานั้นๆ",
+    "ชอบออกกำลังกาย"
+);
+$reason1HTML = generateFormCheck($reason1, 'reason1', 'เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)', ' กรุณาเลือกข้อมูล');
+echo $reason1HTML;
+?>
 <!-- end reason1 form -->
 
 <!-- reason2 form -->
-<div class="form-control mb-3">
-    <p>เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ) </p>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="ขี้เกียจ" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ขี้เกียจ
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="ไม่มีเวลา" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ไม่มีเวลา
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="ป่วย" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ป่วย
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="ไม่ชอบการออกกำลังกาย" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ไม่ชอบการออกกำลังกาย
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="ไม่มีความรู้" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ไม่มีความรู้
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="น่าเบื่อหน่าย" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            น่าเบื่อหน่าย
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="พิการ" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            พิการ
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="ไม่มีสถานที่" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ไม่มีสถานที่
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="ไม่จำเป็นต่อตนเอง" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ไม่จำเป็นต่อตนเอง
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="ขาดแรงจูงใจ" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            ขาดแรงจูงใจ
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="reason2[]" value="สถานการณ์โรคอุบัติใหม่/ สถานการณ์วิกฤต" id="flexRadioDefault">
-        <label class="form-check-label" for="flexRadioDefault">
-            สถานการณ์โรคอุบัติใหม่/ สถานการณ์วิกฤต
-        </label>
-    </div>
-    <input type="text" class="form-control" id="textInput" name="reason2Input" placeholder="อื่น ๆ โปรดระบุ" require>
-</div>
+<?php
+$reason2 = array(
+    "ขี้เกียจ",
+    "ไม่มีเวลา",
+    "ป่วย",
+    "ไม่ชอบการออกกำลังกาย",
+    "ไม่มีความรู้",
+    "น่าเบื่อหน่าย",
+    "พิการ",
+    "ไม่มีสถานที่",
+    "ไม่จำเป็นต่อตนเอง",
+    "ขาดแรงจูงใจ",
+    "สถานการณ์โรคอุบัติใหม่/สถานการณ์วิกฤต"
+);
+$reason2HTML = generateFormCheck($reason2, "reason2", "เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)", "กรุณาเลือกเหตุผล");
+echo $reason2HTML;
+?>
 <!-- end reason2 form -->
 
 <!-- motivation form -->
@@ -255,164 +123,42 @@
         <label for="motiInput">โปรดระบุ:</label>
         <input type="text" id="motiInput" name="motiInput" class="form-control" required>
     </div>
+    <div class="alert alert-danger mt-3" id="emptyAlert-motiOptions">
+        กรุณากรอกข้อมูล
+    </div>
 </div>
 <!-- end motivation form -->
 
 <!-- exercise type form -->
-<div class="form-control mb-3">
-    <p>รายการตัวเลือก ประเภทการออกกำลังกายเพื่อสุขภาพ (ตอบได้มากกว่า 1 ข้อ) </p>
-    <div class="row">
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="เดิน" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    เดิน
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="วิ่ง" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    วิ่ง
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="โยคะ" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    โยคะ
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="ฟุตซอล" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    ฟุตซอล
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="ปั่นจักรยาน" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    ปั่นจักรยาน
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="กระโดยเชือก" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    กระโดยเชือก
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="ฟุตบอล" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    ฟุตบอล
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="แบดมินตัน" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    แบดมินตัน
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="เต้นแอโรบิค" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    เต้นแอโรบิค
-                </label>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="บาสเกตบอล" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    บาสเกตบอล
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="เพาะกายและฟิตเนส" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    เพาะกายและฟิตเนส
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="เซปักตะกร้อ" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    เซปักตะกร้อ
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="เปตอง" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    เปตอง
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="รำมวยจีน" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    รำมวยจีน
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="ว่ายน้ำ" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    ว่ายน้ำ
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="ลีลาศ" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    ลีลาศ
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="มวยไทย" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    มวยไทย
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="เทนนิส" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    เทนนิส
-                </label>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="กอล์ฟ" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    กอล์ฟ
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="ไทเก็ก" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    ไทเก็ก
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="เทควันโด" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    เทควันโด
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="สนุ๊กเกอร์" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    สนุ๊กเกอร์
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="exer[]" value="มวยสากล" id="flexRadioDefault">
-                <label class="form-check-label" for="flexRadioDefault">
-                    มวยสากล
-                </label>
-            </div>
-
-        </div>
-
-    </div>
-    <input type="text" class="form-control" id="textInput" name="exerInput" placeholder="อื่น ๆ โปรดระบุ" require>
-</div>
+<?php
+$exerciseArray = array(
+    "เดิน",
+    "วิ่ง",
+    "โยคะ",
+    "ฟุตซอล",
+    "ปั่นจักรยาน",
+    "กระโดยเชือก",
+    "ฟุตบอล",
+    "แบดมินตัน",
+    "เต้นแอโรบิค",
+    "บาสเกตบอล",
+    "เพาะกายและฟิตเนส",
+    "เซปักตะกร้อ",
+    "เปตอง",
+    "รำมวยจีน",
+    "ว่ายน้ำ",
+    "ลีลาศ",
+    "มวยไทย",
+    "เทนนิส",
+    "กอล์ฟ",
+    "ไทเก็ก",
+    "เทควันโด",
+    "สนุ๊กเกอร์",
+    "มวยสากล"
+);
+$exerciseHTML = generateFormCheck($exerciseArray, 'exer', 'รายการตัวเลือก ประเภทการออกกำลังกายเพื่อสุขภาพ (ตอบได้มากกว่า 1 ข้อ)', 'กรุณาเลือกรายการ');
+echo $exerciseHTML;
+?>
 <!-- end exercise type form -->
 
 <!-- pulse after exercise form -->
@@ -426,17 +172,23 @@
 <div class="form-control mb-3">
     <p>จำนวนวันที่ออกกำลังกายต่อสัปดาห์ </p>
     <input name="week" type="number" id="week" class="form-control" required>
+    <div class="alert alert-danger mt-3" id="emptyAlert-week">
+        กรุณากรอกข้อมูล
+    </div>
 </div>
 <!-- end week exercise form -->
 
 <!-- exercise intensity form -->
 <div class="form-control mb-3">
     <p>ความหนักของการออกกำลังกาย</p>
-    <select class="form-select mb-3" id="intensityOptions" name="intensityOptions" >
+    <select class="form-select mb-3" id="intensityOptions" name="intensityOptions">
         <option selected disabled>โปรดเลือก</option>
         <option value="ระดับปานกลาง">ระดับปานกลาง=อัตราการหายใจ หรืออัตราการเต้นของหัวใจเพิ่มขึ้นจากปกติเล็กน้อย</option>
         <option value="ระดับหนัก">ระดับหนัก=อัตราการหายใจ หรืออัตราการเต้นของหัวใจเพิ่มขึ้นอย่างมาก</option>
     </select>
+    <div class="alert alert-danger mt-3" id="emptyAlert-intensity">
+        กรุณากรอกข้อมูล
+    </div>
 </div>
 <!-- end exercise intensity form -->
 
@@ -444,5 +196,102 @@
 <div class="form-control mb-3">
     <p>ระยะเวลาการออกกำลังกาย</p>
     <input name="duration" type="number" id="duration" class="form-control" required>
+    <div class="alert alert-danger mt-3" id="emptyAlert-duration">
+        กรุณากรอกข้อมูล
+    </div>
 </div>
 <!-- end duration of exercise form -->
+<script>
+    $(document).ready(function() {
+        $("#success").prop('disabled', true);
+
+        $("<?php echoTAGID('location-', 1, count($locations));
+            echoTAGID('hours-', 0, 24);
+            echoTAGID('reason1-', 1, count($reason1));
+            echoTAGID('reason2-', 1, count($reason2));
+            echoTAGID('exer-', 1, count($exerciseArray)); ?> #week, #intensityOptions, #motiOptions, #duration ").on("input change ", function() {
+            <?php 
+                echoCreateVar('location', 1, count($locations));
+                echoCreateVar('hours', 0, 24);
+                echoCreateVar('reason1', 1, count($reason1));
+                echoCreateVar('reason2', 1, count($reason2));
+                echoCreateVar('exer', 1, count($exerciseArray));
+            ?>
+            var week = $("#week").val();
+            var intensityOptions = $("#intensityOptions").val();
+            var motiOptions = $("#motiOptions").val();
+            var duration = $("#duration").val();
+
+            if (<?php echoIFVar('location', 1, count($locations)); ?>) {
+                $("#emptyAlert-location").show()
+            } else {
+                $("#emptyAlert-location").hide()
+            }
+
+            if (<?php echo echoIFVar('hours', 0, 24); ?>) {
+                $("#emptyAlert-hours").show()
+            } else {
+                $("#emptyAlert-hours").hide()
+            }
+
+            if (<?php echo echoIFVar('reason1', 1, count($reason1)); ?>) {
+                $("#emptyAlert-reason1").show()
+            } else {
+                $("#emptyAlert-reason1").hide()
+            }
+
+            if (<?php echo echoIFVar('reason2', 1, count($reason2)); ?>) {
+                $("#emptyAlert-reason2").show()
+            } else {
+                $("#emptyAlert-reason2").hide()
+            }
+
+            if (<?php echo echoIFVar('exer', 1, count($exerciseArray)); ?>) {
+                $("#emptyAlert-exer").show()
+            } else {
+                $("#emptyAlert-exer").hide()
+            }
+
+            if (week.trim() === "") {
+                $("#emptyAlert-week").show()
+            } else {
+                $("#emptyAlert-week").hide()
+            }
+
+            if (intensityOptions === null) {
+                $("#emptyAlert-intensity").show()
+            } else {
+                $("#emptyAlert-intensity").hide()
+            }
+
+            if (motiOptions === null) {
+                $("#emptyAlert-motiOptions").show()
+            } else {
+                $("#emptyAlert-motiOptions").hide()
+            }
+
+            if (duration.trim() === "") {
+                $("#emptyAlert-duration").show()
+            } else {
+                $("#emptyAlert-duration").hide()
+            }
+
+            if (week.trim() === "" ||
+                intensityOptions === null ||
+                motiOptions === null ||
+                duration.trim() === ""||
+                (<?php echoIFVar('location', 1, count($locations)); ?>) ||
+                (<?php echo echoIFVar('hours', 0, 24); ?>) ||
+                (<?php echo echoIFVar('reason1', 1, count($reason1)); ?>)||
+                (<?php echo echoIFVar('reason2', 1, count($reason2)); ?>)||
+                (<?php echo echoIFVar('exer', 1, count($exerciseArray)); ?>)
+            ) {
+                $("#success").prop('disabled', true);
+            } else {
+                $("#success").prop('disabled', false);
+            }
+        });
+
+
+    });
+</script>
