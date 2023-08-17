@@ -2,6 +2,7 @@
 <!-- name surname form -->
 <div class="input-group mb-3">
   <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
+  <input type="hidden" name="level" value="<?php echo $_SESSION["level"]; ?>">
   <span class="input-group-text">ชื่อ </span>
   <input name="name" type="text" id="name" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
   <span class="input-group-text">นามสกุล</span>
@@ -120,7 +121,7 @@
     <input type="text" id="eduInput" name="eduInput" class="form-control">
   </div>
   <div class="alert alert-danger mb-3" id="emptyAlert-edu">
-    กรุณาระบุข้อมูลการศึกษา
+    กรุณาระบุข้อมูล การศึกษา
   </div>
 </div>
 <!-- end edu form -->
@@ -150,7 +151,7 @@
     <input type="text" id="occInput" name="occInput" class="form-control" required>
   </div>
   <div class="alert alert-danger mb-3" id="emptyAlert-occ">
-    กรุณาระบุข้อมูลอาชีพ
+    กรุณาระบุข้อมูล อาชีพ
   </div>
 </div>
 <!-- end occupation form -->
@@ -170,7 +171,7 @@
     <input type="text" id="maryInput" name="maryInput" class="form-control" required>
   </div>
   <div class="alert alert-danger mb-3" id="emptyAlert-mary">
-    กรุณาระบุข้อมูลสถานภาพ
+    กรุณาระบุข้อมูล สถานภาพ
   </div>
 </div>
 <!-- end marital status form -->
@@ -189,7 +190,7 @@
     <input type="text" id="nationInput" name="nationInput" class="form-control" required>
   </div>
   <div class="alert alert-danger mb-3" id="emptyAlert-nation">
-    กรุณาระบุข้อมูลสถานภาพ
+    กรุณาระบุข้อมูล สัญชาติ
   </div>
 </div>
 <!-- end nationality form -->

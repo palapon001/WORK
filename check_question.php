@@ -4,6 +4,7 @@ include('condb.php');  //ไฟล์เชื่อมต่อกับ databa
 $user = $_POST["user"];
 $name = $_POST["name"];
 $surname = $_POST["surname"];
+$level = $_POST['level'];
 $sex = $_POST["sex"];
 $province_id = $_POST["province_id"];
 $amphure_id = $_POST["amphure_id"];
@@ -73,6 +74,7 @@ $pub_res_input = $_POST["pub_res_input"];
 
 echo "user = " . $user . '<br>';
 echo "name = " . $name . '<br>';
+echo "level = " . $level . '<br>';
 echo "surname = " . $surname . '<br>';
 echo "sex = " . $sex . '<br>';
 echo "province_id = " . $province_id . '<br>';
@@ -246,12 +248,12 @@ if ($num > 0) {
 	echo "</script>";
 } else {
 	//เพิ่มเข้าไปในฐานข้อมูล
-	$sql = "INSERT INTO question(username,name,surname,sex,province_id,amphure_id,age,height,weight,pressure,
+	$sql = "INSERT INTO question(username,name,surname,level,sex,province_id,amphure_id,age,height,weight,pressure,
 								 pulse,location,period,reason1,reason2,exer,pulseAfter,week,duration,agency_name1,agency_name2,
 								 community,loc_community,loc_agency,business,exper_sports,res,pub_res,train_exper_exer,train_exper,vol_exper,
 								 org_heal,pro_org_exer,activity,eduOptions,occOptions,maryOptions,nationOptions,congenOptions,
 								 motiOptions,intensityOptions)
-			 VALUES('$user','$name', '$surname','$sex','$province_id','$amphure_id','$age','$height','$weight','$pressure',
+			 VALUES('$user','$name', '$surname','$level','$sex','$province_id','$amphure_id','$age','$height','$weight','$pressure',
 								 '$pulse','$checkLoc','$checkPer','$checkRes1','$checkRes2','$checkExer','$pulseAfter','$week','$duration','$agency_name1','$agency_name2',
 								 '$community','$loc_community','$loc_agency','$business','$checkExper_sports','$checkRes','$checkPub_res','$train_exper_exer','$train_exper','$vol_exper',
 								 '$org_heal','$pro_org_exer','$activity','$checkEDU','$checkOCC','$checkMary','$checkNation','$checkCongen',
