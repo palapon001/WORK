@@ -201,22 +201,33 @@ echo $exerciseHTML;
     </div>
 </div>
 <!-- end duration of exercise form -->
+<?php
+function echoALLTAGID()
+{
+    echoTAGID('location-', 1, count($GLOBALS['locations']));
+    echoTAGID('hours-', 0, 24);
+    echoTAGID('reason1-', 1, count($GLOBALS['reason1']));
+    echoTAGID('reason2-', 1, count($GLOBALS['reason2']));
+    echoTAGID('exer-', 1, count($GLOBALS['exerciseArray']));
+}
+?>
+
+<?php
+function echoALLCreateVar()
+{
+    echoCreateVar('location', 1, count($GLOBALS['locations']));
+    echoCreateVar('hours', 0, 24);
+    echoCreateVar('reason1', 1, count($GLOBALS['reason1']));
+    echoCreateVar('reason2', 1, count($GLOBALS['reason2']));
+    echoCreateVar('exer', 1, count($GLOBALS['exerciseArray']));
+}
+?>
+
 <script>
     $(document).ready(function() {
         $("#success").prop('disabled', true);
-
-        $("<?php echoTAGID('location-', 1, count($locations));
-            echoTAGID('hours-', 0, 24);
-            echoTAGID('reason1-', 1, count($reason1));
-            echoTAGID('reason2-', 1, count($reason2));
-            echoTAGID('exer-', 1, count($exerciseArray)); ?> #week, #intensityOptions, #motiOptions, #duration ").on("input change ", function() {
-            <?php 
-                echoCreateVar('location', 1, count($locations));
-                echoCreateVar('hours', 0, 24);
-                echoCreateVar('reason1', 1, count($reason1));
-                echoCreateVar('reason2', 1, count($reason2));
-                echoCreateVar('exer', 1, count($exerciseArray));
-            ?>
+        $("<?php echoALLTAGID() ?> #week, #intensityOptions, #motiOptions, #duration ").on("input change ", function() {
+            <?php echo echoALLCreateVar() ?>
             var week = $("#week").val();
             var intensityOptions = $("#intensityOptions").val();
             var motiOptions = $("#motiOptions").val();
@@ -279,11 +290,11 @@ echo $exerciseHTML;
             if (week.trim() === "" ||
                 intensityOptions === null ||
                 motiOptions === null ||
-                duration.trim() === ""||
+                duration.trim() === "" ||
                 (<?php echoIFVar('location', 1, count($locations)); ?>) ||
                 (<?php echo echoIFVar('hours', 0, 24); ?>) ||
-                (<?php echo echoIFVar('reason1', 1, count($reason1)); ?>)||
-                (<?php echo echoIFVar('reason2', 1, count($reason2)); ?>)||
+                (<?php echo echoIFVar('reason1', 1, count($reason1)); ?>) ||
+                (<?php echo echoIFVar('reason2', 1, count($reason2)); ?>) ||
                 (<?php echo echoIFVar('exer', 1, count($exerciseArray)); ?>)
             ) {
                 $("#success").prop('disabled', true);
@@ -291,7 +302,5 @@ echo $exerciseHTML;
                 $("#success").prop('disabled', false);
             }
         });
-
-
     });
 </script>
