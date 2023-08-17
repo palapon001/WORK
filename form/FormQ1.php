@@ -326,14 +326,14 @@
 
       if (name.trim() === "" ||
         surname.trim() === "" ||
-        sex ||
+        !sex ||
         province === "" || 
         amphure.trim() === "" ||
         age.trim() === "" ||
-        eduOptions === "" ||
-        occOptions === "" ||
-        maryOptions === "" ||
-        nationOptions === "" 
+        eduOptions.trim() === "" ||
+        occOptions.trim() === "" ||
+        maryOptions.trim() === "" ||
+        nationOptions.trim() === "" 
       ) {
         $("#next1").prop('disabled', true);
       } else {
