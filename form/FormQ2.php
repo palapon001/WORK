@@ -75,62 +75,6 @@
 
 <!-- end congenital disease form -->
 
-<!-- <script>
-    $(document).ready(function() {
-        $("#next2").prop('disabled', true);
-        $("#height, #weight, #pressure, #pulse, #congenOptions").on("input change", function() {
-            var height = $("#height").val();
-            var weight = $("#weight").val();
-            var pressure = $("#pressure").val();
-            var pulse = $("#pulse").val();
-            var congenOptions = $("#congenOptions").val();
-
-            if (height.trim() === "") {
-                $("#emptyAlert-height").show();
-            } else {
-                $("#emptyAlert-height").hide();
-            }
-
-            if (weight.trim() === "") {
-                $("#emptyAlert-weight").show();
-            } else {
-                $("#emptyAlert-weight").hide();
-            }
-
-            if (pressure.trim() === "") {
-                $("#emptyAlert-pressure").show();
-            } else {
-                $("#emptyAlert-pressure").hide();
-            }
-
-            if (pulse === "") {
-                $("#emptyAlert-pulse").show();
-            } else {
-                $("#emptyAlert-pulse").hide();
-            }
-
-            if (congenOptions === null) {
-                $("#emptyAlert-congen").show();
-            } else {
-                $("#emptyAlert-congen").hide();
-            }
-
-
-            if (height.trim() === "" ||
-                weight.trim() === "" ||
-                pressure.trim() === "" ||
-                pulse.trim() === "" ||
-                congenOptions === null
-            ) {
-                $("#next2").prop('disabled', true);
-            } else {
-                $("#next2").prop('disabled', false);
-            }
-        });
-
-    });
-</script> -->
-
 <script>
     $(document).ready(function() {
         const inputIds = [
