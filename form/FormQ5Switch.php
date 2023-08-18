@@ -22,3 +22,29 @@
     default: ?>
         <?php include 'FormQ5Default.php'; ?>
 <?php } ?>
+<script>
+    $(document).ready(function() {
+        const formIds = [
+            "exper_sports_input", "resInput", "pub_res_input"
+        ];
+
+        formIds.forEach(id => $(`#${id}`).on("input change", checkAndUpdate));
+
+        function checkAndUpdate() {
+            const isDisabled = formIds.some(id => $(`#${id}`).val().trim() === "");
+
+            formIds.forEach(id => toggleAlert(`#emptyAlert-${id}`, $(`#${id}`).val().trim() === ""));
+        }
+
+        function toggleAlert(alertId, show) {
+            if (show) {
+                $(alertId).show();
+            } else {
+                $(alertId).hide();
+            }
+        }
+
+        // Initial update to set the initial state
+        checkAndUpdate();
+    });
+</script>

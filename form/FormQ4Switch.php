@@ -1,162 +1,91 @@
-<?php switch ($_SESSION["level"]) {
-    case "Trainers": ?>
-        <!-- case Trainers form -->
+<?php
+include 'assets/php/generateFormField.php';
+
+switch ($_SESSION["level"]) {
+    case "Trainers":
+        ?>
+        <!-- Trainers form -->
         <h1>ข้อมูลหน่วยงาน</h1>
-        <!-- agency_name1 form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ชื่อหน่วยงาน
-            </span>
-            <input name="agency_name1" type="text" id="agency_name1" class="form-control" required>
-        </div>
-        <!-- end agency_name form -->
+        <?php
+        echo generateFormField("agency_name1", "ชื่อหน่วยงาน", "กรอกชื่อหน่วยงาน", true, true);
+        echo generateFormField("agency_name2", "ชื่อหน่วยงานต้นสังกัด", "กรอกชื่อหน่วยงานต้นสังกัด", true, true);
+        echo generateFormField("community", "ชื่อชุมชน", "", false, false, "---");
+        echo generateFormField("loc_community", "ที่ตั้งชุมชน", "", false, false, "---");
+        echo generateFormField("loc_agency", "ที่ตั้งของหน่วยงาน", "กรอกที่ตั้งของหน่วยงาน", true, true);
+        echo generateFormField("business", "บริบทการดำเนินธุรกิจ", "", false, false, "---");
+        break;
 
-        <!-- agency_name2 form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ชื่อหน่วยงานต้นสังกัด
-            </span>
-            <input name="agency_name2" type="text" id="agency_name2" class="form-control" required>
-        </div>
-        <!-- end agency_name2 form -->
-
-        <!-- community form -->
-        <input name="community" type="hidden" id="community" value="---">
-        <!-- end community form -->
-
-        <!-- loc_community form -->
-        <input name="loc_community" type="hidden" id="loc_community" value="---">
-        <!-- end loc_community form -->
-
-        <!-- loc_agency form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ที่ตั้งของหน่วยงาน
-            </span>
-            <input name="loc_agency" type="text" id="loc_agency" class="form-control" required>
-        </div>
-        <!-- end loc_agency form -->
-
-        <!-- business form -->
-        <input name="business" type="hidden" id="business" value="---">
-        <!-- end business form -->
-
-        <?php break; ?>
-        <!-- end case Sport-professionals form -->
-    <?php
-    case "Sport-professionals": ?>
-        <!-- case Sport-professionals form -->
+    case "Sport-professionals":
+        ?>
+        <!-- Sport-professionals form -->
         <h1>ข้อมูลหน่วยงาน</h1>
-        <!-- agency_name1 form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ชื่อหน่วยงาน
-            </span>
-            <input name="agency_name1" type="text" id="agency_name1" class="form-control" required>
-        </div>
-        <!-- end agency_name form -->
+        <?php
+        echo generateFormField("agency_name1", "ชื่อหน่วยงาน", "กรอกชื่อหน่วยงาน", true, true, "");
+        echo generateFormField("agency_name2", "ชื่อหน่วยงานต้นสังกัด", "กรอกชื่อหน่วยงานต้นสังกัด", true, true, "");
+        echo generateFormField("community", "ชื่อชุมชน", "", false, false, "---");
+        echo generateFormField("loc_community", "ที่ตั้งชุมชน", "", false, false, "---");
+        echo generateFormField("loc_agency", "ที่ตั้งของหน่วยงาน", "กรอกที่ตั้งของหน่วยงาน", true, true, "");
+        echo generateFormField("business", "บริบทการดำเนินธุรกิจ", "", false, false, "---");
+        break;
 
-        <!-- agency_name2 form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ชื่อหน่วยงานต้นสังกัด
-            </span>
-            <input name="agency_name2" type="text" id="agency_name2" class="form-control" required>
-        </div>
-        <!-- end agency_name2 form -->
-
-        <!-- community form -->
-        <input name="community" type="hidden" id="community" value="---">
-        <!-- end community form -->
-
-        <!-- loc_community form -->
-        <input name="loc_community" type="hidden" id="loc_community" value="---">
-        <!-- end loc_community form -->
-
-        <!-- loc_agency form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ที่ตั้งของหน่วยงาน
-            </span>
-            <input name="loc_agency" type="text" id="loc_agency" class="form-control" required>
-        </div>
-        <!-- end loc_agency form -->
-
-        <!-- business form -->
-        <input name="business" type="hidden" id="business" value="---">
-        <!-- end business form -->
-
-        <?php break; ?>
-        <!-- end case Sport-professionals form -->
-    <?php
-    case "Suppliers/Partners": ?>
-        <!-- case Suppliers/Partners form -->
+    case "Suppliers/Partners":
+        ?>
+        <!-- Suppliers/Partners form -->
         <h1>ข้อมูลหน่วยงาน</h1>
-        <!-- agency_name1 form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ชื่อหน่วยงาน
-            </span>
-            <input name="agency_name1" type="text" id="agency_name1" class="form-control" required>
-        </div>
-        <!-- end agency_name form -->
+        <?php
+        echo generateFormField("agency_name1", "ชื่อหน่วยงาน", "กรอกชื่อหน่วยงาน", true);
+        echo generateFormField("agency_name2", "ชื่อหน่วยงานต้นสังกัด", "กรอกชื่อหน่วยงานต้นสังกัด", true);
+        echo generateFormField("community", "ชื่อชุมชน", "", false, false, "---");
+        echo generateFormField("loc_community", "ที่ตั้งชุมชน", "", false, false, "---");
+        echo generateFormField("loc_agency", "ที่ตั้งของหน่วยงาน", "กรอกที่ตั้งของหน่วยงาน", true);
+        echo generateFormField("business", "บริบทการดำเนินธุรกิจ (สำหรับองค์กรธุรกิจ)", "กรอกบริบทการดำเนินธุรกิจ", false);
+        break;
 
-        <!-- agency_name2 form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ชื่อหน่วยงานต้นสังกัด
-            </span>
-            <input name="agency_name2" type="text" id="agency_name2" class="form-control" required>
-        </div>
-        <!-- end agency_name2 form -->
-
-        <!-- community form -->
-        <input name="community" type="hidden" id="community" value="---">
-        <!-- end community form -->
-
-        <!-- loc_community form -->
-        <input name="loc_community" type="hidden" id="loc_community" value="---">
-        <!-- end loc_community form -->
-
-        <!-- loc_agency form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ที่ตั้งของหน่วยงาน
-            </span>
-            <input name="loc_agency" type="text" id="loc_agency" class="form-control" required>
-        </div>
-        <!-- end loc_agency form -->
-
-        <!-- business form -->
-
-        <div class="mb-3">
-            <p>บริบทการดำเนินธุรกิจ (สำหรับองค์กรธุรกิจ)</p>
-            <div class="input-group ">
-                <input name="business" type="text" id="business" class="form-control">
-            </div>
-        </div>
-        <!-- end business form -->
-        <?php break; ?>
-        <!-- end case Suppliers/Partners form -->
-    <?php
-    case "Community": ?>
-        <!-- case Community form -->
+    case "Community":
+        ?>
+        <!-- Community form -->
         <h1>ข้อมูลหน่วยงาน</h1>
-        <!-- community form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ชื่อชุมชน
-            </span>
-            <input name="community" type="text" id="community" class="form-control" required>
-        </div>
-        <!-- end community form -->
+        <?php
+        echo generateFormField("community", "ชื่อชุมชน", "กรอกชื่อชุมชน", true);
+        echo generateFormField("loc_community", "ที่ตั้งของชุมชน", "กรอกที่ตั้งของชุมชน", true);
+        echo generateFormField("agency_name1", "", "", false, false, "---",'hidden');
+        echo generateFormField("agency_name2", "", "", false, false, "---",'hidden');
+        echo generateFormField("loc_agency", "", "", false, false, "---",'hidden');
+        echo generateFormField("business", "", "", false, false, "---",'hidden');
+        break;
 
-        <!-- loc_community form -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">ที่ตั้งของชุมชน
-            </span>
-            <input name="loc_community" type="text" id="loc_community" class="form-control" required>
-        </div>
-        <!-- end loc_community form -->
+    default:
+        include 'FormQ4Default.php';
+}
+?>
 
-        <input name="agency_name1" type="hidden" id="agency_name1" value="---">
-        <input name="agency_name2" type="hidden" id="agency_name2" value="---">
-        <input name="loc_agency" type="hidden" id="loc_agency" value="---">
-        <input name="business" type="hidden" id="business" value="---">
+<script>
+    $(document).ready(function() {
+        const inputIds = [
+            "agency_name1", "agency_name2", "community","loc_community","loc_agency", "business"
+        ];
 
-        <?php break; ?>
-        <!-- end case Community form -->
-    <?php
-    default: ?>
-        <?php include 'FormQ4Default.php'; ?>
-<?php } ?>
+        const nextButton = $("#next2");
+
+        inputIds.forEach(id => $(`[name="${id}"]`).on("input change", checkAndUpdate));
+
+        function checkAndUpdate() {
+            const isDisabled = inputIds.some(id => $(`[name="${id}"]`).val().trim() === "");
+
+            nextButton.prop('disabled', isDisabled);
+
+            inputIds.forEach(id => toggleAlert(`#emptyAlert-${id}`, $(`[name="${id}"]`).val().trim() === ""));
+        }
+
+        function toggleAlert(alertId, show) {
+            if (show) {
+                $(alertId).show();
+            } else {
+                $(alertId).hide();
+            }
+        }
+
+        // Initial update to set the initial state
+        checkAndUpdate();
+    });
+</script>

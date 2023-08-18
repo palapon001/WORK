@@ -15,6 +15,7 @@ function createInputForm(nameText,nameInput,nameContainer) {
   input.type = "text";
   input.name = `${nameInput}[]`;
   input.className = "form-control";
+  input.id = `${nameInput}`;
 
   div.appendChild(input);
 
