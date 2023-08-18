@@ -3,26 +3,27 @@ include 'assets/php/generateFormCheck.php';
 ?>
 <h1>ข้อมูลการออกกำลังกาย</h1>
 <!-- location form -->
-<?php
-$locations = array(
-    "บ้าน/บริเวณที่พักอาศัย",
-    "ที่ทำงาน",
-    "โรงเรียน/สถานศึกษา",
-    "พื้นที่ทำการเกษตร เช่น สวน ไร่ นา เป็นต้น",
-    "สนามกีฬาประจำตำบล/อำเภอ/จังหวัด",
-    "ฟิตเนสหรือยิม",
-    "สวนสาธารณะ",
-    "ถนน/ทางสาธารณะ/ซอย"
-);
-$locationHTML = generateFormCheck(
-    $locations,
-    'location',
-    'สถานที่ใดที่คุณใช้ออกกำลังกายหรือเล่นกีฬาเป็นประจำ (ตอบได้มากกว่า 1 คำตอบ)',
-    'กรุณาเลือกข้อมูลสถานที่'
-);
-echo $locationHTML;
-?>
-<!-- end location form -->
+<div>
+    <?php
+    $locations = array(
+        "บ้าน/บริเวณที่พักอาศัย",
+        "ที่ทำงาน",
+        "โรงเรียน/สถานศึกษา",
+        "พื้นที่ทำการเกษตร เช่น สวน ไร่ นา เป็นต้น",
+        "สนามกีฬาประจำตำบล/อำเภอ/จังหวัด",
+        "ฟิตเนสหรือยิม",
+        "สวนสาธารณะ",
+        "ถนน/ทางสาธารณะ/ซอย"
+    );
+    $locationHTML = generateFormCheck(
+        $locations,
+        'location',
+        'สถานที่ใดที่คุณใช้ออกกำลังกายหรือเล่นกีฬาเป็นประจำ (ตอบได้มากกว่า 1 คำตอบ)',
+        'กรุณาเลือกข้อมูลสถานที่'
+    );
+    echo $locationHTML;
+    ?>
+</div>
 
 <!-- period form -->
 <div class="form-control mb-3">
@@ -61,47 +62,48 @@ echo $locationHTML;
         กรุณาเลือกข้อมูลช่วงเวลา
     </div>
 </div>
-<!-- end period form -->
 
 <!-- reason1 form -->
-<?php
-$reason1 = array(
-    "ต้องการให้ร่างกายแข็งแรง",
-    "เป็นงานต้องทำ/เป็นอาชีพ",
-    "ทำกิจกรรมร่วมกับเพื่อน/เพื่อนชวน",
-    "รักษา/บรรเทาอาการเจ็บป่วย",
-    "ใช้เวลาว่างให้เป็นประโยชน์",
-    "ต้องการรูปร่างที่ดี/หุ่นดี",
-    "กำลังเป็นที่นิยม/ตามกระแสนิยม",
-    "ควบคุมน้ำหนัก/ลดน้ำหนัก",
-    "คลายเครียด/พักผ่อน",
-    "ชอบในกีฬานั้นๆ",
-    "ชอบออกกำลังกาย"
-);
-$reason1HTML = generateFormCheck($reason1, 'reason1', 'เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)', ' กรุณาเลือกข้อมูล');
-echo $reason1HTML;
-?>
-<!-- end reason1 form -->
+<div>
+    <?php
+    $reason1 = array(
+        "ต้องการให้ร่างกายแข็งแรง",
+        "เป็นงานต้องทำ/เป็นอาชีพ",
+        "ทำกิจกรรมร่วมกับเพื่อน/เพื่อนชวน",
+        "รักษา/บรรเทาอาการเจ็บป่วย",
+        "ใช้เวลาว่างให้เป็นประโยชน์",
+        "ต้องการรูปร่างที่ดี/หุ่นดี",
+        "กำลังเป็นที่นิยม/ตามกระแสนิยม",
+        "ควบคุมน้ำหนัก/ลดน้ำหนัก",
+        "คลายเครียด/พักผ่อน",
+        "ชอบในกีฬานั้นๆ",
+        "ชอบออกกำลังกาย"
+    );
+    $reason1HTML = generateFormCheck($reason1, 'reason1', 'เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)', ' กรุณาเลือกข้อมูล');
+    echo $reason1HTML;
+    ?>
+</div>
 
 <!-- reason2 form -->
-<?php
-$reason2 = array(
-    "ขี้เกียจ",
-    "ไม่มีเวลา",
-    "ป่วย",
-    "ไม่ชอบการออกกำลังกาย",
-    "ไม่มีความรู้",
-    "น่าเบื่อหน่าย",
-    "พิการ",
-    "ไม่มีสถานที่",
-    "ไม่จำเป็นต่อตนเอง",
-    "ขาดแรงจูงใจ",
-    "สถานการณ์โรคอุบัติใหม่/สถานการณ์วิกฤต"
-);
-$reason2HTML = generateFormCheck($reason2, "reason2", "เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)", "กรุณาเลือกเหตุผล");
-echo $reason2HTML;
-?>
-<!-- end reason2 form -->
+<div>
+    <?php
+    $reason2 = array(
+        "ขี้เกียจ",
+        "ไม่มีเวลา",
+        "ป่วย",
+        "ไม่ชอบการออกกำลังกาย",
+        "ไม่มีความรู้",
+        "น่าเบื่อหน่าย",
+        "พิการ",
+        "ไม่มีสถานที่",
+        "ไม่จำเป็นต่อตนเอง",
+        "ขาดแรงจูงใจ",
+        "สถานการณ์โรคอุบัติใหม่/สถานการณ์วิกฤต"
+    );
+    $reason2HTML = generateFormCheck($reason2, "reason2", "เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)", "กรุณาเลือกเหตุผล");
+    echo $reason2HTML;
+    ?>
+</div>
 
 <!-- motivation form -->
 <div class="form-control mb-3">
@@ -126,46 +128,45 @@ echo $reason2HTML;
         กรุณากรอกข้อมูล
     </div>
 </div>
-<!-- end motivation form -->
 
 <!-- exercise type form -->
-<?php
-$exerciseArray = array(
-    "เดิน",
-    "วิ่ง",
-    "โยคะ",
-    "ฟุตซอล",
-    "ปั่นจักรยาน",
-    "กระโดยเชือก",
-    "ฟุตบอล",
-    "แบดมินตัน",
-    "เต้นแอโรบิค",
-    "บาสเกตบอล",
-    "เพาะกายและฟิตเนส",
-    "เซปักตะกร้อ",
-    "เปตอง",
-    "รำมวยจีน",
-    "ว่ายน้ำ",
-    "ลีลาศ",
-    "มวยไทย",
-    "เทนนิส",
-    "กอล์ฟ",
-    "ไทเก็ก",
-    "เทควันโด",
-    "สนุ๊กเกอร์",
-    "มวยสากล"
-);
-$exerciseHTML = generateFormCheck($exerciseArray, 'exer', 'รายการตัวเลือก ประเภทการออกกำลังกายเพื่อสุขภาพ (ตอบได้มากกว่า 1 ข้อ)', 'กรุณาเลือกรายการ');
-echo $exerciseHTML;
-?>
-<!-- end exercise type form -->
+<div>
+    <?php
+    $exerciseArray = array(
+        "เดิน",
+        "วิ่ง",
+        "โยคะ",
+        "ฟุตซอล",
+        "ปั่นจักรยาน",
+        "กระโดยเชือก",
+        "ฟุตบอล",
+        "แบดมินตัน",
+        "เต้นแอโรบิค",
+        "บาสเกตบอล",
+        "เพาะกายและฟิตเนส",
+        "เซปักตะกร้อ",
+        "เปตอง",
+        "รำมวยจีน",
+        "ว่ายน้ำ",
+        "ลีลาศ",
+        "มวยไทย",
+        "เทนนิส",
+        "กอล์ฟ",
+        "ไทเก็ก",
+        "เทควันโด",
+        "สนุ๊กเกอร์",
+        "มวยสากล"
+    );
+    $exerciseHTML = generateFormCheck($exerciseArray, 'exer', 'รายการตัวเลือก ประเภทการออกกำลังกายเพื่อสุขภาพ (ตอบได้มากกว่า 1 ข้อ)', 'กรุณาเลือกรายการ');
+    echo $exerciseHTML;
+    ?>
+</div>
 
 <!-- pulse after exercise form -->
 <div class="form-control mb-3">
     <p>ชีพจรหลังการออกกำลังกาย (หากท่านทราบข้อมูล)* </p>
     <input name="pulseAfter" type="text" id="pulseAfter" class="form-control">
 </div>
-<!-- end pulse after exercise form -->
 
 <!-- week exercise form -->
 <div class="form-control mb-3">
@@ -175,7 +176,6 @@ echo $exerciseHTML;
         กรุณากรอกข้อมูล
     </div>
 </div>
-<!-- end week exercise form -->
 
 <!-- exercise intensity form -->
 <div class="form-control mb-3">
@@ -189,7 +189,6 @@ echo $exerciseHTML;
         กรุณากรอกข้อมูล
     </div>
 </div>
-<!-- end exercise intensity form -->
 
 <!-- duration of exercise form -->
 <div class="form-control mb-3">
@@ -199,16 +198,16 @@ echo $exerciseHTML;
         กรุณากรอกข้อมูล
     </div>
 </div>
-<!-- end duration of exercise form -->
+
 <?php
 function createVarArray($name, $start, $end)
 {
     $result = [];
     for ($i = $start; $i <= $end; $i++) {
-        $result[] = "'$name$i'" ;
+        $result[] = "'$name$i'";
     }
     if (count($result) > 0) {
-        $result[count($result) - 1] .= "\n \t"; 
+        $result[count($result) - 1] .= "\n \t";
     }
     return $result;
 }
@@ -227,19 +226,7 @@ function echoALLVAR()
 
 <script>
     $(document).ready(function() {
-        // const checkboxIds = [
-        //     "location-1", "location-2", "location-3", "location-4", "location-5", "location-6", "location-7", "location-8",
-        //     "hours-0", "hours-1", "hours-2", "hours-3", "hours-4", "hours-5", "hours-6", "hours-7", "hours-8", "hours-9",
-        //     "hours-10", "hours-11", "hours-12", "hours-13", "hours-14", "hours-15", "hours-16", "hours-17", "hours-18", "hours-19",
-        //     "hours-20", "hours-21", "hours-22", "hours-23", "hours-24",
-        //     "reason1-1", "reason1-2", "reason1-3", "reason1-4", "reason1-5", "reason1-6", "reason1-7", "reason1-8", "reason1-9",
-        //     "reason1-10", "reason1-11", "reason2-1", "reason2-2", "reason2-3", "reason2-4", "reason2-5", "reason2-6", "reason2-7",
-        //     "reason2-8", "reason2-9", "reason2-10", "reason2-11", "exer-1", "exer-2", "exer-3", "exer-4", "exer-5", "exer-6",
-        //     "exer-7", "exer-8", "exer-9", "exer-10", "exer-11", "exer-12", "exer-13", "exer-14", "exer-15", "exer-16", "exer-17",
-        //     "exer-18", "exer-19", "exer-20", "exer-21", "exer-22", "exer-23"
-        // ];
         const checkboxIds = [<?php echoALLVAR() ?>];
-
         const inputIds = ["locationInput", "reason1Input", "reason2Input", "exerInput", "week", "intensityOptions", "motiOptions", "duration"];
 
         checkboxIds.forEach(id => $(`#${id}`).on("input change", checkAndUpdate));
