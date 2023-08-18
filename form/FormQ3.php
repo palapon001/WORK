@@ -1,5 +1,4 @@
 <?php
-include 'assets/php/createVarJSON.php';
 include 'assets/php/generateFormCheck.php';
 ?>
 <h1>ข้อมูลการออกกำลังกาย</h1>
@@ -202,105 +201,108 @@ echo $exerciseHTML;
 </div>
 <!-- end duration of exercise form -->
 <?php
-function echoALLTAGID()
+function createVarArray($name, $start, $end)
 {
-    echoTAGID('location-', 1, count($GLOBALS['locations']));
-    echoTAGID('hours-', 0, 24);
-    echoTAGID('reason1-', 1, count($GLOBALS['reason1']));
-    echoTAGID('reason2-', 1, count($GLOBALS['reason2']));
-    echoTAGID('exer-', 1, count($GLOBALS['exerciseArray']));
+    $result = [];
+    for ($i = $start; $i <= $end; $i++) {
+        $result[] = "'$name$i'" ;
+    }
+    if (count($result) > 0) {
+        $result[count($result) - 1] .= "\n \t"; 
+    }
+    return $result;
 }
-?>
 
-<?php
-function echoALLCreateVar()
+function echoALLVAR()
 {
-    echoCreateVar('location', 1, count($GLOBALS['locations']));
-    echoCreateVar('hours', 0, 24);
-    echoCreateVar('reason1', 1, count($GLOBALS['reason1']));
-    echoCreateVar('reason2', 1, count($GLOBALS['reason2']));
-    echoCreateVar('exer', 1, count($GLOBALS['exerciseArray']));
+    $result = [];
+    $result[] = implode(', ', createVarArray('location-', 1, count($GLOBALS['locations'])));
+    $result[] = implode(', ', createVarArray('hours-', 0, 24));
+    $result[] = implode(', ', createVarArray('reason1-', 1, count($GLOBALS['reason1'])));
+    $result[] = implode(', ', createVarArray('reason2-', 1, count($GLOBALS['reason2'])));
+    $result[] = implode(', ', createVarArray('exer-', 1, count($GLOBALS['exerciseArray'])));
+    echo implode(', ', $result);
 }
 ?>
 
 <script>
     $(document).ready(function() {
-        $("#success").prop('disabled', true);
-        $("<?php echoALLTAGID() ?> #week, #intensityOptions, #motiOptions, #duration ").on("input change ", function() {
-            <?php echo echoALLCreateVar() ?>
-            var week = $("#week").val();
-            var intensityOptions = $("#intensityOptions").val();
-            var motiOptions = $("#motiOptions").val();
-            var duration = $("#duration").val();
+        // const checkboxIds = [
+        //     "location-1", "location-2", "location-3", "location-4", "location-5", "location-6", "location-7", "location-8",
+        //     "hours-0", "hours-1", "hours-2", "hours-3", "hours-4", "hours-5", "hours-6", "hours-7", "hours-8", "hours-9",
+        //     "hours-10", "hours-11", "hours-12", "hours-13", "hours-14", "hours-15", "hours-16", "hours-17", "hours-18", "hours-19",
+        //     "hours-20", "hours-21", "hours-22", "hours-23", "hours-24",
+        //     "reason1-1", "reason1-2", "reason1-3", "reason1-4", "reason1-5", "reason1-6", "reason1-7", "reason1-8", "reason1-9",
+        //     "reason1-10", "reason1-11", "reason2-1", "reason2-2", "reason2-3", "reason2-4", "reason2-5", "reason2-6", "reason2-7",
+        //     "reason2-8", "reason2-9", "reason2-10", "reason2-11", "exer-1", "exer-2", "exer-3", "exer-4", "exer-5", "exer-6",
+        //     "exer-7", "exer-8", "exer-9", "exer-10", "exer-11", "exer-12", "exer-13", "exer-14", "exer-15", "exer-16", "exer-17",
+        //     "exer-18", "exer-19", "exer-20", "exer-21", "exer-22", "exer-23"
+        // ];
+        const checkboxIds = [<?php echoALLVAR() ?>];
 
-            if (<?php echoIFVar('location', 1, count($locations)); ?>) {
-                $("#emptyAlert-location").show()
-            } else {
-                $("#emptyAlert-location").hide()
-            }
+        const inputIds = ["locationInput", "reason1Input", "reason2Input", "exerInput", "week", "intensityOptions", "motiOptions", "duration"];
 
-            if (<?php echo echoIFVar('hours', 0, 24); ?>) {
-                $("#emptyAlert-hours").show()
-            } else {
-                $("#emptyAlert-hours").hide()
-            }
+        checkboxIds.forEach(id => $(`#${id}`).on("input change", checkAndUpdate));
+        inputIds.forEach(id => $(`#${id}`).on("input change", checkAndUpdate));
 
-            if (<?php echo echoIFVar('reason1', 1, count($reason1)); ?>) {
-                $("#emptyAlert-reason1").show()
-            } else {
-                $("#emptyAlert-reason1").hide()
-            }
+        function checkAndUpdate() {
+            const isChecked = id => $(`#${id}`).prop('checked');
+            const isInputEmpty = id => $(`#${id}`).val().trim() === '';
 
-            if (<?php echo echoIFVar('reason2', 1, count($reason2)); ?>) {
-                $("#emptyAlert-reason2").show()
-            } else {
-                $("#emptyAlert-reason2").hide()
-            }
+            const locationCheckboxes = checkboxIds.slice(0, 8).map(isChecked);
+            const hoursCheckboxes = checkboxIds.slice(8, 33).map(isChecked);
+            const reason1Checkboxes = checkboxIds.slice(33, 44).map(isChecked);
+            const reason2Checkboxes = checkboxIds.slice(44, 55).map(isChecked);
+            const exerCheckboxes = checkboxIds.slice(55).map(isChecked);
 
-            if (<?php echo echoIFVar('exer', 1, count($exerciseArray)); ?>) {
-                $("#emptyAlert-exer").show()
-            } else {
-                $("#emptyAlert-exer").hide()
-            }
+            const locationInputEmpty = isInputEmpty('locationInput');
+            const reason1InputEmpty = isInputEmpty('reason1Input');
+            const reason2InputEmpty = isInputEmpty('reason2Input');
+            const exerInputEmpty = isInputEmpty('exerInput');
 
-            if (week.trim() === "") {
-                $("#emptyAlert-week").show()
-            } else {
-                $("#emptyAlert-week").hide()
-            }
+            const week = $("#week").val().trim();
+            const intensityOptions = $("#intensityOptions").val();
+            const motiOptions = $("#motiOptions").val();
+            const duration = $("#duration").val().trim();
 
-            if (intensityOptions === null) {
-                $("#emptyAlert-intensity").show()
-            } else {
-                $("#emptyAlert-intensity").hide()
-            }
+            const isWeekEmpty = week === '';
+            const isIntensityEmpty = intensityOptions === null;
+            const isMotiEmpty = motiOptions === null;
+            const isDurationEmpty = duration === '';
 
-            if (motiOptions === null) {
-                $("#emptyAlert-motiOptions").show()
-            } else {
-                $("#emptyAlert-motiOptions").hide()
-            }
+            const locationEmpty = locationCheckboxes.every(checkbox => !checkbox) && locationInputEmpty;
+            const hoursEmpty = hoursCheckboxes.every(checkbox => !checkbox);
+            const reason1Empty = reason1Checkboxes.every(checkbox => !checkbox) && reason1InputEmpty;
+            const reason2Empty = reason2Checkboxes.every(checkbox => !checkbox) && reason2InputEmpty;
+            const exerEmpty = exerCheckboxes.every(checkbox => !checkbox) && exerInputEmpty;
 
-            if (duration.trim() === "") {
-                $("#emptyAlert-duration").show()
-            } else {
-                $("#emptyAlert-duration").hide()
-            }
+            const isDisabled =
+                isWeekEmpty || isIntensityEmpty || isMotiEmpty || isDurationEmpty ||
+                locationEmpty || hoursEmpty || reason1Empty || reason2Empty || exerEmpty;
 
-            if (week.trim() === "" ||
-                intensityOptions === null ||
-                motiOptions === null ||
-                duration.trim() === "" ||
-                (<?php echoIFVar('location', 1, count($locations)); ?>) ||
-                (<?php echo echoIFVar('hours', 0, 24); ?>) ||
-                (<?php echo echoIFVar('reason1', 1, count($reason1)); ?>) ||
-                (<?php echo echoIFVar('reason2', 1, count($reason2)); ?>) ||
-                (<?php echo echoIFVar('exer', 1, count($exerciseArray)); ?>)
-            ) {
-                $("#success").prop('disabled', true);
+            $("#success").prop('disabled', isDisabled);
+
+            // Show/hide alerts as needed
+            toggleAlert("#emptyAlert-location", locationEmpty);
+            toggleAlert("#emptyAlert-hours", hoursEmpty);
+            toggleAlert("#emptyAlert-reason1", reason1Empty);
+            toggleAlert("#emptyAlert-reason2", reason2Empty);
+            toggleAlert("#emptyAlert-exer", exerEmpty);
+            toggleAlert("#emptyAlert-week", isWeekEmpty);
+            toggleAlert("#emptyAlert-intensity", isIntensityEmpty);
+            toggleAlert("#emptyAlert-motiOptions", isMotiEmpty);
+            toggleAlert("#emptyAlert-duration", isDurationEmpty);
+        }
+
+        function toggleAlert(alertId, show) {
+            if (show) {
+                $(alertId).show();
             } else {
-                $("#success").prop('disabled', false);
+                $(alertId).hide();
             }
-        });
+        }
+
+        // Initial update to set the initial state
+        checkAndUpdate();
     });
 </script>
