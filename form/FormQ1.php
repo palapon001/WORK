@@ -1,15 +1,17 @@
 <h1>ข้อมูลส่วนตัว</h1>
 <!-- name surname form -->
-<div class="input-group mb-3">
-  <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
-  <input type="hidden" name="level" value="<?php echo $_SESSION["level"]; ?>">
-  <span class="input-group-text">ชื่อ </span>
-  <input name="name" type="text" id="name" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
-  <span class="input-group-text">นามสกุล</span>
-  <input name="surname" type="text" id="surname" value="<?php echo $_SESSION["surname"]; ?>" class="form-control" required>
-</div>
-<div class="alert alert-danger mb-3" style="display: none;" id="emptyAlert-name-surname">
-  กรุณากรอกข้อมูล ชื่อ - นามสกุล ให้ครบถ้วน
+<div>
+  <div class="input-group mb-3">
+    <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
+    <input type="hidden" name="level" value="<?php echo $_SESSION["level"]; ?>">
+    <span class="input-group-text">ชื่อ </span>
+    <input name="name" type="text" id="name" value="<?php echo $_SESSION["name"]; ?>" class="form-control" required>
+    <span class="input-group-text">นามสกุล</span>
+    <input name="surname" type="text" id="surname" value="<?php echo $_SESSION["surname"]; ?>" class="form-control" required>
+  </div>
+  <div class="alert alert-danger mb-3" style="display: none;" id="emptyAlert-name-surname">
+    กรุณากรอกข้อมูล ชื่อ - นามสกุล ให้ครบถ้วน
+  </div>
 </div>
 <!-- end name surname form -->
 
@@ -195,91 +197,65 @@
 </div>
 <!-- end nationality form -->
 
+<script src="assets/js/script.js"></script>
+
 <script>
   $(document).ready(function() {
-    $("#next1").prop('disabled', true);
-    $("#name, #surname, input[name='sex']:checked, #province, #amphure, #age, #eduOptions, #occOptions, #maryOptions, #nationOptions").on("input change", function() {
-      var name = $("#name").val();
-      var surname = $("#surname").val();
-      var sex = $("input[name='sex']:checked").val();
-      var province = $("#province").val();
-      var amphure = $("#amphure").val();
-      var age = $("#age").val();
-      var eduOptions = $("#eduOptions").val();
-      var occOptions = $("#occOptions").val();
-      var maryOptions = $("#maryOptions").val();
-      var nationOptions = $("#nationOptions").val();
+    const inputIds = [
+      "name", "surname", "province", "amphure", "age"
+    ];
 
-      if (name.trim() === "" || surname.trim() === "") {
-        $("#emptyAlert-name-surname").show();
-      } else {
-        $("#emptyAlert-name-surname").hide();
-      }
+    const selectIds = [
+      "eduOptions", "occOptions", "maryOptions", "nationOptions"
+    ];
 
-      if (!sex) {
-        $("#emptyAlert-sex").show();
-      } else {
-        $("#emptyAlert-sex").hide();
-      }
+    const sexInput = $("input[name='sex']");
+    const nextButton = $("#next1");
 
-      if (province.trim() === "" || amphure.trim() === "") {
-        $("#emptyAlert-provin").show();
-      } else {
-        $("#emptyAlert-provin").hide();
-      }
+    inputIds.forEach(id => $(`#${id}`).on("input change", checkAndUpdate));
+    selectIds.forEach(id => $(`#${id}`).on("change", checkAndUpdate));
 
-      if (age.trim() === "") {
-        $("#emptyAlert-age").show();
-      } else {
-        $("#emptyAlert-age").hide();
-      }
-
-      if (eduOptions === null) {
-        $("#emptyAlert-edu").show();
-      } else {
-        $("#emptyAlert-edu").hide();
-      }
-
-      if (occOptions === null) {
-        $("#emptyAlert-occ").show();
-      } else {
-        $("#emptyAlert-occ").hide();
-      }
-
-      if (maryOptions === null) {
-        $("#emptyAlert-mary").show();
-      } else {
-        $("#emptyAlert-mary").hide();
-      }
-
-      if (nationOptions === null) {
-        $("#emptyAlert-nation").show();
-      } else {
-        $("#emptyAlert-nation").hide();
-      }
-
-      if (name.trim() === "" ||
-        surname.trim() === "" ||
-        !sex ||
-        province.trim() === "" || 
-        amphure.trim() === "" ||
-        age.trim() === "" ||
-        eduOptions === null ||
-        occOptions === null ||
-        maryOptions === null ||
-        nationOptions === null 
-      ) {
-        $("#next1").prop('disabled', true);
-      } else {
-        $("#next1").prop('disabled', false);
-      }
-    });
-
-    $("input[name='sex']").change(function() {
+    sexInput.change(function() {
       $("#emptyAlert-sex").hide();
+      checkAndUpdate();
     });
 
+    function checkAndUpdate() {
+      const inputValues = inputIds.map(id => $(`#${id}`).val().trim());
+      const selectValues = selectIds.map(id => $(`#${id}`).val());
+
+      const isNameSurnameEmpty = inputValues[0] === "" || inputValues[1] === "";
+      const isProvinceAmphureEmpty = inputValues[2] === "" || inputValues[3] === "";
+      const isAgeEmpty = inputValues[4] === "";
+
+      const isAnySelectEmpty = selectValues.some(value => value === null);
+
+      const isSexEmpty = !sexInput.is(":checked");
+
+      const isDisabled = isNameSurnameEmpty || isProvinceAmphureEmpty || isAgeEmpty ||
+        isAnySelectEmpty || isSexEmpty;
+
+      nextButton.prop('disabled', isDisabled);
+
+      toggleAlert("#emptyAlert-name-surname", isNameSurnameEmpty);
+      toggleAlert("#emptyAlert-provin", isProvinceAmphureEmpty);
+      toggleAlert("#emptyAlert-age", isAgeEmpty);
+      toggleAlert("#emptyAlert-edu", selectValues[0] === null);
+      toggleAlert("#emptyAlert-occ", selectValues[1] === null);
+      toggleAlert("#emptyAlert-mary", selectValues[2] === null);
+      toggleAlert("#emptyAlert-nation", selectValues[3] === null);
+      toggleAlert("#emptyAlert-sex", isSexEmpty);
+    }
+
+    function toggleAlert(alertId, show) {
+      if (show) {
+        $(alertId).show();
+      } else {
+        $(alertId).hide();
+      }
+    }
+
+    // Initial update to set the initial state
+    checkAndUpdate();
   });
 </script>
-
-<script src="assets/js/script.js"></script>
