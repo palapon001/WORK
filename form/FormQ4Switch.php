@@ -22,10 +22,10 @@ switch ($_SESSION["level"]) {
         <?php
         echo generateFormField("agency_name1", "ชื่อหน่วยงาน", "กรอกชื่อหน่วยงาน", true, true, "");
         echo generateFormField("agency_name2", "ชื่อหน่วยงานต้นสังกัด", "กรอกชื่อหน่วยงานต้นสังกัด", true, true, "");
-        echo generateFormField("community", "ชื่อชุมชน", "", false, false, "---");
-        echo generateFormField("loc_community", "ที่ตั้งชุมชน", "", false, false, "---");
+        echo generateFormField("community", "ชื่อชุมชน", "", false, false, "---",'hidden');
+        echo generateFormField("loc_community", "ที่ตั้งชุมชน", "", false, false, "---",'hidden');
         echo generateFormField("loc_agency", "ที่ตั้งของหน่วยงาน", "กรอกที่ตั้งของหน่วยงาน", true, true, "");
-        echo generateFormField("business", "บริบทการดำเนินธุรกิจ", "", false, false, "---");
+        echo generateFormField("business", "บริบทการดำเนินธุรกิจ", "", false, false, "---",'hidden');
         break;
 
     case "Suppliers/Partners":
@@ -35,8 +35,8 @@ switch ($_SESSION["level"]) {
         <?php
         echo generateFormField("agency_name1", "ชื่อหน่วยงาน", "กรอกชื่อหน่วยงาน", true);
         echo generateFormField("agency_name2", "ชื่อหน่วยงานต้นสังกัด", "กรอกชื่อหน่วยงานต้นสังกัด", true);
-        echo generateFormField("community", "ชื่อชุมชน", "", false, false, "---");
-        echo generateFormField("loc_community", "ที่ตั้งชุมชน", "", false, false, "---");
+        echo generateFormField("community", "ชื่อชุมชน", "", false, false, "---",'hidden');
+        echo generateFormField("loc_community", "ที่ตั้งชุมชน", "", false, false, "---",'hidden');
         echo generateFormField("loc_agency", "ที่ตั้งของหน่วยงาน", "กรอกที่ตั้งของหน่วยงาน", true);
         echo generateFormField("business", "บริบทการดำเนินธุรกิจ (สำหรับองค์กรธุรกิจ)", "กรอกบริบทการดำเนินธุรกิจ", false);
         break;

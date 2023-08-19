@@ -1,5 +1,5 @@
 <?php
-function generateFormField($name, $label, $placeholder, $isRequired, $showAlert = true, $value = "", $type = "text")
+function generateFormField($name, $label, $placeholder, $isRequired, $showAlert = true, $value = "", $type = "text" , $custom = "")
 {
     $fieldHTML = '';
     $alertId = "emptyAlert-" . $name;
@@ -18,8 +18,9 @@ HTML;
                 <div class="mb-3">
                     <p>$label</p>
                     <div class="input-group mb-3">
-                        <input name="$name" type="$type" id="$name" class="form-control" required="$isRequired" value="$value" placeholder="$placeholder">
+                        <input name="$name" type="$type" id="$name" class="form-control" required="$isRequired" value="$value" placeholder="$placeholder" >
                     </div>
+                    $custom
                     <div class="alert alert-danger mb-3" id="$alertId" style="display: none;">
                         $alertMessage
                     </div>
@@ -29,8 +30,9 @@ HTML;
                 $fieldHTML .= <<<HTML
                 <div class="input-group mb-3">
                     <span class="input-group-text">$label</span>
-                    <input name="$name" type="$type" id="$name" class="form-control" required="$isRequired" value="$value" placeholder="$placeholder">
+                    <input name="$name" type="$type" id="$name" class="form-control" required="$isRequired" value="$value" placeholder="$placeholder" >
                 </div>
+                $custom
                 <div class="alert alert-danger mb-3" id="$alertId" style="display: none;">
                     $alertMessage
                 </div>
@@ -56,7 +58,7 @@ HTML;
                 $fieldHTML .= <<<HTML
                 <div class="input-group mb-3">
                     <span class="input-group-text">$label</span>
-                    <input name="$name" type="$type" id="$name" class="form-control" required="$isRequired" value="$value" placeholder="$placeholder">
+                    <input name="$name" type="$type" id="$name" class="form-control" required="$isRequired" value="$value" placeholder="$placeholder" >
                 </div>
 HTML;
             }
@@ -65,3 +67,5 @@ HTML;
 
     return $fieldHTML;
 }
+
+?>
