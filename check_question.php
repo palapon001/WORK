@@ -36,8 +36,8 @@ $res = $_POST["res"];
 $pub_res = $_POST["pub_res"];
 
 //F6
-$train_exper_exer = $_POST["train_exper_exer"];
-$train_exper = $_POST["train_exper"];
+$train_exper_exer = $_POST["trainExperExer"];
+$train_exper = $_POST["trainExper"];
 
 //F7
 $vol_exper = $_POST["vol_exper"];
@@ -70,6 +70,8 @@ $exerInput = $_POST["exerInput"];
 $resInput = $_POST["resInput"];
 $exper_sports_input = $_POST["exper_sports_input"];
 $pub_res_input = $_POST["pub_res_input"];
+$train_exper_exer_input = $_POST["trainExperExerInput"];
+$train_exper_input = $_POST["trainExperInput"];
 //echo ข้อมูล
 
 echo "user = " . $user . '<br>';
@@ -185,8 +187,8 @@ echo "res = " . serialize($res) . '<br>';
 echo "pub_res = " . serialize($pub_res) . '<br>';
 
 // F6
-echo "train_exper_exer = " . $train_exper_exer . '<br>';
-echo "train_exper = " . $train_exper . '<br>';
+echo "train_exper_exer = " . serialize($train_exper_exer) . '<br>';
+echo "train_exper = " . serialize($train_exper) . '<br>';
 
 // F7
 echo "vol_exper = " . $vol_exper . '<br>';
