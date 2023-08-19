@@ -305,63 +305,65 @@
         case "Suppliers/Partners": ?>
             <!-- case Suppliers/Partners form -->
             <form name="formQ" method="post" action="check_question.php">
-                <div class="container mt-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php include 'form/FormQ4Switch.php'; ?>
-                            <?php include 'form/FormQ8.php'; ?>
+                <div class="step active" id="step1">
+                    <div class="container mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php include 'form/FormQ4Switch.php'; ?>
+                                <?php include 'form/FormQ8.php'; ?>
 
-                            <!-- ข้อมูลส่วนตัว -->
-                            <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
-                            <input type="hidden" name="name" value="<?php echo $_SESSION["name"]; ?>">
-                            <input type="hidden" name="surname" value="<?php echo $_SESSION["surname"]; ?>">
-                            <input type="hidden" name="sex" value="---">
-                            <input type="hidden" name="province_id" value="---">
-                            <input type="hidden" name="amphure_id" value="---">
-                            <input type="hidden" name="age" value="---">
-                            <input type="hidden" name="eduOptions" value="---">
-                            <input type="hidden" name="occOptions" value="---">
-                            <input type="hidden" name="maryOptions" value="---">
-                            <input type="hidden" name="nationOptions" value="---">
-                            <input type="hidden" name="eduInput" value="---">
-                            <input type="hidden" name="occInput" value="---">
-                            <input type="hidden" name="maryInput" value="---">
-                            <input type="hidden" name="nationInput" value="---">
+                                <!-- ข้อมูลส่วนตัว -->
+                                <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
+                                <input type="hidden" name="name" value="<?php echo $_SESSION["name"]; ?>">
+                                <input type="hidden" name="surname" value="<?php echo $_SESSION["surname"]; ?>">
+                                <input type="hidden" name="sex" value="---">
+                                <input type="hidden" name="province_id" value="---">
+                                <input type="hidden" name="amphure_id" value="---">
+                                <input type="hidden" name="age" value="---">
+                                <input type="hidden" name="eduOptions" value="---">
+                                <input type="hidden" name="occOptions" value="---">
+                                <input type="hidden" name="maryOptions" value="---">
+                                <input type="hidden" name="nationOptions" value="---">
+                                <input type="hidden" name="eduInput" value="---">
+                                <input type="hidden" name="occInput" value="---">
+                                <input type="hidden" name="maryInput" value="---">
+                                <input type="hidden" name="nationInput" value="---">
 
-                            <!-- ข้อมูลสุขภาพ -->
-                            <input type="hidden" name="height" value="---">
-                            <input type="hidden" name="weight" value="---">
-                            <input type="hidden" name="pressure" value="---">
-                            <input type="hidden" name="pulse" value="---">
-                            <input type="hidden" name="congenOptions" value="---">
-                            <input type="hidden" name="congenInput" value="---">
+                                <!-- ข้อมูลสุขภาพ -->
+                                <input type="hidden" name="height" value="---">
+                                <input type="hidden" name="weight" value="---">
+                                <input type="hidden" name="pressure" value="---">
+                                <input type="hidden" name="pulse" value="---">
+                                <input type="hidden" name="congenOptions" value="---">
+                                <input type="hidden" name="congenInput" value="---">
 
-                            <!-- ข้อมูลการออกกำลังกาย -->
-                            <input type="hidden" name="locationInput" value="---">
-                            <input type="hidden" name="selected_hours[]" value="---">
-                            <input type="hidden" name="reason1Input" value="--">
-                            <input type="hidden" name="reason2Input" value="---">
-                            <input type="hidden" name="motiOptions" value="---">
-                            <input type="hidden" name="motiInput" value="---">
-                            <input type="hidden" name="exerInput" value="---">
-                            <input type="hidden" name="pulseAfter" value="---">
-                            <input type="hidden" name="week" value="---">
-                            <input type="hidden" name="intensityOptions" value="---">
-                            <input type="hidden" name="duration" value="---">
+                                <!-- ข้อมูลการออกกำลังกาย -->
+                                <input type="hidden" name="locationInput" value="---">
+                                <input type="hidden" name="selected_hours[]" value="---">
+                                <input type="hidden" name="reason1Input" value="--">
+                                <input type="hidden" name="reason2Input" value="---">
+                                <input type="hidden" name="motiOptions" value="---">
+                                <input type="hidden" name="motiInput" value="---">
+                                <input type="hidden" name="exerInput" value="---">
+                                <input type="hidden" name="pulseAfter" value="---">
+                                <input type="hidden" name="week" value="---">
+                                <input type="hidden" name="intensityOptions" value="---">
+                                <input type="hidden" name="duration" value="---">
 
-                            <!-- ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน -->
-                            <input name="exper_sports" type="hidden" value="---">
-                            <input name="res" type="hidden" value="---">
-                            <input name="pub_res" type="hidden" value="---">
+                                <!-- ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน -->
+                                <input name="exper_sports" type="hidden" value="---">
+                                <input name="res" type="hidden" value="---">
+                                <input name="pub_res" type="hidden" value="---">
 
-                            <!-- ข้อมูลประสบการณ์การอบรม -->
-                            <input name="train_exper_exer" type="hidden" value="---">
-                            <input name="train_exper" type="hidden" value="---">
+                                <!-- ข้อมูลประสบการณ์การอบรม -->
+                                <input name="train_exper_exer" type="hidden" value="---">
+                                <input name="train_exper" type="hidden" value="---">
 
-                            <!-- ข้อมูลประสบการณ์การเป็นอาสาสม้คร -->
-                            <input name="vol_exper" type="hidden" value="---">
+                                <!-- ข้อมูลประสบการณ์การเป็นอาสาสม้คร -->
+                                <input name="vol_exper" type="hidden" value="---">
 
-                            <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
+                                <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
+                            </div>
                         </div>
                     </div>
                 </div>
