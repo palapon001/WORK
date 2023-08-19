@@ -1,83 +1,90 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<h1>ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน</h1>
+<!-- exper_sports form -->
+<div class="form-control mb-3">
+    <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพ</p>
+    <div class="input-group">
+        <input name="exper_sports_input" type="text" id="exper_sports_input" class="form-control" required>
+    </div>
+    <div class="form-group mb-3 mt-3" id="exper_sports_FormContainer">
+        <button type="button" class="btn btn-primary mb-1" id="add_exper_sports_input" onclick="createInputForm('ชื่อสาขา','exper_sports','exper_sports_FormContainer');" disabled>เพิ่มข้อมูลสาขา</button>
+    </div>
+    <div class="alert alert-danger mb-3" id="emptyAlert-exper_sports_input" style="display: none;">
+        กรุณากรอกสาขาความเชี่ยวชาญ
+    </div>
+</div>
+<!-- end exper_sports form -->
 
-<h1>ข้อมูลหน่วยงาน</h1>
-<div class="input-group mb-3">
-    <span class="input-group-text">ชื่อหน่วยงาน</span>
-    <input name="agency_name1" type="text" class="form-control" placeholder="กรอกชื่อหน่วยงาน" required="1" value="">
-</div>
-<div class="alert alert-danger mb-3" id="emptyAlert-agency_name1" style="display: none;">
-    กรุณากรอกชื่อหน่วยงาน
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text">ชื่อหน่วยงานต้นสังกัด</span>
-    <input name="agency_name2" type="text" class="form-control" placeholder="กรอกชื่อหน่วยงานต้นสังกัด" required="1" value="">
-</div>
-<div class="alert alert-danger mb-3" id="emptyAlert-agency_name2" style="display: none;">
-    กรุณากรอกชื่อหน่วยงานต้นสังกัด
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text">ชื่อชุมชน (ถ้ามี)</span>
-    <input name="community" type="text" class="form-control" placeholder="" required="" value="">
-</div>
-<div class="alert alert-danger mb-3" id="emptyAlert-community" style="display: none;">
-    กรุณากรอกชื่อชุมชน (ถ้ามี)
-</div>
-<input name="loc_community" type="hidden" value="---">
-<div class="input-group mb-3">
-    <span class="input-group-text">ที่ตั้งของหน่วยงาน</span>
-    <input name="loc_agency" type="text" class="form-control" placeholder="กรอกที่ตั้งของหน่วยงาน" required="1" value="">
-</div>
-<div class="alert alert-danger mb-3" id="emptyAlert-loc_agency" style="display: none;">
-    กรุณากรอกที่ตั้งของหน่วยงาน
-</div>
-<div class="mb-3">
-    <p>บริบทการดำเนินธุรกิจ (สำหรับองค์กรธุรกิจ)</p>
+<!-- res form -->
+<div class="form-control mb-3">
     <div class="input-group mb-3">
-        <span class="input-group-text"></span>
-        <input name="business" type="text" class="form-control" placeholder="กรอกบริบทการดำเนินธุรกิจ" required="" value="">
+        <span class="input-group-text">งานวิจัย</span>
+        <input name="resInput" type="text" id="resInput" class="form-control" required>
     </div>
-    <div class="alert alert-danger mb-3" id="emptyAlert-business" style="display: none;">
-        กรุณากรอกบริบทการดำเนินธุรกิจ
+    <div class="form-group mb-3" id="resFormContainer">
+        <button type="button" class="btn btn-primary mb-1" id="add_resInput" onclick="createInputForm('งานวิจัย','res','resFormContainer');" disabled>เพิ่มข้อมูลงานวิจัย</button>
+    </div>
+    <div class="alert alert-danger mb-3" id="emptyAlert-resInput" style="display: none;">
+        กรุณากรอกงานวิจัย
     </div>
 </div>
+<!-- end res form -->
 
-<div class="mb-3">
-    <p>$label</p>
-    <div class="input-group ">
-        <input name="business" type="text" id="business" class="form-control" required>
+<!-- pub_res form -->
+<div class="form-control mb-3">
+    <div class="input-group mb-3">
+        <span class="input-group-text">การเผยแพร่ผลงานวิจัย</span>
+        <input name="pub_res_input" type="text" id="pub_res_input" class="form-control" required>
     </div>
-    <div class="alert alert-danger mb-3" id="emptyAlert-business" style="display: none;">
-        กรุณากรอกบริบทการดำเนินธุรกิจ
+    <div class="form-group mb-3" id="pub_res_FormContainer">
+        <button type="button" class="btn btn-primary mb-1" id="add_pub_resInput" onclick="createInputForm('การเผยแพร่ผลงานวิจัย','pub_res','pub_res_FormContainer');" disabled>เพิ่มข้อมูลการเผยแพร่ผลงานวิจัย</button>
+    </div>
+    <div class="alert alert-danger mb-3" id="emptyAlert-pub_res_input" style="display: none;">
+        กรุณากรอกการเผยแพร่ผลงานวิจัย
     </div>
 </div>
+<!-- end pub_res form -->
 
 <script>
-    $(document).ready(function() {
-        const inputIds = [
-            "agency_name1", "agency_name2", "community", "loc_agency", "business"
-        ];
+    // Function to create input form
+    function createInputForm(labelText, inputId, formContainerId) {
+        const inputValue = document.getElementById(inputId).value;
+        const formContainer = document.getElementById(formContainerId);
 
-        const nextButton = $("#next2");
+        if (inputValue.trim() === "") {
+            // Show error message
+            const emptyAlert = document.querySelector(`#emptyAlert-${inputId}`);
+            emptyAlert.style.display = "block";
 
-        inputIds.forEach(id => $(`[name="${id}"]`).on("input change", checkAndUpdate));
+            // Disable the button
+            toggleButtonState(inputId, true);
 
-        function checkAndUpdate() {
-            const isDisabled = inputIds.some(id => $(`[name="${id}"]`).val().trim() === "");
-
-            nextButton.prop('disabled', isDisabled);
-
-            inputIds.forEach(id => toggleAlert(`#emptyAlert-${id}`, $(`[name="${id}"]`).val().trim() === ""));
+            return;
         }
 
-        function toggleAlert(alertId, show) {
-            if (show) {
-                $(alertId).show();
-            } else {
-                $(alertId).hide();
-            }
-        }
+        // Create a new input field
+        const newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.value = inputValue;
+        newInput.readOnly = true; // Make it read-only
+        newInput.classList.add("form-control", "mb-2");
 
-        // Initial update to set the initial state
-        checkAndUpdate();
-    });
+        // Append the input field to the form container
+        formContainer.appendChild(newInput);
+
+        // Clear the input field
+        document.getElementById(inputId).value = "";
+
+        // Hide the error message
+        const emptyAlert = document.querySelector(`#emptyAlert-${inputId}`);
+        emptyAlert.style.display = "none";
+
+        // Enable the button
+        toggleButtonState(inputId, false);
+    }
+
+    // Enable/disable buttons
+    function toggleButtonState(buttonId, disable) {
+        const button = document.getElementById(buttonId`#add_${buttonId}`);
+        button.disabled = disable;
+    }
 </script>
