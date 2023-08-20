@@ -31,21 +31,21 @@ $loc_agency = $_POST["loc_agency"];
 $business = $_POST["business"];
 
 //F5
-$exper_sports = $_POST["exper_sports"];
+$exper_sports = $_POST["exper_sports"] ?? [];
 $res = $_POST["res"];
 $pub_res = $_POST["pub_res"];
 
 //F6
-$train_exper_exer = $_POST["trainExperExer"];
-$train_exper = $_POST["trainExper"];
+$train_exper_exer = $_POST["trainExperExer"] ?? [];
+$train_exper = $_POST["trainExper"] ?? [];
 
 //F7
 $vol_exper = $_POST["vol_exper"];
 
 //F8
 $org_heal = $_POST["org_heal"];
-$pro_org_exer = $_POST["pro_org_exer"];
-$activity = $_POST["activity"];
+$pro_org_exer = $_POST["proOrgExer"];
+$activity = $_POST["activityName"];
 
 //Options
 $eduOptions = $_POST["eduOptions"];
@@ -71,6 +71,8 @@ $resInput = $_POST["resInput"];
 $exper_sports_input = $_POST["exper_sports_input"];
 $pub_res_input = $_POST["pub_res_input"];
 $train_exper_exer_input = $_POST["trainExperExerInput"];
+$train_exper_input = $_POST["trainExperInput"];
+$pro_org_exer_input = $_POST["trainExperExerInput"];
 $train_exper_input = $_POST["trainExperInput"];
 //echo ข้อมูล
 
@@ -195,8 +197,8 @@ echo "vol_exper = " . $vol_exper . '<br>';
 
 // F8
 echo "org_heal = " . $org_heal . '<br>';
-echo "pro_org_exer = " . $pro_org_exer . '<br>';
-echo "activity = " . $activity . '<br>';
+echo "pro_org_exer = " . serialize($pro_org_exer) . '<br>';
+echo "activity = " . serialize($activity) . '<br>';
 
 //func check null
 function checkOption($option, $checkText, $IP)
@@ -217,7 +219,8 @@ function checkEmpty($array, $arrayIP)
 		if ($arrayIP == '') {
 			return implode(",", $array);
 		} else {
-			return implode(",", $array) . ',' . $arrayIP;
+			$array[] = $arrayIP ;
+			return implode(",", $array);
 		}
 	}
 }
@@ -230,6 +233,8 @@ $checkExer = checkEmpty($exer, $exerInput);
 $checkRes = checkEmpty($res, $resInput);
 $checkExper_sports = checkEmpty($exper_sports, $exper_sports_input);
 $checkPub_res = checkEmpty($pub_res, $pub_res_input);
+$checkTrain_exper_exer = checkEmpty($train_exper_exer, $train_exper_exer_input);
+$checkTrain_exper = checkEmpty($train_exper, $train_exper_input);
 
 $checkEDU = checkOption($eduOptions, 'other', $eduInput);
 $checkOCC = checkOption($occOptions, 'other', $eduInput);
@@ -257,7 +262,7 @@ if ($num > 0) {
 								 motiOptions,intensityOptions)
 			 VALUES('$user','$name', '$surname','$level','$sex','$province_id','$amphure_id','$age','$height','$weight','$pressure',
 								 '$pulse','$checkLoc','$checkPer','$checkRes1','$checkRes2','$checkExer','$pulseAfter','$week','$duration','$agency_name1','$agency_name2',
-								 '$community','$loc_community','$loc_agency','$business','$checkExper_sports','$checkRes','$checkPub_res','$train_exper_exer','$train_exper','$vol_exper',
+								 '$community','$loc_community','$loc_agency','$business','$checkExper_sports','$checkRes','$checkPub_res','$checkTrain_exper_exer','$checkTrain_exper','$vol_exper',
 								 '$org_heal','$pro_org_exer','$activity','$checkEDU','$checkOCC','$checkMary','$checkNation','$checkCongen',
 								 '$checkMoti','$intensityOptions')";
 

@@ -73,8 +73,8 @@
 
                                 <!-- ข้อมูลประสบการณ์การจัดกิจกรรม/โครงการการออกกำล้งกายเพื่อสุขภาพ -->
                                 <input name="org_heal" type="hidden" value="---">
-                                <input name="pro_org_exer" type="hidden" value="---">
-                                <input name="activity" type="hidden" value="---">
+                                <input name="proOrgExer" type="hidden" value="---">
+                                <input name="activityName" type="hidden" value="---">
 
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(2)">ก่อนหน้า</button>
                                 <button type="submit" class="btn btn-primary btn-lg" id="success" disabled>ยืนยัน</button>
