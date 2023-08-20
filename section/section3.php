@@ -74,10 +74,31 @@
 
             <div class="col-lg-3">
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script src="assets/js/chartProvinces.js"></script>
                 <div>
                     <center>
                         <canvas id="myChart1"></canvas>
                         <p>ผลการประเมินการออกกำลังกาย รายจังหวัด เฉพาะกลุ่มที่ถูกจัดอยู่</p>
+                        <div class="form-control mb-3">
+                            <p>เลือกจังหวัด</p>
+
+                            <?php
+                            $sqlProvinCH = "SELECT * FROM provinces";
+                            $queryProvinCH = mysqli_query($con, $sqlProvinCH);
+                            ?>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="province">จังหวัด</label>
+                                    <select name="province_id" id="provinceCH" class="form-control" required>
+                                        <option value="">เลือกจังหวัด</option>
+                                        <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH)) : ?>
+                                            <option value="<?= $resultProvinCH['id'] ?>"><?= $resultProvinCH['name_th'] ?></option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+<div  id="resultCH">test</div>
 
                         <?php
                         function countQexer($q)
@@ -110,7 +131,7 @@
                     new Chart(ctx1, {
                         type: 'doughnut',
                         data: {
-                            labels: ['ผ่าน <?php echo $res1; ?> คน (<?php echo round($res1*100/($res1+$res2),2) ; ?> %)', 'ไม่ผ่าน<?php echo $res2; ?> คน (<?php echo round($res2*100/($res1+$res2),2) ; ?> %)'],
+                            labels: ['ผ่าน <?php echo $res1; ?> คน (<?php echo round($res1 * 100 / ($res1 + $res2), 2); ?> %)', 'ไม่ผ่าน<?php echo $res2; ?> คน (<?php echo round($res2 * 100 / ($res1 + $res2), 2); ?> %)'],
                             datasets: [{
                                 label: '',
                                 data: [<?php echo $res1; ?>, <?php echo $res2; ?>],
