@@ -32,8 +32,8 @@ $business = $_POST["business"];
 
 //F5
 $exper_sports = $_POST["exper_sports"] ?? [];
-$res = $_POST["res"];
-$pub_res = $_POST["pub_res"];
+$res = $_POST["res"] ?? [];
+$pub_res = $_POST["pub_res"] ?? [];
 
 //F6
 $train_exper_exer = $_POST["trainExperExer"] ?? [];
@@ -197,8 +197,8 @@ echo "vol_exper = " . $vol_exper . '<br>';
 
 // F8
 echo "org_heal = " . $org_heal . '<br>';
-echo "pro_org_exer = " . serialize($pro_org_exer) . '<br>';
-echo "activity = " . serialize($activity) . '<br>';
+echo "pro_org_exer = " . $pro_org_exer . '<br>';
+echo "activity = " . $activity . '<br>';
 
 //func check null
 function checkOption($option, $checkText, $IP)

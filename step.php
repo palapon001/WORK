@@ -174,8 +174,8 @@
 
                                 <!-- ข้อมูลประสบการณ์การจัดกิจกรรม/โครงการการออกกำล้งกายเพื่อสุขภาพ -->
                                 <input name="org_heal" type="hidden" value="---">
-                                <input name="pro_org_exer" type="hidden" value="---">
-                                <input name="activity" type="hidden" value="---">
+                                <input name="proOrgExer" type="hidden" value="---">
+                                <input name="activityName" type="hidden" value="---">
 
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(2)">ก่อนหน้า</button>
                                 <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
@@ -226,18 +226,23 @@
                                 <input name="business" type="hidden" id="business" value="---">
 
                                 <!-- ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน -->
-                                <input name="exper_sports" type="hidden" id="exper_sports" value="---">
-                                <input name="res" type="hidden" id="res" value="---">
-                                <input name="pub_res" type="hidden" id="pub_res" value="---">
+                                <input name="exper_sports[]" type="hidden" id="exper_sports" value="---">
+                                <input name="exper_sports_input" type="hidden" id="exper_sports_input" value="---">
+                                <input name="res[]" type="hidden" id="res" value="---">
+                                <input name="resInput" type="hidden" id="resInput" value="---">
+                                <input name="pub_res[]" type="hidden" id="pub_res" value="---">
+                                <input name="pub_res_input" type="hidden" id="pub_res_input" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การอบรม -->
-                                <input name="train_exper_exer" type="hidden" id="train_exper_exer" value="---">
-                                <input name="train_exper" type="hidden" id="train_exper" value="---">
+                                <input name="trainExperExer[]" type="hidden" id="trainExperExer" value="---">
+                                <input name="trainExperExerInput" type="hidden" id="trainExperExerInput" value="---">
+                                <input name="trainExper[]" type="hidden" id="trainExper" value="---">
+                                <input name="trainExperInput" type="hidden" id="trainExperInput" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การจัดกิจกรรม/โครงการการออกกำล้งกายเพื่อสุขภาพ -->
                                 <input name="org_heal" type="hidden" value="---">
-                                <input name="pro_org_exer" type="hidden" value="---">
-                                <input name="activity" type="hidden" value="---">
+                                <input name="proOrgExer" type="hidden" value="---">
+                                <input name="activityName" type="hidden" value="---">
 
                                 <button type="button" class="btn btn-warning btn-lg" onclick="prevStep(2)">ก่อนหน้า</button>
                                 <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
@@ -282,13 +287,18 @@
                                 <?php include 'form/FormQ8.php'; ?>
 
                                 <!-- ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน -->
-                                <input name="exper_sports" type="hidden" id="exper_sports" value="---">
-                                <input name="res" type="hidden" id="res" value="---">
-                                <input name="pub_res" type="hidden" id="pub_res" value="---">
+                                <input name="exper_sports[]" type="hidden" id="exper_sports" value="---">
+                                <input name="exper_sports_input" type="hidden" id="exper_sports_input" value="---">
+                                <input name="res[]" type="hidden" id="res" value="---">
+                                <input name="resInput" type="hidden" id="resInput" value="---">
+                                <input name="pub_res[]" type="hidden" id="pub_res" value="---">
+                                <input name="pub_res_input" type="hidden" id="pub_res_input" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การอบรม -->
-                                <input name="train_exper_exer" type="hidden" id="train_exper_exer" value="---">
-                                <input name="train_exper" type="hidden" id="train_exper" value="---">
+                                <input name="trainExperExer[]" type="hidden" id="trainExperExer" value="---">
+                                <input name="trainExperExerInput" type="hidden" id="trainExperExerInput" value="---">
+                                <input name="trainExper[]" type="hidden" id="trainExper" value="---">
+                                <input name="trainExperInput" type="hidden" id="trainExperInput" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การเป็นอาสาสม้คร -->
                                 <input name="vol_exper" type="hidden" value="---">
@@ -316,6 +326,7 @@
 
                                 <!-- ข้อมูลส่วนตัว -->
                                 <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
+                                <input type="hidden" name="level" value="<?php echo $_SESSION["level"]; ?>">
                                 <input type="hidden" name="name" value="<?php echo $_SESSION["name"]; ?>">
                                 <input type="hidden" name="surname" value="<?php echo $_SESSION["surname"]; ?>">
                                 <input type="hidden" name="sex" value="---">
@@ -353,13 +364,18 @@
                                 <input type="hidden" name="duration" value="---">
 
                                 <!-- ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน -->
-                                <input name="exper_sports" type="hidden" value="---">
-                                <input name="res" type="hidden" value="---">
-                                <input name="pub_res" type="hidden" value="---">
+                                <input name="exper_sports[]" type="hidden" id="exper_sports" value="---">
+                                <input name="exper_sports_input" type="hidden" id="exper_sports_input" value="---">
+                                <input name="res[]" type="hidden" id="res" value="---">
+                                <input name="resInput" type="hidden" id="resInput" value="---">
+                                <input name="pub_res[]" type="hidden" id="pub_res" value="---">
+                                <input name="pub_res_input" type="hidden" id="pub_res_input" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การอบรม -->
-                                <input name="train_exper_exer" type="hidden" value="---">
-                                <input name="train_exper" type="hidden" value="---">
+                                <input name="trainExperExer[]" type="hidden" id="trainExperExer" value="---">
+                                <input name="trainExperExerInput" type="hidden" id="trainExperExerInput" value="---">
+                                <input name="trainExper[]" type="hidden" id="trainExper" value="---">
+                                <input name="trainExperInput" type="hidden" id="trainExperInput" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การเป็นอาสาสม้คร -->
                                 <input name="vol_exper" type="hidden" value="---">
@@ -385,6 +401,7 @@
 
                                 <!-- ข้อมูลส่วนตัว -->
                                 <input type="hidden" name="user" value="<?php echo $_SESSION["username"]; ?>">
+                                <input type="hidden" name="level" value="<?php echo $_SESSION["level"]; ?>">
                                 <input type="hidden" name="name" value="<?php echo $_SESSION["name"]; ?>">
                                 <input type="hidden" name="surname" value="<?php echo $_SESSION["surname"]; ?>">
                                 <input type="hidden" name="sex" value="---">
@@ -423,13 +440,18 @@
 
 
                                 <!-- ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน -->
-                                <input name="exper_sports" type="hidden" value="---">
-                                <input name="res" type="hidden" value="---">
-                                <input name="pub_res" type="hidden" value="---">
+                                <input name="exper_sports[]" type="hidden" id="exper_sports" value="---">
+                                <input name="exper_sports_input" type="hidden" id="exper_sports_input" value="---">
+                                <input name="res[]" type="hidden" id="res" value="---">
+                                <input name="resInput" type="hidden" id="resInput" value="---">
+                                <input name="pub_res[]" type="hidden" id="pub_res" value="---">
+                                <input name="pub_res_input" type="hidden" id="pub_res_input" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การอบรม -->
-                                <input name="train_exper_exer" type="hidden" value="---">
-                                <input name="train_exper" type="hidden" value="---">
+                                <input name="trainExperExer[]" type="hidden" id="trainExperExer" value="---">
+                                <input name="trainExperExerInput" type="hidden" id="trainExperExerInput" value="---">
+                                <input name="trainExper[]" type="hidden" id="trainExper" value="---">
+                                <input name="trainExperInput" type="hidden" id="trainExperInput" value="---">
 
                                 <!-- ข้อมูลประสบการณ์การเป็นอาสาสม้คร -->
                                 <input name="vol_exper" type="hidden" value="---">
