@@ -50,17 +50,11 @@
                 </div>
 
                 <?php
+                include 'assets/php/evaluateExercise.php';
                 $week = $fetch['week'];
                 $intensity = $fetch['intensityOptions'];
                 $duration = $fetch['duration'];
-                function evaluateExercise($daysPerWeek, $intensity, $duration)
-                {
-                    if ($daysPerWeek >= 3 && ($intensity >= 'ระดับปานกลาง' && $intensity <= 'ระดับหนัก') && $duration >= 20) {
-                        return "ผ่านเกณฑ์";
-                    } else {
-                        return "ต่ำกว่าเกณฑ์";
-                    }
-                }
+
                 $result = evaluateExercise($week, $intensity, $duration);
 
                 ?>
@@ -74,7 +68,43 @@
 
             <div class="col-lg-3">
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <script src="assets/js/chartProvinces.js"></script>
+                <script>
+                    $(function() {
+                        var provinceObject = $('#provinceCH');
+                        var resultObject = $('#resultCH');
+
+                        // on change province
+                        provinceObject.on('change', function() {
+                            var provinceId = $(this).val();
+                            var level = '<?php echo $fetch['level']; ?>';
+
+                            resultObject.empty();
+
+                            var url = 'get_provinChart.php?province_id=%27' + provinceId + '%27&level=%27' + level + '%27';
+
+                            $.get(url, function(data) {
+                                var result = JSON.parse(data);
+
+                                $.each(result, function(index, item) {
+                                    var exerciseEvaluation = item.week + item.intensityOptions + item.duration;
+
+                                    $.get('get_evaluate_exercise.php', {
+                                        daysPerWeek: item.week,
+                                        intensity: item.intensityOptions,
+                                        duration: item.duration
+                                    }, function(response) {
+                                        resultObject.append(
+                                            $('<div></div>').html('พบ = ' + result.length + ' รายการ ' + exerciseEvaluation + ' ' + response)
+                                        );
+                                    });
+
+                                    // return false;
+                                });
+                            });
+                        });
+
+                    });
+                </script>
                 <div>
                     <center>
                         <canvas id="myChart1"></canvas>
@@ -98,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-<div  id="resultCH">test</div>
+                        <div id="resultCH">test</div>
 
                         <?php
                         function countQexer($q)
