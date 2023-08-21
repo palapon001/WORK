@@ -97,7 +97,6 @@
 
                                 if (result.length === 0) {
                                     $('#myChartphp').show(); // Show myChartphp when result is empty
-                                    myChart1.destroy();
                                     $('#myChart1').hide();
                                     return; // Exit the function since there's no data
                                 }
