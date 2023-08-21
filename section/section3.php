@@ -98,6 +98,7 @@
                                 if (result.length === 0) {
                                     $('#myChartphp').show(); // Show myChartphp when result is empty
                                     myChart1.destroy();
+                                    $('#myChart1').hide();
                                     return; // Exit the function since there's no data
                                 }
 
@@ -129,6 +130,7 @@
                                 }
 
                                 $('#myChartphp').hide();
+                                $('#myChart1').show();
 
                                 var total = passCount + notPassCount;
                                 var passPercent = ((passCount / total) * 100).toFixed(2); // Calculate pass percentage
@@ -159,8 +161,6 @@
                         });
                     });
                 </script>
-
-
                 <div class="form-control ">
                     <center>
                         <div class="form-control mb-3">
@@ -204,6 +204,7 @@
                         $notPassChartPercent = round(($not_passChart*100)/($passChart+$not_passChart),2);
                         ?>
                         <script>
+                            $('#myChart1').hide();
                             const ctx1 = document.getElementById('myChartphp');
                             new Chart(ctx1, {
                                 type: 'doughnut',
@@ -227,11 +228,8 @@
                         <p></p>
                     </center>
                 </div>
-
             </div>
-
             <div class="col-lg-3">
-
                 <div>
                     <center>
                         <canvas id="myChart2"></canvas>
@@ -239,10 +237,6 @@
                     </center>
                 </div>
             </div>
-
-
-
         </div>
-
     </div>
 </section><!-- End exercise Section -->
