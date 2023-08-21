@@ -90,7 +90,7 @@
                             var passCount = 0;
                             var notPassCount = 0;
 
-                            var url = 'get_provinChart.php?province_id=%27' + provinceId + '%27&level=%27' + level + '%27';
+                            var url = 'get_provinAndLevelChart.php?province_id=%27' + provinceId + '%27&level=%27' + level + '%27';
 
                             $.get(url, function(data) {
                                 var result = JSON.parse(data);
@@ -199,8 +199,8 @@
                                 $not_passChart++;
                             }
                         }
-                        $passChartPercent = round(($passChart*100)/($passChart+$not_passChart),2);
-                        $notPassChartPercent = round(($not_passChart*100)/($passChart+$not_passChart),2);
+                        $passChartPercent = round(($passChart * 100) / ($passChart + $not_passChart), 2);
+                        $notPassChartPercent = round(($not_passChart * 100) / ($passChart + $not_passChart), 2);
                         ?>
                         <script>
                             $('#myChart1').hide();
@@ -208,7 +208,7 @@
                             new Chart(ctx1, {
                                 type: 'doughnut',
                                 data: {
-                                    labels: ['ผ่าน ' + <?php echo $passChart ?> + ' คน (' + <?php echo $passChartPercent ?> + '%)', 'ไม่ผ่าน ' + <?php echo $not_passChart ?> + ' คน (' + <?php echo $notPassChartPercent ?>+ '%)'],
+                                    labels: ['ผ่าน ' + <?php echo $passChart ?> + ' คน (' + <?php echo $passChartPercent ?> + '%)', 'ไม่ผ่าน ' + <?php echo $not_passChart ?> + ' คน (' + <?php echo $notPassChartPercent ?> + '%)'],
                                     datasets: [{
                                         label: '',
                                         data: [<?php echo $passChart ?>, <?php echo $not_passChart ?>],
@@ -224,18 +224,160 @@
                                 }
                             });
                         </script>
-                        <p></p>
                     </center>
                 </div>
             </div>
             <div class="col-lg-3">
-                <div>
+                <script>
+                    $(function() {
+                        var provinceObject = $('#provinceCH2');
+                        var resultObject = $('#resultCH2');
+                        var myChart2 = null;
+
+                        provinceObject.on('change', function() {
+                            var provinceId = $(this).val();
+
+                            resultObject.empty();
+                            var passCount = 0;
+                            var notPassCount = 0;
+
+                            var url = 'get_provinChart.php?province_id=%27' + provinceId + '%27';
+
+                            $.get(url, function(data) {
+                                var result = JSON.parse(data);
+
+                                if (result.length === 0) {
+                                    $('#myChart2php').show(); // Show myChartphp when result is empty
+                                    $('#myChart2').hide();
+                                    return; // Exit the function since there's no data
+                                }
+
+                                $.each(result, function(index, item) {
+                                    var exerciseEvaluation = evaluateExercise(item.week, item.intensityOptions, item.duration);
+
+                                    if (exerciseEvaluation === "ผ่านเกณฑ์") {
+                                        passCount++;
+                                    } else {
+                                        notPassCount++;
+                                    }
+                                });
+
+                                resultObject.append(
+                                    $('<div></div>').html('พบ = ' + result.length + ' รายการ ')
+                                );
+
+                                // Show the counts
+                                resultObject.append(
+                                    $('<div></div>').html('ผ่านเกณฑ์: ' + passCount + ' รายการ')
+                                );
+                                resultObject.append(
+                                    $('<div></div>').html('ต่ำกว่าเกณฑ์: ' + notPassCount + ' รายการ')
+                                );
+
+                                // Destroy the previous chart instance if it exists
+                                if (myChart2) {
+                                    myChart2.destroy();
+                                }
+
+                                $('#myChart2php').hide();
+                                $('#myChart2').show();
+
+                                var total = passCount + notPassCount;
+                                var passPercent = ((passCount / total) * 100).toFixed(2); // Calculate pass percentage
+                                var notPassPercent = ((notPassCount / total) * 100).toFixed(2); // Calculate not pass percentage
+
+
+                                // Create the doughnut chart
+                                const ctx2 = document.getElementById('myChart2');
+                                myChart2 = new Chart(ctx2, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['ผ่าน ' + passCount + ' คน (' + passPercent + '%)', 'ไม่ผ่าน ' + notPassCount + ' คน (' + notPassPercent + '%)'],
+                                        datasets: [{
+                                            label: '',
+                                            data: [passCount, notPassCount],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            });
+                        });
+                    });
+                </script>
+                <div class="form-control">
                     <center>
+                        <div class="form-control mb-3" 4>
+                            <p>ผลการประเมินการออกกำลังกาย รายจังหวัด ของทุกกลุ่ม</p>
+                            <?php
+                            $sqlProvinCH = "SELECT * FROM provinces";
+                            $queryProvinCH = mysqli_query($con, $sqlProvinCH);
+                            ?>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <select name="province_id" id="provinceCH2" class="form-control" required>
+                                        <option value="">เลือกจังหวัด</option>
+                                        <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH)) : ?>
+                                            <option value="<?= $resultProvinCH['id'] ?>"><?= $resultProvinCH['name_th'] ?></option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="resultCH2"></div>
+                        <canvas id="myChart2php"></canvas>
                         <canvas id="myChart2"></canvas>
-                        <p>ผลการประเมินการออกกำลังกาย รายจังหวัด ของทุกกลุ่ม</p>
-                    </center>
                 </div>
+
+                <?php
+                $passChart2 = 0;
+                $not_passChart2 = 0;
+                $provinChart2 = $fetch['province_id'];
+
+                $sql_quesChart2 = " SELECT * FROM question where province_id ='$provinChart' ";
+                $queryQuesChart2 = mysqli_query($con, $sql_quesChart2);
+                while ($fetchChart2 = mysqli_fetch_assoc($queryQuesChart2)) {
+                    $evaluationResult2 = evaluateExercise($fetchChart2['week'], $fetchChart2['intensityOptions'], $fetchChart2['duration']);
+                    if ($evaluationResult == 'ผ่านเกณฑ์') {
+                        $passChart2++;
+                    } else {
+                        $not_passChart2++;
+                    }
+                }
+                $passChartPercent2 = round(($passChart2 * 100) / ($passChart2 + $not_passChart2), 2);
+                $notPassChartPercent2 = round(($not_passChart2 * 100) / ($passChart2 + $not_passChart2), 2);
+                ?>
+                <script>
+                    $('#myChart2').hide();
+                    const ctx2 = document.getElementById('myChart2php');
+                    new Chart(ctx2, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['ผ่าน ' + <?php echo $passChart ?> + ' คน (' + <?php echo $passChartPercent ?> + '%)', 'ไม่ผ่าน ' + <?php echo $not_passChart ?> + ' คน (' + <?php echo $notPassChartPercent ?> + '%)'],
+                            datasets: [{
+                                label: '',
+                                data: [<?php echo $passChart ?>, <?php echo $not_passChart ?>],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+                </center>
             </div>
         </div>
+    </div>
     </div>
 </section><!-- End exercise Section -->
