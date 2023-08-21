@@ -80,8 +80,6 @@
                     $(function() {
                         var provinceObject = $('#provinceCH');
                         var resultObject = $('#resultCH');
-                        var passCount = 0;
-                        var notPassCount = 0;
                         var myChart1 = null;
 
                         provinceObject.on('change', function() {
@@ -89,14 +87,19 @@
                             var level = '<?php echo $fetch['level']; ?>';
 
                             resultObject.empty();
-                            passCount = 0;
-                            notPassCount = 0;
-                            
+                            var passCount = 0;
+                            var notPassCount = 0;
 
                             var url = 'get_provinChart.php?province_id=%27' + provinceId + '%27&level=%27' + level + '%27';
 
                             $.get(url, function(data) {
                                 var result = JSON.parse(data);
+
+                                if (result.length === 0) {
+                                    $('#myChartphp').show(); // Show myChartphp when result is empty
+                                    myChart1.destroy();
+                                    return; // Exit the function since there's no data
+                                }
 
                                 $.each(result, function(index, item) {
                                     var exerciseEvaluation = evaluateExercise(item.week, item.intensityOptions, item.duration);
@@ -121,19 +124,23 @@
                                 );
 
                                 // Destroy the previous chart instance if it exists
-                            if (myChart1) {
-                                myChart1.destroy();
-                            }
+                                if (myChart1) {
+                                    myChart1.destroy();
+                                }
 
-                                var passPercent = parseFloat((passCount * 100 / (passCount + notPassCount)));
-                                var notPassPercent = parseFloat((passCount * 100 / (passCount + notPassCount)));
+                                $('#myChartphp').hide();
+
+                                var total = passCount + notPassCount;
+                                var passPercent = ((passCount / total) * 100).toFixed(2); // Calculate pass percentage
+                                var notPassPercent = ((notPassCount / total) * 100).toFixed(2); // Calculate not pass percentage
+
 
                                 // Create the doughnut chart
                                 const ctx1 = document.getElementById('myChart1');
-                                new Chart(ctx1, {
+                                myChart1 = new Chart(ctx1, {
                                     type: 'doughnut',
                                     data: {
-                                        labels: ['ผ่าน' + passCount + 'คน (' + passPercent + '% )', 'ไม่ผ่าน' + notPassCount + 'คน (' + notPassPercent + '% )'],
+                                        labels: ['ผ่าน ' + passCount + ' คน (' + passPercent + '%)', 'ไม่ผ่าน ' + notPassCount + ' คน (' + notPassPercent + '%)'],
                                         datasets: [{
                                             label: '',
                                             data: [passCount, notPassCount],
@@ -153,20 +160,17 @@
                     });
                 </script>
 
-                <div>
-                    <center>
-                        <canvas id="myChart1"></canvas>
-                        <p>ผลการประเมินการออกกำลังกาย รายจังหวัด เฉพาะกลุ่มที่ถูกจัดอยู่</p>
-                        <div class="form-control mb-3">
-                            <p>เลือกจังหวัด</p>
 
+                <div class="form-control ">
+                    <center>
+                        <div class="form-control mb-3">
+                            <p>ผลการประเมินการออกกำลังกาย รายจังหวัด เฉพาะกลุ่มที่ถูกจัดอยู่</p>
                             <?php
                             $sqlProvinCH = "SELECT * FROM provinces";
                             $queryProvinCH = mysqli_query($con, $sqlProvinCH);
                             ?>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="province">จังหวัด</label>
                                     <select name="province_id" id="provinceCH" class="form-control" required>
                                         <option value="">เลือกจังหวัด</option>
                                         <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH)) : ?>
@@ -175,8 +179,52 @@
                                     </select>
                                 </div>
                             </div>
+                            <input type="text" class="form-control mt-3" value="<?php echo $fetch['level']; ?>" disabled>
                         </div>
-                        <div id="resultCH">test</div>
+                        <div id="resultCH"></div>
+                        <canvas id="myChartphp"></canvas>
+                        <canvas id="myChart1"></canvas>
+                        <?php
+                        $passChart = 0;
+                        $not_passChart = 0;
+                        $levelChart = $fetch['level'];
+                        $provinChart = $fetch['province_id'];
+
+                        $sql_quesChart = " SELECT * FROM question where province_id ='$provinChart' And level = '$levelChart'";
+                        $queryQuesChart = mysqli_query($con, $sql_quesChart);
+                        while ($fetchChart = mysqli_fetch_assoc($queryQuesChart)) {
+                            $evaluationResult = evaluateExercise($fetchChart['week'], $fetchChart['intensityOptions'], $fetchChart['duration']);
+                            if ($evaluationResult == 'ผ่านเกณฑ์') {
+                                $passChart++;
+                            } else {
+                                $not_passChart++;
+                            }
+                        }
+                        $passChartPercent = round(($passChart*100)/($passChart+$not_passChart),2);
+                        $notPassChartPercent = round(($not_passChart*100)/($passChart+$not_passChart),2);
+                        ?>
+                        <script>
+                            const ctx1 = document.getElementById('myChartphp');
+                            new Chart(ctx1, {
+                                type: 'doughnut',
+                                data: {
+                                    labels: ['ผ่าน ' + <?php echo $passChart ?> + ' คน (' + <?php echo $passChartPercent ?> + '%)', 'ไม่ผ่าน ' + <?php echo $not_passChart ?> + ' คน (' + <?php echo $notPassChartPercent ?>+ '%)'],
+                                    datasets: [{
+                                        label: '',
+                                        data: [<?php echo $passChart ?>, <?php echo $not_passChart ?>],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        </script>
+                        <p></p>
                     </center>
                 </div>
 
