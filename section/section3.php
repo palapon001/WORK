@@ -69,16 +69,29 @@
             <div class="col-lg-3">
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script>
+                    function evaluateExercise(daysPerWeek, intensity, duration) {
+                        if (daysPerWeek >= 3 && (intensity >= 'ระดับปานกลาง' && intensity <= 'ระดับหนัก') && duration >= 20) {
+                            return "ผ่านเกณฑ์";
+                        } else {
+                            return "ต่ำกว่าเกณฑ์";
+                        }
+                    }
+
                     $(function() {
                         var provinceObject = $('#provinceCH');
                         var resultObject = $('#resultCH');
+                        var passCount = 0;
+                        var notPassCount = 0;
+                        var myChart1 = null;
 
-                        // on change province
                         provinceObject.on('change', function() {
                             var provinceId = $(this).val();
                             var level = '<?php echo $fetch['level']; ?>';
 
                             resultObject.empty();
+                            passCount = 0;
+                            notPassCount = 0;
+                            
 
                             var url = 'get_provinChart.php?province_id=%27' + provinceId + '%27&level=%27' + level + '%27';
 
@@ -86,25 +99,60 @@
                                 var result = JSON.parse(data);
 
                                 $.each(result, function(index, item) {
-                                    var exerciseEvaluation = item.week + item.intensityOptions + item.duration;
+                                    var exerciseEvaluation = evaluateExercise(item.week, item.intensityOptions, item.duration);
 
-                                    $.get('get_evaluate_exercise.php', {
-                                        daysPerWeek: item.week,
-                                        intensity: item.intensityOptions,
-                                        duration: item.duration
-                                    }, function(response) {
-                                        resultObject.append(
-                                            $('<div></div>').html('พบ = ' + result.length + ' รายการ ' + exerciseEvaluation + ' ' + response)
-                                        );
-                                    });
+                                    if (exerciseEvaluation === "ผ่านเกณฑ์") {
+                                        passCount++;
+                                    } else {
+                                        notPassCount++;
+                                    }
+                                });
 
-                                    // return false;
+                                resultObject.append(
+                                    $('<div></div>').html('พบ = ' + result.length + ' รายการ ')
+                                );
+
+                                // Show the counts
+                                resultObject.append(
+                                    $('<div></div>').html('ผ่านเกณฑ์: ' + passCount + ' รายการ')
+                                );
+                                resultObject.append(
+                                    $('<div></div>').html('ต่ำกว่าเกณฑ์: ' + notPassCount + ' รายการ')
+                                );
+
+                                // Destroy the previous chart instance if it exists
+                            if (myChart1) {
+                                myChart1.destroy();
+                            }
+
+                                var passPercent = parseFloat((passCount * 100 / (passCount + notPassCount)));
+                                var notPassPercent = parseFloat((passCount * 100 / (passCount + notPassCount)));
+
+                                // Create the doughnut chart
+                                const ctx1 = document.getElementById('myChart1');
+                                new Chart(ctx1, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['ผ่าน' + passCount + 'คน (' + passPercent + '% )', 'ไม่ผ่าน' + notPassCount + 'คน (' + notPassPercent + '% )'],
+                                        datasets: [{
+                                            label: '',
+                                            data: [passCount, notPassCount],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
                                 });
                             });
                         });
-
                     });
                 </script>
+
                 <div>
                     <center>
                         <canvas id="myChart1"></canvas>
@@ -129,54 +177,9 @@
                             </div>
                         </div>
                         <div id="resultCH">test</div>
-
-                        <?php
-                        function countQexer($q)
-                        {
-                            $no = 0;
-                            $pass = 0;
-                            $not_pass = 0;
-                        ?>
-                        <?php
-                            while ($fetchQuser = mysqli_fetch_assoc($q)) {
-                                $no++;
-                                $resultExer = evaluateExercise($fetchQuser['week'], $fetchQuser['intensityOptions'], $fetchQuser['duration']);
-                                if ($resultExer == 'ผ่านเกณฑ์') {
-                                    $pass++;
-                                } else {
-                                    $not_pass++;
-                                }
-                            }
-                            return $result = array($pass, $not_pass);
-                        }
-                        $sql_quser = " SELECT * FROM question  ";
-                        $queryQuser = mysqli_query($con, $sql_quser);
-                        list($res1, $res2) = countQexer($queryQuser);
-                        ?>
                     </center>
                 </div>
-                <script>
-                    const ctx1 = document.getElementById('myChart1');
 
-                    new Chart(ctx1, {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['ผ่าน <?php echo $res1; ?> คน (<?php echo round($res1 * 100 / ($res1 + $res2), 2); ?> %)', 'ไม่ผ่าน<?php echo $res2; ?> คน (<?php echo round($res2 * 100 / ($res1 + $res2), 2); ?> %)'],
-                            datasets: [{
-                                label: '',
-                                data: [<?php echo $res1; ?>, <?php echo $res2; ?>],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                </script>
             </div>
 
             <div class="col-lg-3">
@@ -185,35 +188,8 @@
                     <center>
                         <canvas id="myChart2"></canvas>
                         <p>ผลการประเมินการออกกำลังกาย รายจังหวัด ของทุกกลุ่ม</p>
-                        <?php
-                        $sql_qusername = " SELECT * FROM question where username = '1' ";
-                        $queryQusername = mysqli_query($con, $sql_qusername);
-                        list($resU1, $resU2) = countQexer($queryQusername);
-                        ?>
                     </center>
                 </div>
-                <script>
-                    const ctx2 = document.getElementById('myChart2');
-
-                    new Chart(ctx2, {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['ผ่าน <?php echo $resU1; ?>', 'ไม่ผ่าน<?php echo $resU2; ?>'],
-                            datasets: [{
-                                label: '',
-                                data: [<?php echo $resU1; ?>, <?php echo $resU2; ?>],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                </script>
             </div>
 
 
