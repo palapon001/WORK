@@ -85,8 +85,6 @@
             "congenOptions"
         ];
 
-        const nextButton = $("#next2");
-
         inputIds.forEach(id => $(`#${id}`).on("input change", checkAndUpdate));
         selectIds.forEach(id => $(`#${id}`).on("change", checkAndUpdate));
 
@@ -106,12 +104,6 @@
             const isWeightInvalid = weightValue <= 0 || weightValue >= 999 || isNaN(weightValue) || !Number.isFinite(weightValue);
 
             const isCongenEmpty = selectValues[0] === null;
-
-            const isDisabled = isHeightEmpty || isWeightEmpty || isPressureEmpty ||
-                isPulseEmpty || isCongenEmpty ||
-                isHeightInvalid || isWeightInvalid;
-
-            nextButton.prop('disabled', isDisabled);
 
             toggleAlert("#emptyAlertWarning-height", !isHeightEmpty && isHeightInvalid);
             toggleAlert("#emptyAlertWarning-weight", !isWeightEmpty && isWeightInvalid);

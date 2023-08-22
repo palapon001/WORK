@@ -209,8 +209,7 @@
       "eduOptions", "occOptions", "maryOptions", "nationOptions"
     ];
 
-    const sexInput = $("input[name='sex']");
-    const nextButton = $("#next1");
+    const sexInput = $("input[name='sex']"); 
 
     inputIds.forEach(id => $(`#${id}`).on("input change", checkAndUpdate));
     selectIds.forEach(id => $(`#${id}`).on("change", checkAndUpdate));
@@ -231,11 +230,6 @@
       const isAnySelectEmpty = selectValues.some(value => value === null);
 
       const isSexEmpty = !sexInput.is(":checked");
-
-      const isDisabled = isNameSurnameEmpty || isProvinceAmphureEmpty || isAgeEmpty ||
-        isAnySelectEmpty || isSexEmpty;
-
-      nextButton.prop('disabled', isDisabled);
 
       toggleAlert("#emptyAlert-name-surname", isNameSurnameEmpty);
       toggleAlert("#emptyAlert-provin", isProvinceAmphureEmpty);

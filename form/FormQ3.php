@@ -263,11 +263,6 @@ function echoALLVAR()
             const reason2Empty = reason2Checkboxes.every(checkbox => !checkbox) && reason2InputEmpty;
             const exerEmpty = exerCheckboxes.every(checkbox => !checkbox) && exerInputEmpty;
 
-            const isDisabled =
-                isWeekEmpty || isIntensityEmpty || isMotiEmpty || isDurationEmpty ||
-                locationEmpty || hoursEmpty || reason1Empty || reason2Empty || exerEmpty;
-
-            $("#success").prop('disabled', isDisabled);
 
             // Show/hide alerts as needed
             toggleAlert("#emptyAlert-location", locationEmpty);

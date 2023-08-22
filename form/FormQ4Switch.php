@@ -65,15 +65,10 @@ switch ($_SESSION["level"]) {
             "agency_name1", "agency_name2", "community","loc_community","loc_agency", "business"
         ];
 
-        const nextButton = $("#next2");
-
+        
         inputIds.forEach(id => $(`[name="${id}"]`).on("input change", checkAndUpdate));
 
-        function checkAndUpdate() {
-            const isDisabled = inputIds.some(id => $(`[name="${id}"]`).val().trim() === "");
-
-            nextButton.prop('disabled', isDisabled);
-
+        function checkAndUpdate() { 
             inputIds.forEach(id => toggleAlert(`#emptyAlert-${id}`, $(`[name="${id}"]`).val().trim() === ""));
         }
 
