@@ -21,13 +21,12 @@
     <h2>Welcome</h2>
     <h2>Who Are You ?</h2>
     <div class="owl-carousel owl-carousel1 owl-theme">
-
       <div>
         <div class="card text-center">
             <img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-primary rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
               <span class="">Interested-Individual</span>
             </button>
           </div>
@@ -38,7 +37,7 @@
         <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-warning rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Trainers" data-bs-toggle="modal" data-bs-target="#Modal">
               <span>Trainers</span>
             </button>
           </div>
@@ -49,7 +48,7 @@
         <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-danger rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Sport-professionals" data-bs-toggle="modal" data-bs-target="#Modal">
               <span>Sport-professionals</span>
             </button>
           </div>
@@ -60,7 +59,7 @@
         <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Volunteer" data-bs-toggle="modal" data-bs-target="#Modal">
               <h5>Volunteer</h5>
             </button>
           </div>
@@ -71,7 +70,7 @@
         <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Personnel/Support-Staff" data-bs-toggle="modal" data-bs-target="#Modal">
               <h5>Personnel/Support-Staff</h5>
             </button>
           </div>
@@ -82,7 +81,7 @@
         <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Suppliers/Partners" data-bs-toggle="modal" data-bs-target="#Modal">
               <h5>Suppliers/Partners</h5>
             </button>
           </div>
@@ -93,7 +92,7 @@
         <div class="card text-center"><img class="card-img-top" src="assets/img/logo_200x200.png" alt="">
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
-            <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
+            <button type="button" class="zzz btn btn-dark rounded-pill" id="Community" data-bs-toggle="modal" data-bs-target="#Modal">
               <h5>Community</h5>
             </button>
           </div>
