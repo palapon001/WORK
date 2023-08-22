@@ -14,7 +14,32 @@
 
         <div class=" mb-3">
             <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของผู้เชี่ยวชาญทั้งหมด</p>
-            <input name="exper_sports" type="text" class="form-control" value="" disabled>
+            <div class="form-control overflow-auto" rows="3">
+                <?php
+                $exSportArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
+                $sqlALLexSport = "SELECT * FROM question";
+                $queryALLexSport = mysqli_query($con, $sqlALLexSport);
+                while ($resultALLexSport = mysqli_fetch_assoc($queryALLexSport)) : ?>
+                    <?php
+                    if ($resultALLexSport['exper_sports'] !== "---,---" && trim($resultALLexSport['exper_sports']) !== "") {
+                        $exSportText = $resultALLexSport['exper_sports'];
+
+                        if (strpos($exSportText, ',') !== false) {
+                            $exSportItems = explode(',', $exSportText);
+                            $exSportArray = array_merge($exSportArray, $exSportItems);
+                        } else {
+                            $exSportArray[] = $exSportText;
+                        }
+                    }
+                    ?>
+                <?php endwhile; ?>
+                <?php
+                foreach ($exSportArray as $item) {
+                    echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
+                }
+                echo 'ผลลัพธ์ : ' . count($exSportArray) . '<br>';
+                ?>
+            </div>
         </div>
 
         <div class=" mb-3">
@@ -42,7 +67,32 @@
 
         <div class=" mb-3">
             <p>งานวิจัยทั้งหมด</p>
-            <input name="pub_res" type="text" class="form-control" value="---" disabled>
+            <div class="form-control overflow-auto" rows="3">
+                <?php
+                $resArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
+                $sqlALLRes = "SELECT * FROM question";
+                $queryALLRes = mysqli_query($con, $sqlALLRes);
+                while ($resultALLRes = mysqli_fetch_assoc($queryALLRes)) : ?>
+                    <?php
+                    if ($resultALLRes['res'] !== "---,---" && trim($resultALLRes['res']) !== "") {
+                        $ResText = $resultALLRes['res'];
+
+                        if (strpos($ResText, ',') !== false) {
+                            $ResItems = explode(',', $ResText);
+                            $resArray = array_merge($resArray, $ResItems);
+                        } else {
+                            $resArray[] = $ResText;
+                        }
+                    }
+                    ?>
+                <?php endwhile; ?>
+                <?php
+                foreach ($resArray as $item) {
+                    echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
+                }
+                echo 'ผลลัพธ์ : ' . count($resArray) . '<br>';
+                ?>
+            </div>
         </div>
 
         <div class=" mb-3">
@@ -70,7 +120,32 @@
 
         <div class=" mb-3">
             <p>การเผยแพร่ผลงานวิจัยทั้งหมด</p>
-            <input name="pub_res" type="text" class="form-control" value="---" disabled>
+            <div class="form-control overflow-auto" rows="3">
+                <?php
+                $pubResArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
+                $sqlALLPubresS5 = "SELECT * FROM question";
+                $queryALLPubresS5 = mysqli_query($con, $sqlALLPubresS5);
+                while ($resultALLPubresS5 = mysqli_fetch_assoc($queryALLPubresS5)) : ?>
+                    <?php
+                    if ($resultALLPubresS5['pub_res'] !== "---,---" && trim($resultALLPubresS5['pub_res']) !== "") {
+                        $pubResText = $resultALLPubresS5['pub_res'];
+
+                        if (strpos($pubResText, ',') !== false) {
+                            $pubResItems = explode(',', $pubResText);
+                            $pubResArray = array_merge($pubResArray, $pubResItems);
+                        } else {
+                            $pubResArray[] = $pubResText;
+                        }
+                    }
+                    ?>
+                <?php endwhile; ?>
+                <?php
+                foreach ($pubResArray as $item) {
+                    echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
+                }
+                echo 'ผลลัพธ์ : ' . count($pubResArray) . '<br>';
+                ?>
+            </div>
         </div>
 
         <div class=" mb-3">
@@ -131,7 +206,7 @@
                     exSportObject.append($('<div></div>').html('สาขาความเชี่ยวชาญ : ' + resItem));
                 });
 
-                exSportObject.append($('<div></div>').text('พบ = ' + resArray.length + ' รายการ ')); 
+                exSportObject.append($('<div></div>').text('พบ = ' + resArray.length + ' รายการ '));
             }).fail(function() {
                 exSportObject.empty();
                 exSportObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
@@ -204,9 +279,9 @@
                 var resArray = [];
 
                 $.each(result, function(index, item) {
-                    if (item.res !== "---,---" && item.res.trim() !== "") {
+                    if (item.pub_res !== "---,---" && item.pub_res.trim() !== "") {
                         itemCount++;
-                        var resText = item.res;
+                        var resText = item.pub_res;
 
                         if (resText.includes(',')) {
                             var resItems = resText.split(',');
