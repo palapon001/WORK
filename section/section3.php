@@ -9,6 +9,10 @@
     }
 
     function createChart(chartId, passCount, notPassCount) {
+        var existingChart = Chart.getChart(chartId);
+        if (existingChart) {
+            existingChart.destroy();
+        }
         var total = passCount + notPassCount;
         var passPercent = ((passCount / total) * 100).toFixed(2);
         var notPassPercent = ((notPassCount / total) * 100).toFixed(2);
@@ -37,7 +41,6 @@
     $(function() {
         var provinceObject1 = $('#provinceCH');
         var resultObject1 = $('#resultCH');
-        var myChart1 = null;
 
         provinceObject1.on('change', function() {
             var provinceId = $(this).val();
@@ -70,10 +73,6 @@
                 resultObject1.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
                 resultObject1.append($('<div></div>').html('ผ่านเกณฑ์: ' + passCount + ' รายการ'));
                 resultObject1.append($('<div></div>').html('ต่ำกว่าเกณฑ์: ' + notPassCount + ' รายการ'));
-
-                if (myChart1) {
-                    myChart1.destroy();
-                }
 
                 $('#myChartphp').hide();
                 $('#myChart1').show();
@@ -116,10 +115,6 @@
                 resultObject2.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
                 resultObject2.append($('<div></div>').html('ผ่านเกณฑ์: ' + passCount + ' รายการ'));
                 resultObject2.append($('<div></div>').html('ต่ำกว่าเกณฑ์: ' + notPassCount + ' รายการ'));
-
-                if (myChart2) {
-                    myChart2.destroy();
-                }
 
                 $('#myChart2php').hide();
                 $('#myChart2').show();
