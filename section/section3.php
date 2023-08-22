@@ -92,7 +92,7 @@
             var passCount = 0;
             var notPassCount = 0;
 
-            var url = 'get_provinChart.php?province_id=%27' + provinceId + '%27';
+            var url = 'get_Que_Provin.php?province_id=%27' + provinceId + '%27';
 
             $.get(url, function(data) {
                 var result = JSON.parse(data);
