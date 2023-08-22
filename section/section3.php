@@ -198,7 +198,7 @@ $result = evaluateExercise($week, $intensity, $duration);
                             <div class="form-row">
                                 <div class="form-group">
                                     <select name="province_id" id="provinceCH" class="form-control" required>
-                                        <option value="">เลือกจังหวัด</option>
+                                        <option value="<?php echo $fetch['province_id'];?>">เลือกจังหวัด</option>
                                         <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH)) : ?>
                                             <option value="<?= $resultProvinCH['id'] ?>"><?= $resultProvinCH['name_th'] ?></option>
                                         <?php endwhile; ?>
@@ -266,7 +266,7 @@ $result = evaluateExercise($week, $intensity, $duration);
                             <div class="form-row">
                                 <div class="form-group">
                                     <select name="province_id" id="provinceCH2" class="form-control" required>
-                                        <option value="">เลือกจังหวัด</option>
+                                        <option value="<?php echo $fetch['province_id'];?>">เลือกจังหวัด</option>
                                         <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH)) : ?>
                                             <option value="<?= $resultProvinCH['id'] ?>"><?= $resultProvinCH['name_th'] ?></option>
                                         <?php endwhile; ?>
