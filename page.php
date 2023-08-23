@@ -153,11 +153,11 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       $pulse = $fetch["pulse"];
       $congenOptions = $fetch["congenOptions"];
       
-      $location = $fetch["location"] ?? [];
-      $period = $fetch["selected_hours"] ?? [];
-      $reason1 = $fetch["reason1"] ?? [];
-      $reason2 = $fetch["reason2"] ?? [];
-      $exer = $fetch["exer"] ?? [];
+      $locationFetch = $fetch["location"] ?? [];
+      $periodFetch = $fetch["period"] ?? [];
+      $reason1Fetch = $fetch["reason1"] ?? [];
+      $reason2Fetch = $fetch["reason2"] ?? [];
+      $exerFetch = $fetch["exer"] ?? [];
       $pulseAfter = $fetch["pulseAfter"];
       $week = $fetch["week"];
       $duration = $fetch["duration"];
@@ -184,8 +184,8 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       
       //F8
       $org_heal = $fetch["org_heal"];
-      $pro_org_exer = $fetch["proOrgExer"];
-      $activity = $fetch["activityName"];
+      // $pro_org_exer = $fetch["proOrgExer"];
+      // $activity = $fetch["activityName"];
       
 
       $sql_provin = " SELECT * FROM provinces where id = $provin ";

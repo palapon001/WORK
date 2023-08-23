@@ -19,7 +19,9 @@ include 'assets/php/generateFormCheck.php';
         $locations,
         'location',
         'สถานที่ใดที่คุณใช้ออกกำลังกายหรือเล่นกีฬาเป็นประจำ (ตอบได้มากกว่า 1 คำตอบ)',
-        'กรุณาเลือกข้อมูลสถานที่'
+        'กรุณาเลือกข้อมูลสถานที่',
+        $foundUser,
+        $locationFetch
     );
     echo $locationHTML;
     ?>
@@ -36,7 +38,7 @@ include 'assets/php/generateFormCheck.php';
             ?>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="selected_hours[]" id="hours-<?php echo $hour; ?>" value="<?php echo $label; ?>"><?php echo $label; ?>
+                        <input type="checkbox" class="form-check-input" name="selected_hours[]" id="hours-<?php echo $hour; ?>" value="<?php echo $label; ?>" <?php if ($foundUser == 1 && $periodFetch == $label) echo "checked"; ?>><?php echo $label; ?>
                     </label>
                 </div>
             <?php
@@ -50,7 +52,7 @@ include 'assets/php/generateFormCheck.php';
             ?>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="selected_hours[]" id="hours-<?php echo $hour; ?>" value="<?php echo $label; ?>"><?php echo $label; ?>
+                        <input type="checkbox" class="form-check-input" name="selected_hours[]" id="hours-<?php echo $hour; ?>" value="<?php echo $label; ?>" <?php if ($foundUser == 1 && $periodFetch == $label) echo "checked"; ?>><?php echo $label; ?>
                     </label>
                 </div>
             <?php
@@ -79,7 +81,14 @@ include 'assets/php/generateFormCheck.php';
         "ชอบในกีฬานั้นๆ",
         "ชอบออกกำลังกาย"
     );
-    $reason1HTML = generateFormCheck($reason1, 'reason1', 'เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)', ' กรุณาเลือกข้อมูล');
+    $reason1HTML = generateFormCheck(
+        $reason1,
+        'reason1',
+        'เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)',
+        ' กรุณาเลือกข้อมูล',
+        $foundUser,
+        $reason1Fetch
+    );
     echo $reason1HTML;
     ?>
 </div>
@@ -100,7 +109,14 @@ include 'assets/php/generateFormCheck.php';
         "ขาดแรงจูงใจ",
         "สถานการณ์โรคอุบัติใหม่/สถานการณ์วิกฤต"
     );
-    $reason2HTML = generateFormCheck($reason2, "reason2", "เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)", "กรุณาเลือกเหตุผล");
+    $reason2HTML = generateFormCheck(
+        $reason2,
+        "reason2",
+        "เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)",
+        "กรุณาเลือกเหตุผล",
+        $foundUser,
+        $reason2Fetch
+    );
     echo $reason2HTML;
     ?>
 </div>
@@ -108,7 +124,7 @@ include 'assets/php/generateFormCheck.php';
 <!-- motivation form -->
 <div class="form-control mb-3">
     <p>คุณคิดว่าอะไรที่จูงใจให้คุณ และครอบครัว หรือคนรอบข้างคุณ มาออกกำลังกายหรือเล่นกีฬา (ตอบเพียงคำตอบเดียว)</p>
-    <select class="form-select mb-3" id="motiOptions" name="motiOptions" onchange="showInputField('motiOptions','motiField','motiInput')">
+    <select class="form-select mb-3" id="motiOptions" name="motiOptions" onchange="showInputField(' motiOptions','motiField','motiInput')">
         <option selected disabled>โปรดเลือก</option>
         <option value="ความรู้ในการออกกำลังกาย">ความรู้ในการออกกำลังกาย</option>
         <option value="ทัศนคติในการออกกำลังกาย">ทัศนคติในการออกกำลังกาย</option>
@@ -157,7 +173,14 @@ include 'assets/php/generateFormCheck.php';
         "สนุ๊กเกอร์",
         "มวยสากล"
     );
-    $exerciseHTML = generateFormCheck($exerciseArray, 'exer', 'รายการตัวเลือก ประเภทการออกกำลังกายเพื่อสุขภาพ (ตอบได้มากกว่า 1 ข้อ)', 'กรุณาเลือกรายการ');
+    $exerciseHTML = generateFormCheck(
+        $exerciseArray,
+        'exer',
+        'รายการตัวเลือก ประเภทการออกกำลังกายเพื่อสุขภาพ (ตอบได้มากกว่า 1 ข้อ)',
+        'กรุณาเลือกรายการ',
+        $foundUser,
+        $exerFetch
+    );
     echo $exerciseHTML;
     ?>
 </div>
