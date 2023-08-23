@@ -19,25 +19,25 @@
 <div class="form-control mb-3">
   <p>เพศ</p>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="ชาย" id="sex" required>
+    <input class="form-check-input" type="radio" name="sex" value="ชาย" id="sex" required <?php if ($foundUser == 1 && $sex == "ชาย") echo "checked"; ?>>
     <label class="form-check-label" for="flexRadioDefault">
       ชาย
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="หญิง" id="sex" required>
+    <input class="form-check-input" type="radio" name="sex" value="หญิง" id="sex" required <?php if ($foundUser == 1 && $sex == "หญิง") echo "checked"; ?>>
     <label class="form-check-label" for="flexRadioDefault">
       หญิง
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="อื่น ๆ" id="sex" required>
+    <input class="form-check-input" type="radio" name="sex" value="อื่น ๆ" id="sex" required <?php if ($foundUser == 1 && $sex == "อื่น ๆ") echo "checked"; ?>>
     <label class="form-check-label" for="flexRadioDefault">
       อื่น ๆ
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="ไม่ต้องการระบุ" id="sex" required>
+    <input class="form-check-input" type="radio" name="sex" value="ไม่ต้องการระบุ" id="sex" required <?php if ($foundUser == 1 && $sex == "ไม่ต้องการระบุ") echo "checked"; ?>>
     <label class="form-check-label" for="flexRadioDefault">
       ไม่ต้องการระบุ
     </label>
@@ -46,6 +46,7 @@
     กรุณาระบุข้อมูลให้ครบถ้วน
   </div>
 </div>
+
 <!-- end sex form -->
 
 <!-- provin form -->
@@ -106,26 +107,27 @@
 
 <!-- edu form -->
 <div class="form-control mb-3">
-  <p>การศึกษา </p>
+  <p>การศึกษา</p>
   <select class="form-select mb-3" id="eduOptions" name="eduOptions" onchange="showInputField('eduOptions','eduField','eduInput')" required>
     <option selected disabled>โปรดเลือก</option>
-    <option value="ไม่เคยเรียน">ไม่เคยเรียน</option>
-    <option value="ประถมศึกษา">ประถมศึกษา</option>
-    <option value="มัธยมศึกษาตอนต้น">มัธยมศึกษาตอนต้น</option>
-    <option value="มัธยมศึกษาตอนปลาย/ ปวช">มัธยมศึกษาตอนปลาย/ ปวช</option>
-    <option value="ปวส./ปวท./อนุปริญญา">ปวส./ปวท./อนุปริญญา </option>
-    <option value="ปริญญาตรี">ปริญญาตรี</option>
-    <option value="สูงกว่าปริญญาตรี">สูงกว่าปริญญาตรี</option>
-    <option value="other">อื่น ๆ</option>
+    <option value="ไม่เคยเรียน" <?php if ($foundUser == 1 && $eduOptions == "ไม่เคยเรียน") echo "selected"; ?>>ไม่เคยเรียน</option>
+    <option value="ประถมศึกษา" <?php if ($foundUser == 1 && $eduOptions == "ประถมศึกษา") echo "selected"; ?>>ประถมศึกษา</option>
+    <option value="มัธยมศึกษาตอนต้น" <?php if ($foundUser == 1 && $eduOptions == "มัธยมศึกษาตอนต้น") echo "selected"; ?>>มัธยมศึกษาตอนต้น</option>
+    <option value="มัธยมศึกษาตอนปลาย/ ปวช" <?php if ($foundUser == 1 && $eduOptions == "มัธยมศึกษาตอนปลาย/ ปวช") echo "selected"; ?>>มัธยมศึกษาตอนปลาย/ ปวช</option>
+    <option value="ปวส./ปวท./อนุปริญญา" <?php if ($foundUser == 1 && $eduOptions == "ปวส./ปวท./อนุปริญญา") echo "selected"; ?>>ปวส./ปวท./อนุปริญญา</option>
+    <option value="ปริญญาตรี" <?php if ($foundUser == 1 && $eduOptions == "ปริญญาตรี") echo "selected"; ?>>ปริญญาตรี</option>
+    <option value="สูงกว่าปริญญาตรี" <?php if ($foundUser == 1 && $eduOptions == "สูงกว่าปริญญาตรี") echo "selected"; ?>>สูงกว่าปริญญาตรี</option>
+    <option value="other" <?php if ($foundUser == 1 && $eduOptions == "other") echo "selected"; ?>>อื่น ๆ</option>
   </select>
   <div id="eduField" style="display: none;">
     <label for="eduInput">โปรดระบุ:</label>
-    <input type="text" id="eduInput" name="eduInput" class="form-control">
+    <input type="text" id="eduInput" name="eduInput" class="form-control" value="<?php echo $foundUser == 1 ? $eduOptions : ''; ?>" required>
   </div>
   <div class="alert alert-danger mb-3" id="emptyAlert-edu">
     กรุณาระบุข้อมูล การศึกษา
   </div>
 </div>
+
 <!-- end edu form -->
 
 <!-- occupation form -->
@@ -133,24 +135,24 @@
   <p>อาชีพ</p>
   <select class="form-select mb-3" id="occOptions" name="occOptions" onchange="showInputField('occOptions','occField','occInput')">
     <option selected disabled>โปรดเลือก</option>
-    <option value="รับราชการ/เจ้าหน้าที่ของรัฐ">รับราชการ/เจ้าหน้าที่ของรัฐ</option>
-    <option value="เจ้าหน้าที่รัฐวิสาหกิจ">เจ้าหน้าที่รัฐวิสาหกิจ </option>
-    <option value="พนักงานบริษัท/ห้างร้าน">พนักงานบริษัท/ห้างร้าน </option>
-    <option value="มัธยมศึกษาตอนปลาย/ ปวช">มัธยมศึกษาตอนปลาย/ ปวช</option>
-    <option value="ประกอบธุรกิจส่วนตัว	">ประกอบธุรกิจส่วนตัว</option>
-    <option value="รับจ้างทั่วไป">รับจ้างทั่วไป</option>
-    <option value="ค้าขาย">ค้าขาย</option>
-    <option value="ทำการเกษตร">ทำการเกษตร</option>
-    <option value="แม่บ้าน./พ่อบ้าน ">แม่บ้าน./พ่อบ้าน </option>
-    <option value="นักเรียน/นักศึกษา">นักเรียน/นักศึกษา</option>
-    <option value="เกษียณ/ข้าราชการบำนาญ (เกษียณรวมภาคเอกชน)">เกษียณ/ข้าราชการบำนาญ (เกษียณรวมภาคเอกชน)</option>
-    <option value="ชรา/ป่วย/พิการ จนไม่สามารถทำงานได้">ชรา/ป่วย/พิการ จนไม่สามารถทำงานได้</option>
-    <option value="ไม่ทำงาน/ว่างงาน">ไม่ทำงาน/ว่างงาน</option>
-    <option value="other">อื่น ๆ</option>
+    <option value="รับราชการ/เจ้าหน้าที่ของรัฐ" <?php if ($foundUser == 1 && $occOptions == "รับราชการ/เจ้าหน้าที่ของรัฐ") echo "selected"; ?>>รับราชการ/เจ้าหน้าที่ของรัฐ</option>
+    <option value="เจ้าหน้าที่รัฐวิสาหกิจ" <?php if ($foundUser == 1 && $occOptions == "เจ้าหน้าที่รัฐวิสาหกิจ") echo "selected"; ?>>เจ้าหน้าที่รัฐวิสาหกิจ</option>
+    <option value="พนักงานบริษัท/ห้างร้าน" <?php if ($foundUser == 1 && $occOptions == "พนักงานบริษัท/ห้างร้าน") echo "selected"; ?>>พนักงานบริษัท/ห้างร้าน</option>
+    <option value="มัธยมศึกษาตอนปลาย/ ปวช" <?php if ($foundUser == 1 && $occOptions == "มัธยมศึกษาตอนปลาย/ ปวช") echo "selected"; ?>>มัธยมศึกษาตอนปลาย/ ปวช</option>
+    <option value="ประกอบธุรกิจส่วนตัว" <?php if ($foundUser == 1 && $occOptions == "ประกอบธุรกิจส่วนตัว") echo "selected"; ?>>ประกอบธุรกิจส่วนตัว</option>
+    <option value="รับจ้างทั่วไป" <?php if ($foundUser == 1 && $occOptions == "รับจ้างทั่วไป") echo "selected"; ?>>รับจ้างทั่วไป</option>
+    <option value="ค้าขาย" <?php if ($foundUser == 1 && $occOptions == "ค้าขาย") echo "selected"; ?>>ค้าขาย</option>
+    <option value="ทำการเกษตร" <?php if ($foundUser == 1 && $occOptions == "ทำการเกษตร") echo "selected"; ?>>ทำการเกษตร</option>
+    <option value="แม่บ้าน./พ่อบ้าน" <?php if ($foundUser == 1 && $occOptions == "แม่บ้าน./พ่อบ้าน") echo "selected"; ?>>แม่บ้าน./พ่อบ้าน</option>
+    <option value="นักเรียน/นักศึกษา" <?php if ($foundUser == 1 && $occOptions == "นักเรียน/นักศึกษา") echo "selected"; ?>>นักเรียน/นักศึกษา</option>
+    <option value="เกษียณ/ข้าราชการบำนาญ (เกษียณรวมภาคเอกชน)" <?php if ($foundUser == 1 && $occOptions == "เกษียณ/ข้าราชการบำนาญ (เกษียณรวมภาคเอกชน)") echo "selected"; ?>>เกษียณ/ข้าราชการบำนาญ (เกษียณรวมภาคเอกชน)</option>
+    <option value="ชรา/ป่วย/พิการ จนไม่สามารถทำงานได้" <?php if ($foundUser == 1 && $occOptions == "ชรา/ป่วย/พิการ จนไม่สามารถทำงานได้") echo "selected"; ?>>ชรา/ป่วย/พิการ จนไม่สามารถทำงานได้</option>
+    <option value="ไม่ทำงาน/ว่างงาน" <?php if ($foundUser == 1 && $occOptions == "ไม่ทำงาน/ว่างงาน") echo "selected"; ?>>ไม่ทำงาน/ว่างงาน</option>
+    <option value="other" <?php if ($foundUser == 1 && $occOptions == "other") echo "selected"; ?>>อื่น ๆ</option>
   </select>
   <div id="occField" style="display: none;">
     <label for="occInput">โปรดระบุ:</label>
-    <input type="text" id="occInput" name="occInput" class="form-control" required>
+    <input type="text" id="occInput" name="occInput" class="form-control" value="<?php echo $foundUser == 1 ? $occOptions : ''; ?>" required>
   </div>
   <div class="alert alert-danger mb-3" id="emptyAlert-occ">
     กรุณาระบุข้อมูล อาชีพ
@@ -163,14 +165,14 @@
   <p>สถานภาพ</p>
   <select class="form-select mb-3" id="maryOptions" name="maryOptions" onchange="showInputField('maryOptions','maryField','maryInput')">
     <option selected disabled>โปรดเลือก</option>
-    <option value="โสด">โสด</option>
-    <option value="สมรส">สมรส</option>
-    <option value="หม้าย/หย่า/แยกกันอยู่">หม้าย/หย่า/แยกกันอยู่ </option>
-    <option value="other">อื่น ๆ</option>
+    <option value="โสด" <?php if ($foundUser == 1 && $maryOptions == "โสด") echo "selected"; ?>>โสด</option>
+    <option value="สมรส" <?php if ($foundUser == 1 && $maryOptions == "สมรส") echo "selected"; ?>>สมรส</option>
+    <option value="หม้าย/หย่า/แยกกันอยู่" <?php if ($foundUser == 1 && $maryOptions == "หม้าย/หย่า/แยกกันอยู่") echo "selected"; ?>>หม้าย/หย่า/แยกกันอยู่</option>
+    <option value="other" <?php if ($foundUser == 1 && $maryOptions == "other") echo "selected"; ?>>อื่น ๆ</option>
   </select>
   <div id="maryField" style="display: none;">
     <label for="maryInput">โปรดระบุ:</label>
-    <input type="text" id="maryInput" name="maryInput" class="form-control" required>
+    <input type="text" id="maryInput" name="maryInput" class="form-control" value="<?php echo $foundUser == 1 ? $maryOptions : ''; ?>" required>
   </div>
   <div class="alert alert-danger mb-3" id="emptyAlert-mary">
     กรุณาระบุข้อมูล สถานภาพ
@@ -183,13 +185,13 @@
   <p>สัญชาติ</p>
   <select class="form-select mb-3" id="nationOptions" name="nationOptions" onchange="showInputField('nationOptions','nationField','nationInput')">
     <option selected disabled>โปรดเลือก</option>
-    <option value="ไทย">ไทย</option>
-    <option value="ไม่มีสัญชาติ">ไม่มีสัญชาติ</option>
-    <option value="other">อื่น ๆ</option>
+    <option value="ไทย" <?php if ($foundUser == 1 && $nationOptions == "ไทย") echo "selected"; ?>>ไทย</option>
+    <option value="ไม่มีสัญชาติ" <?php if ($foundUser == 1 && $nationOptions == "ไม่มีสัญชาติ") echo "selected"; ?>>ไม่มีสัญชาติ</option>
+    <option value="other" <?php if ($foundUser == 1 && $nationOptions == "other") echo "selected"; ?>>อื่น ๆ</option>
   </select>
   <div id="nationField" style="display: none;">
     <label for="nationInput">โปรดระบุ:</label>
-    <input type="text" id="nationInput" name="nationInput" class="form-control" required>
+    <input type="text" id="nationInput" name="nationInput" class="form-control" value="<?php echo $foundUser == 1 ? $nationOptions : ''; ?>" required>
   </div>
   <div class="alert alert-danger mb-3" id="emptyAlert-nation">
     กรุณาระบุข้อมูล สัญชาติ
@@ -209,7 +211,7 @@
       "eduOptions", "occOptions", "maryOptions", "nationOptions"
     ];
 
-    const sexInput = $("input[name='sex']"); 
+    const sexInput = $("input[name='sex']");
 
     inputIds.forEach(id => $(`#${id}`).on("input change", checkAndUpdate));
     selectIds.forEach(id => $(`#${id}`).on("change", checkAndUpdate));

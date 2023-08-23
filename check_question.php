@@ -120,62 +120,6 @@ echo "week = " . $week . '<br>';
 echo "intensityOptions = " . $intensityOptions . '<br>';
 echo "duration = " . $duration . '<br>';
 
-//export object
-
-if (!empty($_POST['location'])) {
-	$location_data = unserialize(serialize($location));
-	foreach ($location_data  as $loc) {
-		echo "location_data = " . $loc . '<br>';
-	}
-} else {
-	echo 'location empty' . '<br>';
-}
-
-if (!empty($_POST['period'])) {
-	$period_data = unserialize(serialize($period));
-	foreach ($period_data  as $per) {
-		echo "period_data = " . $per . '<br>';
-	}
-} else {
-	echo 'period empty' . '<br>';
-}
-
-if (!empty($_POST['reason1'])) {
-	$reason1_data = unserialize(serialize($reason1));
-	foreach ($reason1_data  as $rea1) {
-		echo "reason1_data = " . $rea1 . '<br>';
-	}
-} else {
-	echo 'reason1 empty' . '<br>';
-}
-
-if (!empty($_POST['reason2'])) {
-	$reason2_data = unserialize(serialize($reason2));
-	foreach ($reason2_data  as $rea2) {
-		echo "reason2_data = " . $rea2 . '<br>';
-	}
-} else {
-	echo 'reason2 empty' . '<br>';
-}
-
-if (!empty($_POST['exer'])) {
-	$exer_data = unserialize(serialize($exer));
-	foreach ($exer_data  as $exe) {
-		echo "exer_data = " . $exe . '<br>';
-	}
-} else {
-	echo 'exer empty' . '<br>';
-}
-
-if (!empty($_POST['res'])) {
-	$res_data = unserialize(serialize($res));
-	foreach ($res_data  as $res_d) {
-		echo "res_data = " . $res_d . '<br>';
-	}
-} else {
-	echo 'res_data empty' . '<br>';
-}
-
 //F4
 echo "agency_name1 = " . $agency_name1 . '<br>';
 echo "agency_name2 = " . $agency_name2 . '<br>';
@@ -219,7 +163,7 @@ function checkEmpty($array, $arrayIP)
 		if ($arrayIP == '') {
 			return implode(",", $array);
 		} else {
-			$array[] = $arrayIP ;
+			$array[] = $arrayIP;
 			return implode(",", $array);
 		}
 	}
@@ -249,10 +193,19 @@ $result1 = mysqli_query($con, $check) or die("$check");
 $num = mysqli_num_rows($result1);
 if ($num > 0) {
 	//ถ้ามี username นี้อยู่ในระบบแล้วให้แจ้งเตือน
-	echo "<script>";
-	echo "alert(' username นี้ทำแบบสอบถามแล้ว  !');";
-	echo "window.location='page.php';";
-	echo "</script>";
+	// echo "<script>";
+	// echo "alert(' username นี้ทำแบบสอบถามแล้ว  !');";
+	// echo "window.location='page.php';";
+	// echo "</script>";
+	$sql = "UPDATE question
+        SET username = '$user', name = '$name', surname = '$surname', level = '$level', sex = '$sex', province_id = '$province_id', amphure_id = '$amphure_id', age = '$age', height = '$height', weight = '$weight', pressure = '$pressure',
+            pulse = '$pulse', location = '$checkLoc', period = '$checkPer', reason1 = '$checkRes1', reason2 = '$checkRes2', exer = '$checkExer', pulseAfter = '$pulseAfter', week = '$week', duration = '$duration', agency_name1 = '$agency_name1', agency_name2 = '$agency_name2',
+            community = '$community', loc_community = '$loc_community', loc_agency = '$loc_agency', business = '$business', exper_sports = '$checkExper_sports', res = '$checkRes', pub_res = '$checkPub_res', train_exper_exer = '$checkTrain_exper_exer', train_exper = '$checkTrain_exper', vol_exper = '$vol_exper',
+            org_heal = '$org_heal', pro_org_exer = '$pro_org_exer', activity = '$activity', eduOptions = '$checkEDU', occOptions = '$checkOCC', maryOptions = '$checkMary', nationOptions = '$checkNation', congenOptions = '$checkCongen',
+            motiOptions = '$checkMoti', intensityOptions = '$intensityOptions'
+        WHERE username = $user ";  // แทนที่ your_id ด้วยค่า id ที่คุณต้องการอัปเดต
+
+	$result = mysqli_query($con, $sql) or die("Error in query: $sql ");
 } else {
 	//เพิ่มเข้าไปในฐานข้อมูล
 	$sql = "INSERT INTO question(username,name,surname,level,sex,province_id,amphure_id,age,height,weight,pressure,

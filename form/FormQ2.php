@@ -3,7 +3,7 @@
 <div class="form-control mb-3">
     <div class="input-group mb-3">
         <span class="input-group-text">ส่วนสูง</span>
-        <input name="height" type="number" id="height" class="form-control" min="50" max="300" required>
+        <input name="height" type="number" id="height" class="form-control" min="50" max="300" required value="<?php echo $foundUser == 1 ? $height : ''; ?>">
     </div>
     <div class="alert alert-danger mb-3" id="emptyAlert-height">
         กรุณากรอกข้อมูลส่วนสูง
@@ -18,9 +18,9 @@
 <div class="form-control mb-3">
     <div class="input-group mb-3">
         <span class="input-group-text">น้ำหนัก</span>
-        <input name="weight" type="text" id="weight" class="form-control" min="1" max="1000" required>
+        <input name="weight" type="number" id="weight" class="form-control" min="1" max="1000" required value="<?php echo $foundUser == 1 ? $weight : ''; ?>">
     </div>
-    <div class="alert alert-danger mb-3 " id="emptyAlert-weight">
+    <div class="alert alert-danger mb-3" id="emptyAlert-weight">
         กรุณากรอกข้อมูลน้ำหนัก
     </div>
     <div class="alert alert-warning mb-3" id="emptyAlertWarning-weight" style="display: none;">
@@ -33,7 +33,7 @@
 <div class="form-control mb-3">
     <div class="input-group mb-3">
         <span class="input-group-text">ความดัน</span>
-        <input name="pressure" type="text" id="pressure" class="form-control" required>
+        <input name="pressure" type="text" id="pressure" class="form-control" required value="<?php echo $foundUser == 1 ? $pressure : ''; ?>">
     </div>
     <div class="alert alert-danger mb-3" id="emptyAlert-pressure">
         กรุณากรอกข้อมูลความดัน
@@ -44,9 +44,8 @@
 <!-- pulse form -->
 <div class="form-control mb-3">
     <div class="input-group mb-3">
-        <span class="input-group-text">ชีพจร (ครั้ง/นาที)
-        </span>
-        <input name="pulse" type="text" id="pulse" class="form-control" required>
+        <span class="input-group-text">ชีพจร (ครั้ง/นาที)</span>
+        <input name="pulse" type="text" id="pulse" class="form-control" required value="<?php echo $foundUser == 1 ? $pulse : ''; ?>">
     </div>
     <div class="alert alert-danger mb-3" id="emptyAlert-pulse">
         กรุณากรอกข้อมูลชีพจร
@@ -59,20 +58,18 @@
     <p>โรคประจำตัว</p>
     <select class="form-select mb-3" id="congenOptions" name="congenOptions" onchange="showInputField('congenOptions','congenField','congenInput')">
         <option selected disabled>โปรดเลือก</option>
-        <option value="มี">มี</option>
-        <option value="ไม่มี">ไม่มี</option>
-        <option value="other">อื่น ๆ</option>
+        <option value="มี" <?php if ($foundUser == 1 && $congenOptions == "มี") echo "selected"; ?>>มี</option>
+        <option value="ไม่มี" <?php if ($foundUser == 1 && $congenOptions == "ไม่มี") echo "selected"; ?>>ไม่มี</option>
+        <option value="other" <?php if ($foundUser == 1 && $congenOptions == "other") echo "selected"; ?>>อื่น ๆ</option>
     </select>
     <div id="congenField" style="display: none;">
         <label for="congenInput">โปรดระบุ:</label>
-        <input type="text" id="congenInput" name="congenInput" class="form-control" required>
+        <input type="text" id="congenInput" name="congenInput" class="form-control" required value="<?php echo $foundUser == 1 ? $congenOptions : ''; ?>">
     </div>
-
     <div class="alert alert-danger mb-3" id="emptyAlert-congen">
         กรุณากรอกข้อมูลโรคประจำตัว
     </div>
 </div>
-
 <!-- end congenital disease form -->
 
 <script>

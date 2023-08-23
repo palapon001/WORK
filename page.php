@@ -122,10 +122,15 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo $_SESSION["level"]; ?>"></span></p>
       <p>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          แบบสอบถาม
-        </button>
-        <!-- <a href="step.php" class="btn btn-primary btn-lg">ทำแบบสอบถาม</a> -->
+        <?php if ($foundUser == 1) { ?>
+          <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            แก้ไขข้อมูล
+          </button>
+        <?php } else { ?>
+          <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            แบบสอบถาม
+          </button>
+        <?php } ?>
       </p>
 
     </div>
@@ -136,7 +141,53 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
     $sql_ques1 = " SELECT * FROM question where username = $q_user ";
     $queryQues1 = mysqli_query($con, $sql_ques1);
     while ($fetch = mysqli_fetch_assoc($queryQues1)) {
+      $sex = $fetch['sex'];
       $provin = $fetch['province_id'];
+      $eduOptions = $fetch['eduOptions'];
+      $occOptions = $fetch['occOptions'];
+      $maryOptions = $fetch['maryOptions'];
+      $nationOptions = $fetch['nationOptions'];
+      $height = $fetch['height'];   
+      $weight = $fetch["weight"];
+      $pressure = $fetch["pressure"];
+      $pulse = $fetch["pulse"];
+      $congenOptions = $fetch["congenOptions"];
+      
+      $location = $fetch["location"] ?? [];
+      $period = $fetch["selected_hours"] ?? [];
+      $reason1 = $fetch["reason1"] ?? [];
+      $reason2 = $fetch["reason2"] ?? [];
+      $exer = $fetch["exer"] ?? [];
+      $pulseAfter = $fetch["pulseAfter"];
+      $week = $fetch["week"];
+      $duration = $fetch["duration"];
+      
+      //F4
+      $agency_name1 = $fetch["agency_name1"];
+      $agency_name2 = $fetch["agency_name2"];
+      $community = $fetch["community"];
+      $loc_community = $fetch["loc_community"];
+      $loc_agency = $fetch["loc_agency"];
+      $business = $fetch["business"];
+      
+      //F5
+      $exper_sports = $fetch["exper_sports"] ?? [];
+      $res = $fetch["res"] ?? [];
+      $pub_res = $fetch["pub_res"] ?? [];
+      
+      //F6
+      $train_exper_exer = $fetch["trainExperExer"] ?? [];
+      $train_exper = $fetch["trainExper"] ?? [];
+      
+      //F7
+      $vol_exper = $fetch["vol_exper"];
+      
+      //F8
+      $org_heal = $fetch["org_heal"];
+      $pro_org_exer = $fetch["proOrgExer"];
+      $activity = $fetch["activityName"];
+      
+
       $sql_provin = " SELECT * FROM provinces where id = $provin ";
       $queryProvin = mysqli_query($con, $sql_provin);
       $amphure = $fetch['amphure_id'];
@@ -230,7 +281,11 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">แบบสอบถาม</h1>
+            <?php if ($foundUser == 1) { ?>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">แก้ไขข้อมูล</h1>
+            <?php } else { ?>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">แบบสอบถาม</h1>
+            <?php } ?>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
