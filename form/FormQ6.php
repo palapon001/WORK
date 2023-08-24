@@ -13,9 +13,10 @@ function customGenarateFormField($hname, $name)
     HTML;
     return $customText;
 }
-
-echo generateFormField("trainExperExerInput", "ประสบการณ์การอบรมทางด้านการออกกำลังกายเพื่อสุขภาพ", "กรอกข้อมูลประสบการณ์", true, true, "", "text", customGenarateFormField('ประสบการณ์', 'trainExperExer'));
-echo generateFormField("trainExperInput", "ประสบการณ์การอบรมในสาขาความเชี่ยวชาญ", "กรอกข้อมูลประสบการณ์", true, true, "", "text", customGenarateFormField('ประสบการณ์', 'trainExper'));
+$defaultValueTrainExperExer = $foundUser == 1 ? $train_exper_exer : '';
+$defaultValueTrainExper = $foundUser == 1 ? $train_exper : ''; 
+echo generateFormField("trainExperExerInput", "ประสบการณ์การอบรมทางด้านการออกกำลังกายเพื่อสุขภาพ", "กรอกข้อมูลประสบการณ์", true, true, $defaultValueTrainExperExer, "text", customGenarateFormField('ประสบการณ์', 'trainExperExer'));
+echo generateFormField("trainExperInput", "ประสบการณ์การอบรมในสาขาความเชี่ยวชาญ", "กรอกข้อมูลประสบการณ์", true, true, $defaultValueTrainExper, "text", customGenarateFormField('ประสบการณ์', 'trainExper'));
 ?>
 <script src="assets/js/createInputForm.js"></script>
 <script>

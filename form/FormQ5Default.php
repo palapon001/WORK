@@ -3,7 +3,7 @@
 <div class="form-control mb-3">
     <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพ</p>
     <div class="input-group">
-        <input name="exper_sports_input" type="text" id="exper_sports_input" class="form-control" required>
+        <input name="exper_sports_input" type="text" id="exper_sports_input" class="form-control" value="<?php echo $defaultValueExper_sports ; ?>" required>
     </div>
     <button type="button" class="btn btn-primary mt-3" id="add-exper_sports_input" onclick="createInputForm('ชื่อสาขา','exper_sports','formContainer-exper_sports_input');" disabled>เพิ่มข้อมูลสาขา</button>
     <div class="form-group mt-3" id="formContainer-exper_sports_input">
@@ -17,8 +17,8 @@
 <!-- res form -->
 <div class="form-control mb-3">
     <div class="input-group">
-        <span class="input-group-text">งานวิจัย</span>
-        <input name="resInput" type="text" id="resInput" class="form-control" required>
+        <span class="input-group-text">งานวิจัย</span> 
+        <input name="resInput" type="text" id="resInput" class="form-control" value="<?php echo $defaultValueRes ; ?>" required>
     </div>
     <button type="button" class="btn btn-primary mt-3" id="add-resInput" onclick="createInputForm('งานวิจัย','res','formContainer-resInput');" disabled>เพิ่มข้อมูลงานวิจัย</button>
     <div class="form-group mt-3" id="formContainer-resInput">
@@ -33,7 +33,7 @@
 <div class="form-control mb-3">
     <div class="input-group">
         <span class="input-group-text">การเผยแพร่ผลงานวิจัย</span>
-        <input name="pub_res_input" type="text" id="pub_res_input" class="form-control" required>
+        <input name="pub_res_input" type="text" id="pub_res_input" class="form-control" value="<?php echo $defaultValuePub_res ; ?>" required>
     </div>
     <button type="button" class="btn btn-primary mt-3" id="add-pub_res_input" onclick="createInputForm('การเผยแพร่ผลงานวิจัย','pub_res','formContainer-pub_res_input');" disabled>เพิ่มข้อมูลการเผยแพร่ผลงานวิจัย</button>
     <div class="form-group mt-3" id="formContainer-pub_res_input">

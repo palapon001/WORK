@@ -172,21 +172,21 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       $business = $fetch["business"];
       
       //F5
-      $exper_sports = $fetch["exper_sports"] ?? [];
-      $res = $fetch["res"] ?? [];
-      $pub_res = $fetch["pub_res"] ?? [];
+      $exper_sports = $fetch["exper_sports"];
+      $res = $fetch["res"];
+      $pub_res = $fetch["pub_res"];
       
       //F6
-      $train_exper_exer = $fetch["trainExperExer"] ?? [];
-      $train_exper = $fetch["trainExper"] ?? [];
+      $train_exper_exer = $fetch["train_exper_exer"];
+      $train_exper = $fetch["train_exper"];
       
       //F7
       $vol_exper = $fetch["vol_exper"];
       
       //F8
       $org_heal = $fetch["org_heal"];
-      // $pro_org_exer = $fetch["proOrgExer"];
-      // $activity = $fetch["activityName"];
+      $pro_org_exer = $fetch["pro_org_exer"];
+      $activity = $fetch["activity"];
       
 
       $sql_provin = " SELECT * FROM provinces where id = $provin ";

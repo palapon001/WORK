@@ -1,5 +1,7 @@
-<?php
-include 'assets/php/generateFormMultiInput.php';
+<?php 
+$defaultValueExper_sports = $foundUser == 1 ? $exper_sports : '';
+$defaultValueRes = $foundUser == 1 ? $res : '';
+$defaultValuePub_res = $foundUser == 1 ? $pub_res : ''; 
 switch ($_SESSION["level"]) {
     case "Trainers": ?>
         <h1>ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน</h1>
@@ -7,7 +9,7 @@ switch ($_SESSION["level"]) {
         <div class="form-control mb-3">
             <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพ</p>
             <div class="input-group">
-                <input name="exper_sports_input" type="text" id="exper_sports_input" class="form-control" required>
+                <input name="exper_sports_input" value="<?php echo $defaultValueExper_sports ; ?>" type="text" id="exper_sports_input" class="form-control" required>
             </div>
             <button type="button" class="btn btn-primary mt-3" id="add-exper_sports_input" onclick="createInputForm('ชื่อสาขา','exper_sports','formContainer-exper_sports_input');" disabled>เพิ่มข้อมูลสาขา</button>
             <div class="form-group mt-3" id="formContainer-exper_sports_input">
