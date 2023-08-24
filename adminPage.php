@@ -3,7 +3,7 @@
 <?php session_start();
 include 'tag_head.php';
 include 'condb.php';
-if (!$_SESSION["username"]) {  //check session
+if (!$_SESSION["username"] || $_SESSION["username"] != 'ADMIN') {  //check session
     Header("Location: index.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
 }
 ?>

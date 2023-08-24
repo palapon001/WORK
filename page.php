@@ -289,7 +289,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form name="formRegister" method="post" action="check_update_regis.php">
+            <form name="formRegister" method="post" action="check_edit_regis.php">
               <?php
               $update_username = $_SESSION["username"];
               $sql_update_user = " SELECT * FROM work_login where username = $update_username";
