@@ -126,19 +126,19 @@ include 'assets/php/generateFormCheck.php';
     <p>คุณคิดว่าอะไรที่จูงใจให้คุณ และครอบครัว หรือคนรอบข้างคุณ มาออกกำลังกายหรือเล่นกีฬา (ตอบเพียงคำตอบเดียว)</p>
     <select class="form-select mb-3" id="motiOptions" name="motiOptions" onchange="showInputField(' motiOptions','motiField','motiInput')">
         <option selected disabled>โปรดเลือก</option>
-        <option value="ความรู้ในการออกกำลังกาย">ความรู้ในการออกกำลังกาย</option>
-        <option value="ทัศนคติในการออกกำลังกาย">ทัศนคติในการออกกำลังกาย</option>
-        <option value="สนามกีฬาหรือสถานที่มีความสวยงามมีมาตรฐาน">สนามกีฬาหรือสถานที่มีความสวยงามมีมาตรฐาน</option>
-        <option value="ผู้นำการออกกำลังกาย">ผู้นำการออกกำลังกาย</option>
-        <option value="การจัดกิจกรรมที่น่าสนใจ">การจัดกิจกรรมที่น่าสนใจ</option>
-        <option value="ดารา/นักร้อง/บุคคลที่มีชื่อเสียง">ดารา/นักร้อง/บุคคลที่มีชื่อเสียง</option>
-        <option value="ญาติพี่น้อง/เพื่อน">ญาติพี่น้อง/เพื่อน</option>
-        <option value="ไม่มีสถานที่อาสาสมัครทางการกีฬามาให้ความรู้">ไม่มีสถานที่อาสาสมัครทางการกีฬามาให้ความรู้</option>
-        <option value="other">อื่น ๆ</option>
+        <option value="ความรู้ในการออกกำลังกาย" <?php if ($foundUser == 1 && $motiOptions == "ความรู้ในการออกกำลังกาย") echo "selected"; ?>>ความรู้ในการออกกำลังกาย</option>
+        <option value="ทัศนคติในการออกกำลังกาย" <?php if ($foundUser == 1 && $motiOptions == "ทัศนคติในการออกกำลังกาย") echo "selected"; ?>>ทัศนคติในการออกกำลังกาย</option>
+        <option value="สนามกีฬาหรือสถานที่มีความสวยงามมีมาตรฐาน" <?php if ($foundUser == 1 && $motiOptions == "สนามกีฬาหรือสถานที่มีความสวยงามมีมาตรฐาน") echo "selected"; ?>>สนามกีฬาหรือสถานที่มีความสวยงามมีมาตรฐาน</option>
+        <option value="ผู้นำการออกกำลังกาย" <?php if ($foundUser == 1 && $motiOptions == "ผู้นำการออกกำลังกาย") echo "selected"; ?>>ผู้นำการออกกำลังกาย</option>
+        <option value="การจัดกิจกรรมที่น่าสนใจ" <?php if ($foundUser == 1 && $motiOptions == "การจัดกิจกรรมที่น่าสนใจ") echo "selected"; ?>>การจัดกิจกรรมที่น่าสนใจ</option>
+        <option value="ดารา/นักร้อง/บุคคลที่มีชื่อเสียง" <?php if ($foundUser == 1 && $motiOptions == "ดารา/นักร้อง/บุคคลที่มีชื่อเสียง") echo "selected"; ?>>ดารา/นักร้อง/บุคคลที่มีชื่อเสียง</option>
+        <option value="ญาติพี่น้อง/เพื่อน" <?php if ($foundUser == 1 && $motiOptions == "ญาติพี่น้อง/เพื่อน") echo "selected"; ?>>ญาติพี่น้อง/เพื่อน</option>
+        <option value="ไม่มีสถานที่อาสาสมัครทางการกีฬามาให้ความรู้" <?php if ($foundUser == 1 && $motiOptions == "ไม่มีสถานที่อาสาสมัครทางการกีฬามาให้ความรู้") echo "selected"; ?>>ไม่มีสถานที่อาสาสมัครทางการกีฬามาให้ความรู้</option>
+        <option value="other" <?php if ($foundUser == 1 && $motiOptions == "other") echo "selected"; ?>>อื่น ๆ</option>
     </select>
     <div id="motiField" style="display: none;">
         <label for="motiInput">โปรดระบุ:</label>
-        <input type="text" id="motiInput" name="motiInput" class="form-control" required>
+        <input type="text" id="motiInput" name="motiInput" class="form-control" value="<?php echo $foundUser == 1 ? $motiOptions : ''; ?>" required>
     </div>
     <div class="alert alert-danger mt-3" id="emptyAlert-motiOptions">
         กรุณากรอกข้อมูล
@@ -188,13 +188,13 @@ include 'assets/php/generateFormCheck.php';
 <!-- pulse after exercise form -->
 <div class="form-control mb-3">
     <p>ชีพจรหลังการออกกำลังกาย (หากท่านทราบข้อมูล)* </p>
-    <input name="pulseAfter" type="text" id="pulseAfter" class="form-control">
+    <input name="pulseAfter" type="text" id="pulseAfter" class="form-control" value="<?php echo $foundUser == 1 ? $pulseAfter : ''; ?>">
 </div>
 
 <!-- week exercise form -->
 <div class="form-control mb-3">
     <p>จำนวนวันที่ออกกำลังกายต่อสัปดาห์ </p>
-    <input name="week" type="number" id="week" class="form-control" required>
+    <input name="week" type="number" id="week" class="form-control" value="<?php echo $foundUser == 1 ? $week : ''; ?>" required>
     <div class="alert alert-danger mt-3" id="emptyAlert-week">
         กรุณากรอกข้อมูล
     </div>
@@ -205,8 +205,8 @@ include 'assets/php/generateFormCheck.php';
     <p>ความหนักของการออกกำลังกาย</p>
     <select class="form-select mb-3" id="intensityOptions" name="intensityOptions">
         <option selected disabled>โปรดเลือก</option>
-        <option value="ระดับปานกลาง">ระดับปานกลาง=อัตราการหายใจ หรืออัตราการเต้นของหัวใจเพิ่มขึ้นจากปกติเล็กน้อย</option>
-        <option value="ระดับหนัก">ระดับหนัก=อัตราการหายใจ หรืออัตราการเต้นของหัวใจเพิ่มขึ้นอย่างมาก</option>
+        <option value="ระดับปานกลาง" <?php if ($foundUser == 1 && $intensityOptions == "ระดับปานกลาง") echo "selected"; ?>>ระดับปานกลาง=อัตราการหายใจ หรืออัตราการเต้นของหัวใจเพิ่มขึ้นจากปกติเล็กน้อย</option>
+        <option value="ระดับหนัก" <?php if ($foundUser == 1 && $intensityOptions == "ระดับหนัก") echo "selected"; ?>>ระดับหนัก=อัตราการหายใจ หรืออัตราการเต้นของหัวใจเพิ่มขึ้นอย่างมาก</option>
     </select>
     <div class="alert alert-danger mt-3" id="emptyAlert-intensity">
         กรุณากรอกข้อมูล
@@ -216,7 +216,7 @@ include 'assets/php/generateFormCheck.php';
 <!-- duration of exercise form -->
 <div class="form-control mb-3">
     <p>ระยะเวลาการออกกำลังกาย</p>
-    <input name="duration" type="number" id="duration" class="form-control" required>
+    <input name="duration" type="number" id="duration" class="form-control" required value="<?php echo $foundUser == 1 ? $duration : ''; ?>">
     <div class="alert alert-danger mt-3" id="emptyAlert-duration">
         กรุณากรอกข้อมูล
     </div>

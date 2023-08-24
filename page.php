@@ -152,14 +152,15 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       $pressure = $fetch["pressure"];
       $pulse = $fetch["pulse"];
       $congenOptions = $fetch["congenOptions"];
-      
-      $locationFetch = $fetch["location"] ?? [];
-      $periodFetch = $fetch["period"] ?? [];
-      $reason1Fetch = $fetch["reason1"] ?? [];
-      $reason2Fetch = $fetch["reason2"] ?? [];
-      $exerFetch = $fetch["exer"] ?? [];
+      $locationFetch = $fetch["location"];
+      $periodFetch = $fetch["period"];
+      $reason1Fetch = $fetch["reason1"];
+      $reason2Fetch = $fetch["reason2"];
+      $motiOptions = $fetch["motiOptions"];
+      $exerFetch = $fetch["exer"];
       $pulseAfter = $fetch["pulseAfter"];
       $week = $fetch["week"];
+      $intensityOptions = $fetch["intensityOptions"];
       $duration = $fetch["duration"];
       
       //F4
