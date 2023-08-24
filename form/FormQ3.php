@@ -1,5 +1,9 @@
 <?php
 include 'assets/php/generateFormCheck.php';
+$defaultValueLocationFetch = $foundUser == 1 ? $locationFetch : '';
+$defaultValueReason1Fetch = $foundUser == 1 ? $reason1Fetch : '';
+$defaultValueReason2Fetch = $foundUser == 1 ? $reason2Fetch : '';
+$defaultValueExerFetch = $foundUser == 1 ? $exerFetch : ''; 
 ?>
 <h1>ข้อมูลการออกกำลังกาย</h1>
 <!-- location form -->
@@ -21,7 +25,7 @@ include 'assets/php/generateFormCheck.php';
         'สถานที่ใดที่คุณใช้ออกกำลังกายหรือเล่นกีฬาเป็นประจำ (ตอบได้มากกว่า 1 คำตอบ)',
         'กรุณาเลือกข้อมูลสถานที่',
         $foundUser,
-        $locationFetch
+        $defaultValueLocationFetch
     );
     echo $locationHTML;
     ?>
@@ -87,7 +91,7 @@ include 'assets/php/generateFormCheck.php';
         'เพราะเหตุผลใดคุณจึงออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)',
         ' กรุณาเลือกข้อมูล',
         $foundUser,
-        $reason1Fetch
+        $defaultValueReason1Fetch
     );
     echo $reason1HTML;
     ?>
@@ -115,7 +119,7 @@ include 'assets/php/generateFormCheck.php';
         "เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา (ตอบได้มากกว่า 1 ข้อ)",
         "กรุณาเลือกเหตุผล",
         $foundUser,
-        $reason2Fetch
+        $defaultValueReason2Fetch
     );
     echo $reason2HTML;
     ?>
@@ -124,7 +128,7 @@ include 'assets/php/generateFormCheck.php';
 <!-- motivation form -->
 <div class="form-control mb-3">
     <p>คุณคิดว่าอะไรที่จูงใจให้คุณ และครอบครัว หรือคนรอบข้างคุณ มาออกกำลังกายหรือเล่นกีฬา (ตอบเพียงคำตอบเดียว)</p>
-    <select class="form-select mb-3" id="motiOptions" name="motiOptions" onchange="showInputField(' motiOptions','motiField','motiInput')">
+    <select class="form-select mb-3" id="motiOptions" name="motiOptions" onchange="showInputField('motiOptions','motiField','motiInput')">
         <option selected disabled>โปรดเลือก</option>
         <option value="ความรู้ในการออกกำลังกาย" <?php if ($foundUser == 1 && $motiOptions == "ความรู้ในการออกกำลังกาย") echo "selected"; ?>>ความรู้ในการออกกำลังกาย</option>
         <option value="ทัศนคติในการออกกำลังกาย" <?php if ($foundUser == 1 && $motiOptions == "ทัศนคติในการออกกำลังกาย") echo "selected"; ?>>ทัศนคติในการออกกำลังกาย</option>
@@ -179,7 +183,7 @@ include 'assets/php/generateFormCheck.php';
         'รายการตัวเลือก ประเภทการออกกำลังกายเพื่อสุขภาพ (ตอบได้มากกว่า 1 ข้อ)',
         'กรุณาเลือกรายการ',
         $foundUser,
-        $exerFetch
+        $defaultValueExerFetch
     );
     echo $exerciseHTML;
     ?>
