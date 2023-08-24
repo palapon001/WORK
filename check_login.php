@@ -28,7 +28,11 @@ if (isset($_POST['username'])) {
       $_SESSION["surname"] = $row["surname"];
       $_SESSION["level"] = $row["level"];
       $_SESSION["bday"] = $row["bday"];
-      Header("Location: page.php");
+      if(strtoupper($row["level"]) == 'ADMIN'){
+        Header("Location: adminPage.php");
+      }else{
+        Header("Location: page.php");
+      }
     }
   } else {
     echo "<script>";
