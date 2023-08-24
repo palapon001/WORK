@@ -57,6 +57,7 @@
                 if (result.length === 0) {
                     $('#myChartphp').show();
                     $('#myChart1').hide();
+                    resultObject1.append($('<div></div>').html('พบ = ' + result.length + ' รายการ ')); 
                     return;
                 }
 
@@ -99,6 +100,8 @@
                 if (result.length === 0) {
                     $('#myChart2php').show();
                     $('#myChart2').hide();
+                    resultObject2.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
+              
                     return;
                 }
 
@@ -260,14 +263,14 @@ $result = evaluateExercise($week, $intensity, $duration);
                         <div class="form-control mb-3" 4>
                             <p>ผลการประเมินการออกกำลังกาย รายจังหวัด ของทุกกลุ่ม</p>
                             <?php
-                            $sqlProvinCH = "SELECT * FROM provinces";
-                            $queryProvinCH = mysqli_query($con, $sqlProvinCH);
+                            $sqlProvinCH2 = "SELECT * FROM provinces";
+                            $queryProvinCH2 = mysqli_query($con, $sqlProvinCH);
                             ?>
                             <div class="form-row">
                                 <div class="form-group">
                                     <select name="province_id" id="provinceCH2" class="form-control" required>
                                         <option value="<?php echo $fetch['province_id'];?>">เลือกจังหวัด</option>
-                                        <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH)) : ?>
+                                        <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH2)) : ?>
                                             <option value="<?= $resultProvinCH['id'] ?>"><?= $resultProvinCH['name_th'] ?></option>
                                         <?php endwhile; ?>
                                     </select>
@@ -286,11 +289,11 @@ $result = evaluateExercise($week, $intensity, $duration);
                     $not_passChart2 = 0;
                     $provinChart2 = $fetch['province_id'];
 
-                    $sql_quesChart2 = " SELECT * FROM question where province_id ='$provinChart' ";
+                    $sql_quesChart2 = " SELECT * FROM question ";
                     $queryQuesChart2 = mysqli_query($con, $sql_quesChart2);
                     while ($fetchChart2 = mysqli_fetch_assoc($queryQuesChart2)) {
                         $evaluationResult2 = evaluateExercise($fetchChart2['week'], $fetchChart2['intensityOptions'], $fetchChart2['duration']);
-                        if ($evaluationResult == 'ผ่านเกณฑ์') {
+                        if ($evaluationResult2 == 'ผ่านเกณฑ์') {
                             $passChart2++;
                         } else {
                             $not_passChart2++;
@@ -304,10 +307,10 @@ $result = evaluateExercise($week, $intensity, $duration);
                     new Chart(ctx2, {
                         type: 'doughnut',
                         data: {
-                            labels: ['ผ่าน ' + <?php echo $passChart ?> + ' คน (' + <?php echo $passChartPercent ?> + '%)', 'ไม่ผ่าน ' + <?php echo $not_passChart ?> + ' คน (' + <?php echo $notPassChartPercent ?> + '%)'],
+                            labels: ['ผ่าน ' + <?php echo $passChart2 ?> + ' คน (' + <?php echo $passChartPercent2 ?> + '%)', 'ไม่ผ่าน ' + <?php echo $not_passChart2 ?> + ' คน (' + <?php echo $notPassChartPercent2 ?> + '%)'],
                             datasets: [{
                                 label: '',
-                                data: [<?php echo $passChart ?>, <?php echo $not_passChart ?>],
+                                data: [<?php echo $passChart2 ?>, <?php echo $not_passChart2 ?>],
                                 borderWidth: 1
                             }]
                         },
