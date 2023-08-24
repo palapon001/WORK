@@ -52,8 +52,7 @@ if (!$_SESSION["username"]) {  //check session
                             <th>ชื่อ</th>
                             <th>นามสกุล</th>
                             <th>วันเกิด</th>
-                            <th>ระดับ</th>
-                            <th>สถานะ</th>
+                            <th>ระดับ</th> 
                             <th>แก้ไข</th>
                             <th>ลบ</th>
                         </tr>
@@ -65,15 +64,16 @@ if (!$_SESSION["username"]) {  //check session
                         while ($fetch_login = mysqli_fetch_assoc($query_login)) { ?>
 
                             <tr>
-                                <td><?php echo $fetch_login['ID'] ?></td>
-                                <td><?php echo $fetch_login['username'] ?></td>
-                                <td><?php echo $fetch_login['password'] ?></td>
-                                <td><?php echo $fetch_login['name'] ?></td>
-                                <td><?php echo $fetch_login['surname'] ?></td>
-                                <td><?php echo $fetch_login['bday'] ?></td>
-                                <td><?php echo $fetch_login['level'] ?></td>
-                                <td><?php echo $fetch_login['status'] ?></td>
-                                <td><button type="button" class="btn btn-warning">แก้ไข</button></td>
+                                <form method="post" action="check_edit_regis.php">
+                                <td><input type="text" name="id" value="<?php echo $fetch_login['ID'] ?>" class="form-control"></td>
+                                <td><input type="text" name="user" value="<?php echo $fetch_login['username'] ?>" class="form-control"></td>
+                                <td><input type="text" name="pass" value="<?php echo $fetch_login['password'] ?>" class="form-control"></td>
+                                <td><input type="text" name="name" value="<?php echo $fetch_login['name'] ?>" class="form-control"></td>
+                                <td><input type="text" name="surname" value="<?php echo $fetch_login['surname'] ?>" class="form-control"></td>
+                                <td><input type="text" name="bday" value="<?php echo $fetch_login['bday'] ?>" class="form-control"></td>
+                                <td><input type="text" name="level" value="<?php echo $fetch_login['level'] ?>" class="form-control"></td>
+                                <td><button type="submit" class="btn btn-warning">แก้ไข</button></td>
+                                </form>
                                 <td>
                                     <a href='check_del_login.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
                                 </td>
