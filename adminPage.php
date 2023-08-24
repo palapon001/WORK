@@ -54,8 +54,8 @@ if (!$_SESSION["username"]) {  //check session
                             <th>วันเกิด</th>
                             <th>ระดับ</th>
                             <th>สถานะ</th>
-                            <th>ลบ</th>
                             <th>แก้ไข</th>
+                            <th>ลบ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,11 +101,11 @@ if (!$_SESSION["username"]) {  //check session
                     </thead>
                     <tbody>
                         <?php
-                        function displayValueWithFormControl($label, $value)
+                        function displayValueWithFormControl($label, $value,$name)
                         {
                             echo '<div class="form-group form-control">';
                             echo '<label>' . $label . '</label>';
-                            echo '<input type="text" class="form-control mt-1" value="' . $value . '" readonly>';
+                            echo '<input type="text" class="form-control mt-1" name="'.$name.'" value="' . $value . '" >';
                             echo '</div>';
                         }
                         $sql_Que_Personal = " SELECT * FROM question ";
@@ -123,9 +123,9 @@ if (!$_SESSION["username"]) {  //check session
                                     <a href='check_del_que.php?user_id=<?php echo $fetch_Que_Personal['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
 
                                 </td>
-
-                                <?php include 'modalQueUser.php'; ?>
-
+                                <form method="post" action="check_edit_que.php">
+                                    <?php include 'modalQueUser.php'; ?>
+                                </form>
                             </tr>
 
                         <?php }  ?>
