@@ -121,10 +121,13 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       <h2>Username <?php echo $_SESSION["username"]; ?> </h2>
       <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo $_SESSION["level"]; ?>"></span></p>
       <p>
+        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateRegis"  >
+          แก้ไขข้อมูล การเข้าสู่ระบบ
+        </button>
         <!-- Button trigger modal -->
         <?php if ($foundUser == 1) { ?>
           <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            แก้ไขข้อมูล
+            แก้ไขข้อมูล แบบสอบถาม
           </button>
         <?php } else { ?>
           <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -147,7 +150,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       $occOptions = $fetch['occOptions'];
       $maryOptions = $fetch['maryOptions'];
       $nationOptions = $fetch['nationOptions'];
-      $height = $fetch['height'];   
+      $height = $fetch['height'];
       $weight = $fetch["weight"];
       $pressure = $fetch["pressure"];
       $pulse = $fetch["pulse"];
@@ -162,7 +165,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       $week = $fetch["week"];
       $intensityOptions = $fetch["intensityOptions"];
       $duration = $fetch["duration"];
-      
+
       //F4
       $agency_name1 = $fetch["agency_name1"];
       $agency_name2 = $fetch["agency_name2"];
@@ -170,24 +173,24 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       $loc_community = $fetch["loc_community"];
       $loc_agency = $fetch["loc_agency"];
       $business = $fetch["business"];
-      
+
       //F5
       $exper_sports = $fetch["exper_sports"];
       $res = $fetch["res"];
       $pub_res = $fetch["pub_res"];
-      
+
       //F6
       $train_exper_exer = $fetch["train_exper_exer"];
       $train_exper = $fetch["train_exper"];
-      
+
       //F7
       $vol_exper = $fetch["vol_exper"];
-      
+
       //F8
       $org_heal = $fetch["org_heal"];
       $pro_org_exer = $fetch["pro_org_exer"];
       $activity = $fetch["activity"];
-      
+
 
       $sql_provin = " SELECT * FROM provinces where id = $provin ";
       $queryProvin = mysqli_query($con, $sql_provin);
@@ -276,6 +279,61 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
 
       </div>
     </footer><!-- End Footer -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="updateRegis" tabindex="-1" aria-labelledby="updateRegisLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="updateRegisLabel">แก้ไขข้อมูล การเข้าสู่ระบบ </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form name="formRegister" method="post" action="check_update_regis.php">
+              <?php
+              $update_username = $_SESSION["username"];
+              $sql_update_user = " SELECT * FROM work_login where username = $update_username";
+              $queryUpdate_user = mysqli_query($con, $sql_update_user);
+              while ($fetchUser = mysqli_fetch_assoc($queryUpdate_user)) {
+              ?>
+                <h1>ข้อมูลการเข้าสู่ระบบ</h1>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">ชื่อ</span>
+                  <input name="name" type="text" id="name" value="<?php echo $fetchUser['name']; ?>" class="form-control" required>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">นามสกุล</span>
+                  <input name="surname" type="text" id="surname" value="<?php echo $fetchUser['surname']; ?>" class="form-control" required>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">วันเกิด</span>
+                  <input name="bday" type="date" id="bday" value="<?php echo $fetchUser['bday']; ?>" class="form-control" required>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Username</span>
+                  <input name="user" type="text" id="user" value="<?php echo $fetchUser['username']; ?>" class="form-control" required>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Password</span>
+                  <input name="pass" type="text" id="pass" value="<?php echo $fetchUser['password']; ?>" class="form-control" required>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Level</span>
+                  <input name="Level" type="text" id="Level" value="<?php echo $fetchUser['level']; ?>" class="form-control" disabled>
+                </div>
+                <p>
+                  <input type="hidden" id="typeSelect" value="<?php echo $fetchUser['level']; ?>" name="level" class="form-control">
+         
+                </p>
+                <p>
+                  <input type="submit" name="Submit" value="แก้ไขข้อมูล"  onclick="return confirm('ต้องการแก้ไขข้อมูลหรือไม่')" class="btn btn-primary">
+                </p>
+              <?php } ?>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
