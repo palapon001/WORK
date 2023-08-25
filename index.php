@@ -27,7 +27,7 @@
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
             <button type="button" class="zzz btn btn-dark rounded-pill" id="Interested-Individual" data-bs-toggle="modal" data-bs-target="#Modal">
-              <span class="">Interested-Individual</span>
+              <h5>Interested-Individual</h5>
             </button>
           </div>
         </div>
@@ -38,7 +38,7 @@
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
             <button type="button" class="zzz btn btn-dark rounded-pill" id="Trainers" data-bs-toggle="modal" data-bs-target="#Modal">
-              <span>Trainers</span>
+              <h5>Trainers</h5>
             </button>
           </div>
         </div>
@@ -49,7 +49,7 @@
           <div class="card-body">
             <!-- <p class="card-text">" ... " </p> -->
             <button type="button" class="zzz btn btn-dark rounded-pill" id="Sport-professionals" data-bs-toggle="modal" data-bs-target="#Modal">
-              <span>Sport-professionals</span>
+              <h5>Sport-professionals</h5>
             </button>
           </div>
         </div>

@@ -3,7 +3,7 @@
 <?php session_start();
 include 'tag_head.php';
 include 'condb.php';
-if (!$_SESSION["username"] || $_SESSION["username"] != 'ADMIN') {  //check session
+if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check session
     Header("Location: index.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
 }
 ?>
@@ -43,6 +43,63 @@ if (!$_SESSION["username"] || $_SESSION["username"] != 'ADMIN') {  //check sessi
         <section id="login">
             <div class="container form-control table-responsive">
                 <h1>ข้อมูลรายชื่อผู้ใช้</h1>
+                <p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Singup">
+                        เพิ่มสมาชิก
+                    </button>
+                </p>
+                <!-- Modal -->
+                <div class="modal fade" id="Singup" tabindex="-1" aria-labelledby="SingupLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="SingupLabel">เพิ่มสมาชิก</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="formRegister" method="post" action="./check_regis.php">
+                                    <h1>เพิ่มสมาชิก</h1>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">ชื่อ</span>
+                                        <input name="name" type="text" id="name" class="form-control" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">นามสกุล</span>
+                                        <input name="surname" type="text" id="surname" class="form-control" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">วันเกิด</span>
+                                        <input name="bday" type="date" id="bday" class="form-control" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Username</span>
+                                        <input name="user" type="text" id="user" class="form-control" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Password</span>
+                                        <input name="pass" type="password" id="pass" class="form-control" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                    <span class="input-group-text">ประเภทผู้ใช้</span>
+                                        <select class="form-control" name="level">
+                                            <option value="Interested-Individual">Interested-Individual</option>
+                                            <option value="Trainers">Trainers</option>
+                                            <option value="Sport-professionals">Sport-professionals</option>
+                                            <option value="Volunteer">Volunteer</option>
+                                            <option value="Personnel/Support-Staff">Personnel/Support-Staff</option>
+                                            <option value="Suppliers/Partners">Suppliers/Partners</option>
+                                            <option value="Community">Community</option>
+                                            <option value="ADMIN">ADMIN</option>
+                                        </select>
+                                    </div>
+                                    <p>
+                                        <input type="submit" name="Submit" value="สมัครสมาชิก" class="btn btn-primary">
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <table class="table table-info table-bordered">
                     <thead>
                         <tr>
@@ -52,7 +109,7 @@ if (!$_SESSION["username"] || $_SESSION["username"] != 'ADMIN') {  //check sessi
                             <th>ชื่อ</th>
                             <th>นามสกุล</th>
                             <th>วันเกิด</th>
-                            <th>ระดับ</th> 
+                            <th>ระดับ</th>
                             <th>แก้ไข</th>
                             <th>ลบ</th>
                         </tr>
@@ -65,14 +122,25 @@ if (!$_SESSION["username"] || $_SESSION["username"] != 'ADMIN') {  //check sessi
 
                             <tr>
                                 <form method="post" action="check_edit_regis.php">
-                                <td><input type="text" name="id" value="<?php echo $fetch_login['ID'] ?>" class="form-control"></td>
-                                <td><input type="text" name="user" value="<?php echo $fetch_login['username'] ?>" class="form-control"></td>
-                                <td><input type="text" name="pass" value="<?php echo $fetch_login['password'] ?>" class="form-control"></td>
-                                <td><input type="text" name="name" value="<?php echo $fetch_login['name'] ?>" class="form-control"></td>
-                                <td><input type="text" name="surname" value="<?php echo $fetch_login['surname'] ?>" class="form-control"></td>
-                                <td><input type="text" name="bday" value="<?php echo $fetch_login['bday'] ?>" class="form-control"></td>
-                                <td><input type="text" name="level" value="<?php echo $fetch_login['level'] ?>" class="form-control"></td>
-                                <td><button type="submit" class="btn btn-warning">แก้ไข</button></td>
+                                    <td><input type="text" name="id" value="<?php echo $fetch_login['ID'] ?>" class="form-control"></td>
+                                    <td><input type="text" name="user" value="<?php echo $fetch_login['username'] ?>" class="form-control"></td>
+                                    <td><input type="text" name="pass" value="<?php echo $fetch_login['password'] ?>" class="form-control"></td>
+                                    <td><input type="text" name="name" value="<?php echo $fetch_login['name'] ?>" class="form-control"></td>
+                                    <td><input type="text" name="surname" value="<?php echo $fetch_login['surname'] ?>" class="form-control"></td>
+                                    <td><input type="text" name="bday" value="<?php echo $fetch_login['bday'] ?>" class="form-control"></td>
+                                    <td>
+                                        <select class="form-control" name="level">
+                                            <option value="Interested-Individual" <?php if ($fetch_login['level'] == "Interested-Individual") echo "selected"; ?>>Interested-Individual</option>
+                                            <option value="Trainers" <?php if ($fetch_login['level'] == "Trainers") echo "selected"; ?>>Trainers</option>
+                                            <option value="Sport-professionals" <?php if ($fetch_login['level'] == "Sport-professionals") echo "selected"; ?>>Sport-professionals</option>
+                                            <option value="Volunteer" <?php if ($fetch_login['level'] == "Volunteer") echo "selected"; ?>>Volunteer</option>
+                                            <option value="Personnel/Support-Staff" <?php if ($fetch_login['level'] == "Personnel/Support-Staff") echo "selected"; ?>>Personnel/Support-Staff</option>
+                                            <option value="Suppliers/Partners" <?php if ($fetch_login['level'] == "Suppliers/Partners") echo "selected"; ?>>Suppliers/Partners</option>
+                                            <option value="Community" <?php if ($fetch_login['level'] == "Community") echo "selected"; ?>>Community</option>
+                                            <option value="ADMIN" <?php if ($fetch_login['level'] == "ADMIN") echo "selected"; ?>>ADMIN</option>
+                                        </select>
+                                    </td>
+                                    <td><button type="submit" class="btn btn-warning">แก้ไข</button></td>
                                 </form>
                                 <td>
                                     <a href='check_del_login.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
@@ -101,11 +169,11 @@ if (!$_SESSION["username"] || $_SESSION["username"] != 'ADMIN') {  //check sessi
                     </thead>
                     <tbody>
                         <?php
-                        function displayValueWithFormControl($label, $value,$name)
+                        function displayValueWithFormControl($label, $value, $name)
                         {
                             echo '<div class="form-group form-control">';
                             echo '<label>' . $label . '</label>';
-                            echo '<input type="text" class="form-control mt-1" name="'.$name.'" value="' . $value . '" >';
+                            echo '<input type="text" class="form-control mt-1" name="' . $name . '" value="' . $value . '" >';
                             echo '</div>';
                         }
                         $sql_Que_Personal = " SELECT * FROM question ";
