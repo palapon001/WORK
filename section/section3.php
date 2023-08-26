@@ -48,6 +48,7 @@
             resultObject1.empty();
             var passCount = 0;
             var notPassCount = 0;
+            var getNameTH = '';
 
             var url = 'get_provinAndLevelChart.php?province_id=%27' + provinceId + '%27&level=%27' + level + '%27';
 
@@ -69,8 +70,11 @@
                     } else {
                         notPassCount++;
                     }
+
+                    getNameTH = item.name_th ;
                 });
 
+                resultObject1.append($('<div></div>').html('จังหวัด = ' + getNameTH + ' รายการ '));
                 resultObject1.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
                 resultObject1.append($('<div></div>').html('ผ่านเกณฑ์: ' + passCount + ' รายการ'));
                 resultObject1.append($('<div></div>').html('ต่ำกว่าเกณฑ์: ' + notPassCount + ' รายการ'));
@@ -91,6 +95,7 @@
             resultObject2.empty();
             var passCount = 0;
             var notPassCount = 0;
+            var getNameTH = '';
 
             var url = 'get_Que_Provin.php?province_id=%27' + provinceId + '%27';
 
@@ -101,7 +106,7 @@
                     $('#myChart2php').show();
                     $('#myChart2').hide();
                     resultObject2.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
-              
+
                     return;
                 }
 
@@ -113,8 +118,10 @@
                     } else {
                         notPassCount++;
                     }
+                    getNameTH = item.name_th
                 });
 
+                resultObject2.append($('<div></div>').html('จังหวัด = ' + getNameTH + ' รายการ '));
                 resultObject2.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
                 resultObject2.append($('<div></div>').html('ผ่านเกณฑ์: ' + passCount + ' รายการ'));
                 resultObject2.append($('<div></div>').html('ต่ำกว่าเกณฑ์: ' + notPassCount + ' รายการ'));
@@ -153,7 +160,7 @@ $result = evaluateExercise($week, $intensity, $duration);
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled><?php echo $fetch['reason1']; ?></textarea>
             </div>
             <div class="form-group mb-3">
-                <span class="input-group-text" id="basic-addon1">เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา  </span>
+                <span class="input-group-text" id="basic-addon1">เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา </span>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled><?php echo $fetch['reason2']; ?></textarea>
             </div>
             <div class="form-group mb-3">
@@ -205,7 +212,7 @@ $result = evaluateExercise($week, $intensity, $duration);
                             <div class="form-row">
                                 <div class="form-group">
                                     <select name="province_id" id="provinceCH" class="form-control" required>
-                                        <option value="<?php echo $fetch['province_id'];?>">เลือกจังหวัด</option>
+                                        <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
                                         <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH)) : ?>
                                             <option value="<?= $resultProvinCH['id'] ?>"><?= $resultProvinCH['name_th'] ?></option>
                                         <?php endwhile; ?>
@@ -273,7 +280,7 @@ $result = evaluateExercise($week, $intensity, $duration);
                             <div class="form-row">
                                 <div class="form-group">
                                     <select name="province_id" id="provinceCH2" class="form-control" required>
-                                        <option value="<?php echo $fetch['province_id'];?>">เลือกจังหวัด</option>
+                                        <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
                                         <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH2)) : ?>
                                             <option value="<?= $resultProvinCH['id'] ?>"><?= $resultProvinCH['name_th'] ?></option>
                                         <?php endwhile; ?>
