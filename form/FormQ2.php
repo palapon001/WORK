@@ -57,7 +57,7 @@
 <div class="form-control mb-3">
     <p>โรคประจำตัว</p>
     <select class="form-select mb-3" id="congenOptions" name="congenOptions" onchange="showInputField('congenOptions','congenField','congenInput')">
-        <option selected disabled>โปรดเลือก</option>
+        <option value="<?php echo $foundUser == 1 ?  $congenOptions : ""; ?>" <?php echo $foundUser == 1 ?  "selected" : "disabled"; ?>><?php echo $foundUser == 1 ?  $congenOptions : "โปรดเลือก"; ?></option>
         <option value="มี" <?php if ($foundUser == 1 && $congenOptions == "มี") echo "selected"; ?>>มี</option>
         <option value="ไม่มี" <?php if ($foundUser == 1 && $congenOptions == "ไม่มี") echo "selected"; ?>>ไม่มี</option>
         <option value="other" <?php if ($foundUser == 1 && $congenOptions == "other") echo "selected"; ?>>อื่น ๆ</option>
