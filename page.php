@@ -121,16 +121,16 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       <h2>Username <?php echo $_SESSION["username"]; ?> </h2>
       <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo $_SESSION["level"]; ?>"></span></p>
       <p>
-        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateRegis"  >
+        <button type="button" class="btn btn-primary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#updateRegis"  >
           แก้ไขข้อมูล การเข้าสู่ระบบ
         </button>
         <!-- Button trigger modal -->
         <?php if ($foundUser == 1) { ?>
-          <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-warning btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             แก้ไขข้อมูล แบบสอบถาม
           </button>
         <?php } else { ?>
-          <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-primary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             แบบสอบถาม
           </button>
         <?php } ?>
@@ -146,6 +146,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
     while ($fetch = mysqli_fetch_assoc($queryQues1)) {
       $sex = $fetch['sex'];
       $provin = $fetch['province_id'];
+      $amphure = $fetch['amphure_id'];
       $eduOptions = $fetch['eduOptions'];
       $occOptions = $fetch['occOptions'];
       $maryOptions = $fetch['maryOptions'];
@@ -194,7 +195,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
 
       $sql_provin = " SELECT * FROM provinces where id = $provin ";
       $queryProvin = mysqli_query($con, $sql_provin);
-      $amphure = $fetch['amphure_id'];
+      
       $sql_amphure = " SELECT * FROM amphures where id = $amphure ";
       $queryAmphure = mysqli_query($con, $sql_amphure);
   ?>

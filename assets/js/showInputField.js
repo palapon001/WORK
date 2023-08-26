@@ -3,7 +3,7 @@ function showInputField(selectTextID,fieldID,InputID) {
     var otherField = document.getElementById(fieldID);
     var otherInput = document.getElementById(InputID);
 
-    if (selectElement.value === "other") {
+    if (selectElement.value === "other" || selectElement.value === "มี") {
       otherField.style.display = "block";
       otherInput.required = true;
     } else {

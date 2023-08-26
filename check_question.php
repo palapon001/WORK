@@ -147,7 +147,7 @@ echo "activity = " . $activity . '<br>';
 //func check null
 function checkOption($option, $checkText, $IP)
 {
-	if ($option == $checkText) {
+	if ($option == $checkText || $option == 'มี') {
 		return $IP;
 	} else {
 		return $option;

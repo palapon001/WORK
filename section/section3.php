@@ -153,6 +153,10 @@ $result = evaluateExercise($week, $intensity, $duration);
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled><?php echo $fetch['reason1']; ?></textarea>
             </div>
             <div class="form-group mb-3">
+                <span class="input-group-text" id="basic-addon1">เพราะเหตุผลใดคุณจึงไม่ออกกำลังกายหรือเล่นกีฬา  </span>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled><?php echo $fetch['reason2']; ?></textarea>
+            </div>
+            <div class="form-group mb-3">
                 <span class="input-group-text" id="basic-addon1">คุณคิดว่าอะไรที่จูงใจให้คุณ และครอบครัว หรือคนรอบข้างคุณ มาออกกำลังกายหรือเล่นกีฬา (ตอบเพียงคำตอบเดียว)</span>
                 <input type="text" class="form-control" value="<?php echo $fetch['motiOptions']; ?>" disabled>
             </div>

@@ -62,7 +62,15 @@
     <div class="form-group">
       <label for="province">จังหวัด</label>
       <select name="province_id" id="province" class="form-control" required>
-        <option value="">เลือกจังหวัด</option>
+        <?php 
+        $sql_provinEdit = " SELECT * FROM provinces where id = $provin ";
+        $queryProvinEdit = mysqli_query($con, $sql_provinEdit);
+        $resultProvinEdit = '';
+        while ($fetchProvinEdit = mysqli_fetch_assoc($queryProvinEdit)) { ?>
+          <?php $resultProvinEdit = $fetchProvinEdit['name_th']; ?>
+        <?php } ?>
+
+        <option value="<?php if ($foundUser == 1) echo $provin ; ?>" <?php if ($foundUser == 1) "selected"; ?>><?php echo $foundUser == 1 ? $resultProvinEdit  : "เลือกจังหวัด"; ?></option>
         <?php while ($resultProvin = mysqli_fetch_assoc($queryProvin)) : ?>
           <option value="<?= $resultProvin['id'] ?>"><?= $resultProvin['name_th'] ?></option>
         <?php endwhile; ?>
@@ -71,7 +79,14 @@
     <div class="form-group">
       <label for="amphure">อำเภอ</label>
       <select name="amphure_id" id="amphure" class="form-control" required>
-        <option value="">เลือกอำเภอ</option>
+      <?php 
+        $sql_amphureEdit = " SELECT * FROM amphures where id = $amphure ";
+        $queryamphureEdit = mysqli_query($con, $sql_amphureEdit);
+        $resultAmphureEdit = '';
+        while ($fetchAmphureEdit = mysqli_fetch_assoc($queryamphureEdit)) { ?>
+          <?php $resultAmphureEdit = $fetchAmphureEdit['name_th']; ?>
+        <?php } ?>
+        <option value="<?php if ($foundUser == 1) echo $amphure ; ?>" <?php if ($foundUser == 1) "selected" ?>><?php echo $foundUser == 1 ? $resultAmphureEdit  : "เลือกอำเภอ"; ?></option>
       </select>
     </div>
     <!-- <div class="form-group col-md-4">
