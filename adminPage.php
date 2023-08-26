@@ -29,7 +29,7 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
     </header><!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex flex-column justify-content-center">
+    <section id="hero" class="d-flex flex-column justify-content-center" style="background: rgb(0 147 255);">
         <div class="container" data-aos="zoom-in" data-aos-delay="100">
             <h2>ยินต้อนรับคุณ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h2>
             <h2>Username <?php echo $_SESSION["username"]; ?> </h2>
@@ -80,7 +80,7 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                                         <input name="pass" type="password" id="pass" class="form-control" required>
                                     </div>
                                     <div class="input-group mb-3">
-                                    <span class="input-group-text">ประเภทผู้ใช้</span>
+                                        <span class="input-group-text">ประเภทผู้ใช้</span>
                                         <select class="form-control" name="level">
                                             <option value="Interested-Individual">Interested-Individual</option>
                                             <option value="Trainers">Trainers</option>
@@ -100,18 +100,12 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                         </div>
                     </div>
                 </div>
-                <table class="table table-info table-bordered">
+                <table class="table  table-bordered table-responsive-sm" style="text-align:center;">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>ชื่อผู้ใช้</th>
-                            <th>รหัสผ่าน</th>
-                            <th>ชื่อ</th>
-                            <th>นามสกุล</th>
-                            <th>วันเกิด</th>
-                            <th>ระดับ</th>
-                            <th>แก้ไข</th>
-                            <th>ลบ</th>
+                            <th>แก้ไข ลบ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -119,32 +113,61 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                         $sql_login = " SELECT * FROM work_login ";
                         $query_login = mysqli_query($con, $sql_login);
                         while ($fetch_login = mysqli_fetch_assoc($query_login)) { ?>
-
                             <tr>
-                                <form method="post" action="check_edit_regis.php">
-                                    <td><input type="text" name="id" value="<?php echo $fetch_login['ID'] ?>" class="form-control"></td>
-                                    <td><input type="text" name="user" value="<?php echo $fetch_login['username'] ?>" class="form-control"></td>
-                                    <td><input type="text" name="pass" value="<?php echo $fetch_login['password'] ?>" class="form-control"></td>
-                                    <td><input type="text" name="name" value="<?php echo $fetch_login['name'] ?>" class="form-control"></td>
-                                    <td><input type="text" name="surname" value="<?php echo $fetch_login['surname'] ?>" class="form-control"></td>
-                                    <td><input type="text" name="bday" value="<?php echo $fetch_login['bday'] ?>" class="form-control"></td>
-                                    <td>
-                                        <select class="form-control" name="level">
-                                            <option value="Interested-Individual" <?php if ($fetch_login['level'] == "Interested-Individual") echo "selected"; ?>>Interested-Individual</option>
-                                            <option value="Trainers" <?php if ($fetch_login['level'] == "Trainers") echo "selected"; ?>>Trainers</option>
-                                            <option value="Sport-professionals" <?php if ($fetch_login['level'] == "Sport-professionals") echo "selected"; ?>>Sport-professionals</option>
-                                            <option value="Volunteer" <?php if ($fetch_login['level'] == "Volunteer") echo "selected"; ?>>Volunteer</option>
-                                            <option value="Personnel/Support-Staff" <?php if ($fetch_login['level'] == "Personnel/Support-Staff") echo "selected"; ?>>Personnel/Support-Staff</option>
-                                            <option value="Suppliers/Partners" <?php if ($fetch_login['level'] == "Suppliers/Partners") echo "selected"; ?>>Suppliers/Partners</option>
-                                            <option value="Community" <?php if ($fetch_login['level'] == "Community") echo "selected"; ?>>Community</option>
-                                            <option value="ADMIN" <?php if ($fetch_login['level'] == "ADMIN") echo "selected"; ?>>ADMIN</option>
-                                        </select>
-                                    </td>
-                                    <td><button type="submit" class="btn btn-warning">แก้ไข</button></td>
-                                </form>
+                                <td> <?php echo $fetch_login['ID'] ?> </td>
+                                <td> <?php echo $fetch_login['name'] . ' ' . $fetch_login['surname'] ?> </td>
                                 <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listLogin<?php echo $fetch_login['ID'] ?>">
+                                        ดูข้อมูล
+                                    </button>
                                     <a href='check_del_login.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
                                 </td>
+
+                                <form method="post" action="check_edit_regis.php">
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="listLogin<?php echo $fetch_login['ID'] ?>" tabindex="-1" aria-labelledby="listLoginLabel<?php echo $fetch_login['ID'] ?>" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="listLoginLabel<?php echo $fetch_login['ID'] ?>">ข้อมูลของ <?php echo $fetch_login['name'] . ' ' . $fetch_login['surname'] ?> </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <?php
+                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['username'], 'user');
+                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['password'], 'pass');
+                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['name'], 'name');
+                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['surname'], 'surname');
+                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['bday'], 'bday');
+                                                    ?>
+                                                    <div class="form-control">
+                                                        <label>ระดับ</label>
+                                                        <select class="form-control" name="level">
+                                                            <option value="Interested-Individual" <?php if ($fetch_login['level'] == "Interested-Individual") echo "selected"; ?>>Interested-Individual</option>
+                                                            <option value="Trainers" <?php if ($fetch_login['level'] == "Trainers") echo "selected"; ?>>Trainers</option>
+                                                            <option value="Sport-professionals" <?php if ($fetch_login['level'] == "Sport-professionals") echo "selected"; ?>>Sport-professionals</option>
+                                                            <option value="Volunteer" <?php if ($fetch_login['level'] == "Volunteer") echo "selected"; ?>>Volunteer</option>
+                                                            <option value="Personnel/Support-Staff" <?php if ($fetch_login['level'] == "Personnel/Support-Staff") echo "selected"; ?>>Personnel/Support-Staff</option>
+                                                            <option value="Suppliers/Partners" <?php if ($fetch_login['level'] == "Suppliers/Partners") echo "selected"; ?>>Suppliers/Partners</option>
+                                                            <option value="Community" <?php if ($fetch_login['level'] == "Community") echo "selected"; ?>>Community</option>
+                                                            <option value="ADMIN" <?php if ($fetch_login['level'] == "ADMIN") echo "selected"; ?>>ADMIN</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-control">
+                                                        <label>สถานะ</label>
+                                                        <select class="form-control" name="status">
+                                                            <option value="1" <?php if ($fetch_login['status'] == "1") echo "selected"; ?>>เปิดการใช้งาน</option>
+                                                            <option value="0" <?php if ($fetch_login['status'] == "0") echo "selected"; ?>>ปิดการใช้งาน</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-warning mt-3" onclick="return confirm('ต้องการแก้ไขข้อมูลของ <?php echo $fetch_login['name'] . ' ' . $fetch_login['surname'] ?> หรือไม่')">แก้ไข</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </tr>
 
                         <?php }  ?>

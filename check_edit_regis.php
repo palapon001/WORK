@@ -7,6 +7,7 @@ $name = $_POST["name"];
 $surname = $_POST["surname"];
 $bday = $_POST["bday"];
 $level = $_POST["level"];
+$status = $_POST["status"];
 
 //เพิ่มเข้าไปในฐานข้อมูล
 $sql = "UPDATE work_login 
@@ -15,7 +16,7 @@ $sql = "UPDATE work_login
             surname = '$surname', 
             bday = '$bday', 
             level = '$level', 
-            status = 1
+            status = '$status'
         WHERE username = '$user'";
         
 $result = mysqli_query($con, $sql) or die("Error in query: $sql " );

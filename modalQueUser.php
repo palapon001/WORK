@@ -149,7 +149,7 @@
                          </div>
                      </div>
 
-                     <button type="submit" class="btn btn-success btn-lg mt-3">save</button>
+                     <button type="submit" class="btn btn-success btn-lg mt-3" onclick="return confirm('ต้องการบันทึกข้อมูลหรือไม่')">บันทึกข้อมูล</button>
 
                  </div>
              </div>
