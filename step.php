@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Form Stepper</title>
-    <style>
+ 
+<style>
         .step {
             display: none;
         }
@@ -12,10 +8,7 @@
             display: block;
         }
     </style>
-    <?php include 'tag_head.php'; ?>
-</head>
 
-<body>
     <?php switch ($_SESSION["level"]) {
         case "Interested-Individual": ?>
             <!-- case Interested-Individual form -->
@@ -470,7 +463,6 @@
     <script src="assets/js/stepperForm.js"></script>
 
 
-
-</body>
+ 
 
 </html>

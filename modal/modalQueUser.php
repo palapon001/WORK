@@ -1,5 +1,5 @@
  <!-- Modal -->
- <div class="modal fade" id="exampleModal-<?php echo $fetch_Que_Personal['name'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="exampleModal-<?php echo $fetch_Que_Personal['qid'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-xl">
          <div class="modal-content">
              <div class="modal-header">
@@ -39,11 +39,23 @@
                          <div class="card card-body">
                              ข้อมูลส่วนตัว
                              <input type="hidden" name="qid" value="<?php echo $fetch_Que_Personal['qid']; ?>">
+
                              <?php
-                             displayValueWithFormControl('username', $fetch_Que_Personal['username'], 'username');
-                             
-                             displayValueWithFormControl('level', $fetch_Que_Personal['level'], 'level');
-                             displayValueWithFormControl('ชื่อ', $fetch_Que_Personal['name'], 'name');
+                                displayValueWithFormControl('username', $fetch_Que_Personal['username'], 'username'); ?>
+                                <div class="form-control">
+                             <label>ระดับ</label>
+                             <select class="form-control" name="level">
+                                 <option value="Interested-Individual" <?php if ($fetch_Que_Personal['level'] == "Interested-Individual") echo "selected"; ?>>Interested-Individual</option>
+                                 <option value="Trainers" <?php if ($fetch_Que_Personal['level'] == "Trainers") echo "selected"; ?>>Trainers</option>
+                                 <option value="Sport-professionals" <?php if ($fetch_Que_Personal['level'] == "Sport-professionals") echo "selected"; ?>>Sport-professionals</option>
+                                 <option value="Volunteer" <?php if ($fetch_Que_Personal['level'] == "Volunteer") echo "selected"; ?>>Volunteer</option>
+                                 <option value="Personnel/Support-Staff" <?php if ($fetch_Que_Personal['level'] == "Personnel/Support-Staff") echo "selected"; ?>>Personnel/Support-Staff</option>
+                                 <option value="Suppliers/Partners" <?php if ($fetch_Que_Personal['level'] == "Suppliers/Partners") echo "selected"; ?>>Suppliers/Partners</option>
+                                 <option value="Community" <?php if ($fetch_Que_Personal['level'] == "Community") echo "selected"; ?>>Community</option>
+                             </select>
+                             </div>
+                             <?php
+                                displayValueWithFormControl('ชื่อ', $fetch_Que_Personal['name'], 'name');
                                 displayValueWithFormControl('ชื่อ', $fetch_Que_Personal['name'], 'name');
                                 displayValueWithFormControl('นามสกุล', $fetch_Que_Personal['surname'], 'surname');
                                 displayValueWithFormControl('เพศ', $fetch_Que_Personal['sex'], 'sex');

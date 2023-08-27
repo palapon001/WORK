@@ -1,6 +1,6 @@
 <?php
-include('condb.php');
-$sql = "SELECT * FROM districts WHERE amphure_id={$_GET['amphure_id']}";
+include('../../condb.php');
+$sql = "SELECT * FROM amphures WHERE province_id={$_GET['province_id']}";
 $query = mysqli_query($con, $sql);
 $json = array();
 while($result = mysqli_fetch_assoc($query)) {    

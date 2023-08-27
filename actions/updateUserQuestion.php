@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <?php
-include('condb.php');  
+include('../condb.php');  
 //สร้างตัวแปรสำหรับรับค่าที่นำมาแก้ไขจากฟอร์ม 
 $qid = $_POST['qid'];
 $user = $_POST["username"];
@@ -112,8 +112,8 @@ mysqli_close($con); //ปิดการเชื่อมต่อ database
 if ($result) {
 	echo "<script type='text/javascript'>";
 	echo "alert('สำเร็จ');";
-	echo "window.location = 'adminPage.php'; ";
-	echo "</script>";
+    echo "window.history.back(); ";
+    echo "</script>";
 } else {
 	echo "<script type='text/javascript'>";
 	echo "alert('ไม่สำเเร็จ!!!');";

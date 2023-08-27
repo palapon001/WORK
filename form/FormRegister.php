@@ -1,4 +1,4 @@
-<form name="formRegister" method="post" action="./check_regis.php">
+<form name="formRegister" method="post" action="actions/createUser.php">
     <h1>สมัครสมาชิก</h1>
     <div class="input-group mb-3">
         <span class="input-group-text">ชื่อ</span>

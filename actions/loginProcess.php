@@ -2,7 +2,7 @@
 session_start();
 if (isset($_POST['username'])) {
   //connection
-  include("condb.php");
+  include("../condb.php");
   //รับค่า user & password
   $username = $_POST['username'];
   $password = $_POST['password'];
@@ -29,9 +29,9 @@ if (isset($_POST['username'])) {
       $_SESSION["level"] = $row["level"];
       $_SESSION["bday"] = $row["bday"];
       if(strtoupper($row["level"]) == 'ADMIN'){
-        Header("Location: adminPage.php");
+        Header("Location: ../adminPage.php");
       }else{
-        Header("Location: page.php");
+        Header("Location: ../home.php");
       }
     }
   } else {
@@ -42,6 +42,6 @@ if (isset($_POST['username'])) {
   }
 } else {
 
-  Header("Location: index.php"); //user & password incorrect back to login again
+  Header("Location: ../index.php"); //user & password incorrect back to login again
 
 }

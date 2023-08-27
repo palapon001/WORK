@@ -10,7 +10,7 @@ $(function(){
       amphureObject.html('<option value="">เลือกอำเภอ</option>');
       districtObject.html('<option value="">เลือกตำบล</option>');
 
-      $.get('get_amphure.php?province_id=' + provinceId, function(data){
+      $.get('assets/ajax/getAmphuresByProvince.php?province_id=' + provinceId, function(data){
           var result = JSON.parse(data);
           $.each(result, function(index, item){
               amphureObject.append(
@@ -26,7 +26,7 @@ $(function(){
 
       districtObject.html('<option value="">เลือกตำบล</option>');
       
-      $.get('get_district.php?amphure_id=' + amphureId, function(data){
+      $.get('assets/ajax/getDistrictsByAmphure.php?amphure_id=' + amphureId, function(data){
           var result = JSON.parse(data);
           $.each(result, function(index, item){
               districtObject.append(

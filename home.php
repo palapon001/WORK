@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php session_start();
-include 'tag_head.php';
+include 'assets/php/generateHead.php';
 include 'condb.php';
 if (!$_SESSION["username"]) {  //check session
   Header("Location: index.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
@@ -14,6 +14,9 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
   $foundUser++;
 }
 ?>
+
+<?php generateHead("UserPage", "assets/img/favicon.png"); ?>
+
 
 <body>
 
@@ -290,7 +293,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form name="formRegister" method="post" action="check_edit_regis.php">
+            <form name="formRegister" method="post" action="actions/updateUserLogin.php">
               <?php
               $update_username = $_SESSION["username"];
               $sql_update_user = " SELECT * FROM work_login where username = $update_username";
@@ -356,6 +359,6 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
     </div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 </body>
-<?php include 'tag_script.php'; ?>
+<?php include 'assets/js/tagScript.php'; ?>
 
 </html>

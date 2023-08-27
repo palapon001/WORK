@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php session_start();
-include 'tag_head.php';
+include 'assets/php/generateHead.php';
 include 'condb.php';
 if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check session
     Header("Location: index.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
 }
 ?>
+
+<?php generateHead("AdminPage", "assets/img/favicon.png"); ?>
 
 <body>
 
@@ -18,11 +20,10 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
 
         <nav id="navbar" class="navbar nav-menu">
             <ul>
-                <!-- <?php echo $foundUser;  ?> -->
                 <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>หน้าหลัก</span></a></li>
                 <li><a href="#login" class="nav-link scrollto"><i class="bi bi-card-list"></i> <span>ข้อมูลรายชื่อผู้ใช้</span></a></li>
                 <li><a href="#list" class="nav-link scrollto"><i class="bi bi-newspaper"></i><span>ข้อมูลแบบสอบถาม</span></a></li>
-                <li><a href="logout.php " class="nav-link scrollto bg-danger active" onclick="return confirm('ต้องการออกจากระบบหรือไม่')"><i class="bi bi-door-closed"></i> <span>ออกจากระบบ</span></a></li>
+                <li><a href="actions/logout.php" class="nav-link scrollto bg-danger active" onclick="return confirm('ต้องการออกจากระบบหรือไม่')"><i class="bi bi-door-closed"></i> <span>ออกจากระบบ</span></a></li>
             </ul>
         </nav><!-- .nav-menu -->
 
@@ -57,7 +58,7 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form name="formRegister" method="post" action="./check_regis.php">
+                                <form name="formRegister" method="post" action="actions/createUser.php">
                                     <h1>เพิ่มสมาชิก</h1>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">ชื่อ</span>
@@ -121,10 +122,10 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listLogin<?php echo $fetch_login['ID'] ?>">
                                         ดูข้อมูล
                                     </button>
-                                    <a href='check_del_login.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
+                                    <a href='actions/deleteUser.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
                                 </td>
 
-                                <form method="post" action="check_edit_regis.php">
+                                <form method="post" action="actions/updateUserLogin.php">
                                     <!-- Modal -->
                                     <div class="modal fade" id="listLogin<?php echo $fetch_login['ID'] ?>" tabindex="-1" aria-labelledby="listLoginLabel<?php echo $fetch_login['ID'] ?>" aria-hidden="true">
                                         <div class="modal-dialog modal-xl">
@@ -136,10 +137,10 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                                                 <div class="modal-body">
                                                     <?php
                                                     displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['username'], 'user');
-                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['password'], 'pass');
-                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['name'], 'name');
-                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['surname'], 'surname');
-                                                    displayValueWithFormControl('ชื่อผู้ใช้', $fetch_login['bday'], 'bday');
+                                                    displayValueWithFormControl('รหัสผ่าน', $fetch_login['password'], 'pass');
+                                                    displayValueWithFormControl('ชื่อ', $fetch_login['name'], 'name');
+                                                    displayValueWithFormControl('นามสกุล', $fetch_login['surname'], 'surname');
+                                                    displayValueWithFormControl('วัน/เดือน/ปีเกิด', $fetch_login['bday'], 'bday');
                                                     ?>
                                                     <div class="form-control">
                                                         <label>ระดับ</label>
@@ -208,14 +209,14 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                                 <td><?php echo $fetch_Que_Personal['surname'] ?></td>
 
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $fetch_Que_Personal['name'] ?>">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $fetch_Que_Personal['qid'] ?>">
                                         ดูข้อมูล
-                                    </button>
-                                    <a href='check_del_que.php?user_id=<?php echo $fetch_Que_Personal['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
+                                    </button> 
+                                    <a href='actions/deleteUserQuestions.php?user_id=<?php echo $fetch_Que_Personal['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
 
                                 </td>
-                                <form method="post" action="check_edit_que.php">
-                                    <?php include 'modalQueUser.php'; ?>
+                                <form method="post" action="actions/updateUserQuestion.php">
+                                    <?php include 'modal/modalQueUser.php'; ?>
                                 </form>
                             </tr>
 
@@ -241,6 +242,6 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 </body>
-<?php include 'tag_script.php'; ?>
+<?php include 'assets/js/tagScript.php'; ?>
 
 </html>

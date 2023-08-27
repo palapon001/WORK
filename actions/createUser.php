@@ -1,5 +1,5 @@
 <?php
-include('condb.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
+include('../condb.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
 //สร้างตัวแปรเก็บค่าที่รับมาจากฟอร์ม
 $user = $_POST["user"];
 $pass = $_POST["pass"];
@@ -33,7 +33,8 @@ mysqli_close($con);
 if ($result) {
 	echo "<script type='text/javascript'>";
 	echo "alert('สำเร็จ');";
-	echo "window.location = 'index.php'; ";
+	// echo "window.location = '../index.php'; ";
+	echo "window.history.back(); ";
 	echo "</script>";
 } else {
 	echo "<script type='text/javascript'>";

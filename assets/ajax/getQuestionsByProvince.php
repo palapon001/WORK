@@ -1,5 +1,5 @@
 <?php
-include('condb.php');
+include('../../condb.php');
 $sql = "SELECT * FROM question
         INNER JOIN provinces
         ON question.province_id = provinces.id 
