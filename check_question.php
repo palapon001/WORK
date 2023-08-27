@@ -76,73 +76,73 @@ $pro_org_exer_input = $_POST["trainExperExerInput"];
 $train_exper_input = $_POST["trainExperInput"];
 //echo ข้อมูล
 
-echo "user = " . $user . '<br>';
-echo "name = " . $name . '<br>';
-echo "level = " . $level . '<br>';
-echo "surname = " . $surname . '<br>';
-echo "sex = " . $sex . '<br>';
-echo "province_id = " . $province_id . '<br>';
-echo "amphure_id = " . $amphure_id . '<br>';
-echo "age = " . $age . '<br>';
-echo "eduOptions = " . $eduOptions . '<br>';
-echo "eduInput = " . $eduInput . '<br>';
-echo "occOptions = " . $occOptions . '<br>';
-echo "occInput = " . $occInput . '<br>';
-echo "maryOptions = " . $maryOptions . '<br>';
-echo "maryInput = " . $maryInput . '<br>';
-echo "nationOptions = " . $nationOptions . '<br>';
-echo "nationInput = " . $nationInput . '<br>';
+// echo "user = " . $user . '<br>';
+// echo "name = " . $name . '<br>';
+// echo "level = " . $level . '<br>';
+// echo "surname = " . $surname . '<br>';
+// echo "sex = " . $sex . '<br>';
+// echo "province_id = " . $province_id . '<br>';
+// echo "amphure_id = " . $amphure_id . '<br>';
+// echo "age = " . $age . '<br>';
+// echo "eduOptions = " . $eduOptions . '<br>';
+// echo "eduInput = " . $eduInput . '<br>';
+// echo "occOptions = " . $occOptions . '<br>';
+// echo "occInput = " . $occInput . '<br>';
+// echo "maryOptions = " . $maryOptions . '<br>';
+// echo "maryInput = " . $maryInput . '<br>';
+// echo "nationOptions = " . $nationOptions . '<br>';
+// echo "nationInput = " . $nationInput . '<br>';
 
-echo "height = " . $height . '<br>';
-echo "weight = " . $weight . '<br>';
-echo "pressure = " . $pressure . '<br>';
-echo "pulse = " . $pulse . '<br>';
-echo "congenOptions = " . $congenOptions . '<br>';
-echo "congenInput = " . $congenInput . '<br>';
+// echo "height = " . $height . '<br>';
+// echo "weight = " . $weight . '<br>';
+// echo "pressure = " . $pressure . '<br>';
+// echo "pulse = " . $pulse . '<br>';
+// echo "congenOptions = " . $congenOptions . '<br>';
+// echo "congenInput = " . $congenInput . '<br>';
 
-echo "location = " . serialize($location) . '<br>';
-echo "locationInput = " . $locationInput . '<br>';
-echo "period = " . serialize($period) . '<br>';
-echo "reason1 = " . serialize($reason1) . '<br>';
-echo "reason1Input = " . $reason1Input . '<br>';
-echo "reason2 = " . serialize($reason2) . '<br>';
-echo "reason2Input = " . $reason2Input . '<br>';
-echo "motiOptions = " . $motiOptions . '<br>';
-echo "motiInput = " . $motiInput . '<br>';
-echo "exer = " . serialize($exer) . '<br>';
-echo "exerInput = " . $exerInput . '<br>';
-echo "resInput = " . $resInput . '<br>';
-echo "exper_sports_input = " . $exper_sports_input . '<br>';
-echo "pub_res_input = " . $pub_res_input . '<br>';
+// echo "location = " . serialize($location) . '<br>';
+// echo "locationInput = " . $locationInput . '<br>';
+// echo "period = " . serialize($period) . '<br>';
+// echo "reason1 = " . serialize($reason1) . '<br>';
+// echo "reason1Input = " . $reason1Input . '<br>';
+// echo "reason2 = " . serialize($reason2) . '<br>';
+// echo "reason2Input = " . $reason2Input . '<br>';
+// echo "motiOptions = " . $motiOptions . '<br>';
+// echo "motiInput = " . $motiInput . '<br>';
+// echo "exer = " . serialize($exer) . '<br>';
+// echo "exerInput = " . $exerInput . '<br>';
+// echo "resInput = " . $resInput . '<br>';
+// echo "exper_sports_input = " . $exper_sports_input . '<br>';
+// echo "pub_res_input = " . $pub_res_input . '<br>';
 
-echo "pulseAfter = " . $pulseAfter . '<br>';
-echo "week = " . $week . '<br>';
-echo "intensityOptions = " . $intensityOptions . '<br>';
-echo "duration = " . $duration . '<br>';
+// echo "pulseAfter = " . $pulseAfter . '<br>';
+// echo "week = " . $week . '<br>';
+// echo "intensityOptions = " . $intensityOptions . '<br>';
+// echo "duration = " . $duration . '<br>';
 
-//F4
-echo "agency_name1 = " . $agency_name1 . '<br>';
-echo "agency_name2 = " . $agency_name2 . '<br>';
-echo "community = " . $community . '<br>';
-echo "loc_agency = " . $loc_agency . '<br>';
-echo "business = " . $business . '<br>';
+// //F4
+// echo "agency_name1 = " . $agency_name1 . '<br>';
+// echo "agency_name2 = " . $agency_name2 . '<br>';
+// echo "community = " . $community . '<br>';
+// echo "loc_agency = " . $loc_agency . '<br>';
+// echo "business = " . $business . '<br>';
 
-// F5
-echo "exper_sports = " . serialize($exper_sports) . '<br>';
-echo "res = " . serialize($res) . '<br>';
-echo "pub_res = " . serialize($pub_res) . '<br>';
+// // F5
+// echo "exper_sports = " . serialize($exper_sports) . '<br>';
+// echo "res = " . serialize($res) . '<br>';
+// echo "pub_res = " . serialize($pub_res) . '<br>';
 
-// F6
-echo "train_exper_exer = " . serialize($train_exper_exer) . '<br>';
-echo "train_exper = " . serialize($train_exper) . '<br>';
+// // F6
+// echo "train_exper_exer = " . serialize($train_exper_exer) . '<br>';
+// echo "train_exper = " . serialize($train_exper) . '<br>';
 
-// F7
-echo "vol_exper = " . $vol_exper . '<br>';
+// // F7
+// echo "vol_exper = " . $vol_exper . '<br>';
 
-// F8
-echo "org_heal = " . $org_heal . '<br>';
-echo "pro_org_exer = " . $pro_org_exer . '<br>';
-echo "activity = " . $activity . '<br>';
+// // F8
+// echo "org_heal = " . $org_heal . '<br>';
+// echo "pro_org_exer = " . $pro_org_exer . '<br>';
+// echo "activity = " . $activity . '<br>';
 
 //func check null
 function checkOption($option, $checkText, $IP)
@@ -192,11 +192,7 @@ $check = "select * from question  where username = '$user' ";
 $result1 = mysqli_query($con, $check) or die("$check");
 $num = mysqli_num_rows($result1);
 if ($num > 0) {
-	//ถ้ามี username นี้อยู่ในระบบแล้วให้แจ้งเตือน
-	// echo "<script>";
-	// echo "alert(' username นี้ทำแบบสอบถามแล้ว  !');";
-	// echo "window.location='page.php';";
-	// echo "</script>";
+	//แก้ไขข้อมูล
 	$sql = "UPDATE question
         SET username = '$user', name = '$name', surname = '$surname', level = '$level', sex = '$sex', province_id = '$province_id', amphure_id = '$amphure_id', age = '$age', height = '$height', weight = '$weight', pressure = '$pressure',
             pulse = '$pulse', location = '$checkLoc', period = '$checkPer', reason1 = '$checkRes1', reason2 = '$checkRes2', exer = '$checkExer', pulseAfter = '$pulseAfter', week = '$week', duration = '$duration', agency_name1 = '$agency_name1', agency_name2 = '$agency_name2',
@@ -235,3 +231,5 @@ if ($result) {
 	echo "alert('ผิดพลาด ');";
 	echo "</script>";
 }
+?>
+
