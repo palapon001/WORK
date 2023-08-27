@@ -181,7 +181,7 @@
             var provinceId = $(this).val();
             exSportObject.empty();
 
-            var url = 'get_Que_Provin.php?province_id=' + provinceId;
+            var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
 
             $.get(url, function(data) {
                 var result = JSON.parse(data);
@@ -225,7 +225,7 @@
             var provinceId = $(this).val();
             ResObject.empty();
 
-            var url = 'get_Que_Provin.php?province_id=' + provinceId;
+            var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
 
             $.get(url, function(data) {
                 var result = JSON.parse(data);
@@ -271,7 +271,7 @@
 
             pubResObject.show();
 
-            var url = 'get_Que_Provin.php?province_id=' + provinceId;
+            var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
 
             $.get(url, function(data) {
                 var result = JSON.parse(data);

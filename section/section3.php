@@ -50,7 +50,7 @@
             var notPassCount = 0;
             var getNameTH = '';
 
-            var url = 'get_provinAndLevelChart.php?province_id=%27' + provinceId + '%27&level=%27' + level + '%27';
+            var url = 'assets/ajax/getQuestionsByProvinceAndLevel.php?province_id=%27' + provinceId + '%27&level=%27' + level + '%27';
 
             $.get(url, function(data) {
                 var result = JSON.parse(data);
@@ -97,7 +97,7 @@
             var notPassCount = 0;
             var getNameTH = '';
 
-            var url = 'get_Que_Provin.php?province_id=%27' + provinceId + '%27';
+            var url = 'assets/ajax/getQuestionsByProvince.php?province_id=%27' + provinceId + '%27';
 
             $.get(url, function(data) {
                 var result = JSON.parse(data);
