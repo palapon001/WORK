@@ -115,9 +115,8 @@ if ($result) {
     echo "window.history.back(); ";
     echo "</script>";
 } else {
-	echo "<script type='text/javascript'>";
-	echo "alert('ไม่สำเเร็จ!!!');";
-	echo "window.location = 'adminPage.php'; ";
-	echo "</script>";
+    echo "<script type='text/javascript'>";
+    echo "alert('ผิดพลาด ');";
+    echo "</script>";
 }
 ?>
