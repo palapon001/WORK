@@ -5,165 +5,194 @@
             <h2>ข้อมูลความเชี่ยวชาญ และการเผยแพร่ผลงาน</h2>
         </div>
 
-        <div class="mb-3">
-            <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของตนเอง</p>
-            <div class="input-group ">
-                <input name="exper_sports" type="text" id="exper_sports" class="form-control" value="<?php echo $fetch['exper_sports']; ?>" disabled>
-            </div>
-        </div>
-
-        <div class=" mb-3">
-            <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของผู้เชี่ยวชาญทั้งหมด</p>
-            <div class="form-control overflow-auto" rows="3">
-                <?php
-                $exSportArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
-                $sqlALLexSport = "SELECT * FROM question";
-                $queryALLexSport = mysqli_query($con, $sqlALLexSport);
-                while ($resultALLexSport = mysqli_fetch_assoc($queryALLexSport)) : ?>
-                    <?php
-                    if ($resultALLexSport['exper_sports'] !== "---,---" && trim($resultALLexSport['exper_sports']) !== "") {
-                        $exSportText = $resultALLexSport['exper_sports'];
-
-                        if (strpos($exSportText, ',') !== false) {
-                            $exSportItems = explode(',', $exSportText);
-                            $exSportArray = array_merge($exSportArray, $exSportItems);
-                        } else {
-                            $exSportArray[] = $exSportText;
-                        }
-                    }
-                    ?>
-                <?php endwhile; ?>
-                <?php
-                foreach ($exSportArray as $item) {
-                    echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
-                }
-                echo 'ผลลัพธ์ : ' . count($exSportArray) . '<br>';
-                ?>
-            </div>
-        </div>
-
-        <div class=" mb-3">
-            <div class="form-row">
-                <div class="form-group">
-                    <p> สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของผู้เชี่ยวชาญทั้งหมด แยกตามจังหวัด</p>
-                    <select name="province_id" id="provinceEXsportS5" class="form-control mb-3" required>
-                        <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+        <div class="form-control bg-primary mb-3">
+            <div class="mb-3 form-control">
+                <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของตนเอง</p>
+                <div class="input-group ">
+                    <div class="form-control overflow-auto" id="exampleFormControlTextarea1" style="height: 10rem;">
                         <?php
-                        $sqlProvinceEXsportS5 = "SELECT * FROM provinces";
-                        $queryProvinceEXsportS5 = mysqli_query($con, $sqlProvinceEXsportS5);
-                        while ($resultProvinceEXsportS5 = mysqli_fetch_assoc($queryProvinceEXsportS5)) : ?>
-                            <option value="<?= $resultProvinceEXsportS5['id'] ?>"><?= $resultProvinceEXsportS5['name_th'] ?></option>
-                        <?php endwhile; ?>
-                    </select>
+                        $exSportExportArray = array();
+                        $exSportExportText = $fetch['exper_sports'];
+                        if (strpos($exSportExportText, ',') !== false) {
+                            $exSportExportItems = explode(',', $exSportExportText);
+                            $exSportExportArray = array_merge($exSportExportArray, $exSportExportItems);
+                        } else {
+                            $exSportExportArray[] = $exSportExportText;
+                        }
+                        // echo $fetch['exper_sports'];
+
+                        ?>
+                        <?php
+                        foreach ($exSportExportArray as $item) { ?>
+                            <div class="alert alert-secondary" role="alert">
+                                <center>
+                                    <?php echo '-' . $item; ?>
+                                </center>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
-            <div id="exSportS5" class="form-control"></div>
-        </div>
 
-        <div class=" mb-3">
-            <p>งานวิจัย </p>
-            <input name="pub_res" type="text" class="form-control" value="<?php echo $fetch['res']; ?>" disabled>
-        </div>
-
-        <div class=" mb-3">
-            <p>งานวิจัยทั้งหมด</p>
-            <div class="form-control overflow-auto" rows="3">
-                <?php
-                $resArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
-                $sqlALLRes = "SELECT * FROM question";
-                $queryALLRes = mysqli_query($con, $sqlALLRes);
-                while ($resultALLRes = mysqli_fetch_assoc($queryALLRes)) : ?>
+            <div class="form-control mb-3">
+                <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของผู้เชี่ยวชาญทั้งหมด</p>
+                <div class="form-control overflow-auto" style="height: 15rem;">
                     <?php
-                    if ($resultALLRes['res'] !== "---,---" && trim($resultALLRes['res']) !== "") {
-                        $ResText = $resultALLRes['res'];
-
-                        if (strpos($ResText, ',') !== false) {
-                            $ResItems = explode(',', $ResText);
-                            $resArray = array_merge($resArray, $ResItems);
-                        } else {
-                            $resArray[] = $ResText;
-                        }
-                    }
-                    ?>
-                <?php endwhile; ?>
-                <?php
-                foreach ($resArray as $item) {
-                    echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
-                }
-                echo 'ผลลัพธ์ : ' . count($resArray) . '<br>';
-                ?>
-            </div>
-        </div>
-
-        <div class=" mb-3">
-            <div class="form-row">
-                <div class="form-group">
-                    <p>งานวิจัยทั้งหมดแยกจังหวัด</p>
-                    <select name="province_id" id="provinceResS5" class="form-control mb-3" required>
-                        <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+                    $exSportArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
+                    $sqlALLexSport = "SELECT * FROM question";
+                    $queryALLexSport = mysqli_query($con, $sqlALLexSport);
+                    while ($resultALLexSport = mysqli_fetch_assoc($queryALLexSport)) : ?>
                         <?php
-                        $sqlProvinResS5 = "SELECT * FROM provinces";
-                        $queryProvinResS5  = mysqli_query($con, $sqlProvinResS5);
-                        while ($resultProvinResS5 = mysqli_fetch_assoc($queryProvinResS5)) : ?>
-                            <option value="<?= $resultProvinResS5['id'] ?>"><?= $resultProvinResS5['name_th'] ?></option>
-                        <?php endwhile; ?>
-                    </select>
+                        if ($resultALLexSport['exper_sports'] !== "---,---" && trim($resultALLexSport['exper_sports']) !== "") {
+                            $exSportText = $resultALLexSport['exper_sports'];
+
+                            if (strpos($exSportText, ',') !== false) {
+                                $exSportItems = explode(',', $exSportText);
+                                $exSportArray = array_merge($exSportArray, $exSportItems);
+                            } else {
+                                $exSportArray[] = $exSportText;
+                            }
+                        }
+                        ?>
+                    <?php endwhile; ?>
+                    <div class="btn btn-primary mb-3 mt-3"> <?php echo 'ผลลัพธ์ = ' . count($exSportArray) . ' รายการ'; ?></div> <br>
+                    <?php
+                    foreach ($exSportArray as $item) { ?>
+                        <div class="alert alert-secondary" role="alert">
+                            <center>
+                                <?php echo '-' . $item; ?>
+                            </center>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
-            <div id="resS5" class="form-control"></div>
-        </div>
 
-        <div class=" mb-3">
-            <p>การเผยแพร่ผลงานวิจัย</p>
-            <input name="pub_res" type="text" class="form-control" value="<?php echo $fetch['pub_res']; ?>" disabled>
-        </div>
-
-        <div class=" mb-3">
-            <p>การเผยแพร่ผลงานวิจัยทั้งหมด</p>
-            <div class="form-control overflow-auto" rows="3">
-                <?php
-                $pubResArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
-                $sqlALLPubresS5 = "SELECT * FROM question";
-                $queryALLPubresS5 = mysqli_query($con, $sqlALLPubresS5);
-                while ($resultALLPubresS5 = mysqli_fetch_assoc($queryALLPubresS5)) : ?>
+            <div class="form-control mb-3">
+                <p> สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของผู้เชี่ยวชาญทั้งหมด แยกตามจังหวัด</p>
+                <select name="province_id" id="provinceEXsportS5" class="form-control mb-3" required>
+                    <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
                     <?php
-                    if ($resultALLPubresS5['pub_res'] !== "---,---" && trim($resultALLPubresS5['pub_res']) !== "") {
-                        $pubResText = $resultALLPubresS5['pub_res'];
-
-                        if (strpos($pubResText, ',') !== false) {
-                            $pubResItems = explode(',', $pubResText);
-                            $pubResArray = array_merge($pubResArray, $pubResItems);
-                        } else {
-                            $pubResArray[] = $pubResText;
-                        }
-                    }
-                    ?>
-                <?php endwhile; ?>
-                <?php
-                foreach ($pubResArray as $item) {
-                    echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
-                }
-                echo 'ผลลัพธ์ : ' . count($pubResArray) . '<br>';
-                ?>
+                    $sqlProvinceEXsportS5 = "SELECT * FROM provinces";
+                    $queryProvinceEXsportS5 = mysqli_query($con, $sqlProvinceEXsportS5);
+                    while ($resultProvinceEXsportS5 = mysqli_fetch_assoc($queryProvinceEXsportS5)) : ?>
+                        <option value="<?= $resultProvinceEXsportS5['id'] ?>"><?= $resultProvinceEXsportS5['name_th'] ?></option>
+                    <?php endwhile; ?>
+                </select>
+                <div id="exSportS5" class="form-control overflow-auto" style="height: 15rem;"></div>
             </div>
         </div>
 
-        <div class=" mb-3">
-            <div class="form-row">
-                <div class="form-group">
-                    <p> การเผยแพร่ผลงานวิจัยรายจังหวัด</p>
-                    <select name="province_id" id="provincePubresS5" class="form-control mb-3" required>
-                        <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+        <div class="form-control bg-info mb-3">
+
+            <div class=" mb-3">
+                <p>งานวิจัย </p>
+                <input name="pub_res" type="text" class="form-control" value="<?php echo $fetch['res']; ?>" disabled>
+            </div>
+
+            <div class=" mb-3">
+                <p>งานวิจัยทั้งหมด</p>
+                <div class="form-control overflow-auto" rows="3">
+                    <?php
+                    $resArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
+                    $sqlALLRes = "SELECT * FROM question";
+                    $queryALLRes = mysqli_query($con, $sqlALLRes);
+                    while ($resultALLRes = mysqli_fetch_assoc($queryALLRes)) : ?>
                         <?php
-                        $sqlProvinPubresS5 = "SELECT * FROM provinces";
-                        $queryProvinPubresS5 = mysqli_query($con, $sqlProvinPubresS5);
-                        while ($resultProvinPubresS5 = mysqli_fetch_assoc($queryProvinPubresS5)) : ?>
-                            <option value="<?= $resultProvinPubresS5['id'] ?>"><?= $resultProvinPubresS5['name_th'] ?></option>
-                        <?php endwhile; ?>
-                    </select>
+                        if ($resultALLRes['res'] !== "---,---" && trim($resultALLRes['res']) !== "") {
+                            $ResText = $resultALLRes['res'];
+
+                            if (strpos($ResText, ',') !== false) {
+                                $ResItems = explode(',', $ResText);
+                                $resArray = array_merge($resArray, $ResItems);
+                            } else {
+                                $resArray[] = $ResText;
+                            }
+                        }
+                        ?>
+                    <?php endwhile; ?>
+                    <?php
+                    foreach ($resArray as $item) {
+                        echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
+                    }
+                    echo 'ผลลัพธ์ : ' . count($resArray) . '<br>';
+                    ?>
                 </div>
             </div>
-            <div id="pubresS5" class="form-control"></div>
+
+            <div class=" mb-3">
+                <div class="form-row">
+                    <div class="form-group">
+                        <p>งานวิจัยทั้งหมดแยกจังหวัด</p>
+                        <select name="province_id" id="provinceResS5" class="form-control mb-3" required>
+                            <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+                            <?php
+                            $sqlProvinResS5 = "SELECT * FROM provinces";
+                            $queryProvinResS5  = mysqli_query($con, $sqlProvinResS5);
+                            while ($resultProvinResS5 = mysqli_fetch_assoc($queryProvinResS5)) : ?>
+                                <option value="<?= $resultProvinResS5['id'] ?>"><?= $resultProvinResS5['name_th'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </div>
+                </div>
+                <div id="resS5" class="form-control"></div>
+            </div>
+
+        </div>
+
+        <div class="form-control bg-warning">
+
+            <div class=" mb-3">
+                <p>การเผยแพร่ผลงานวิจัย</p>
+                <input name="pub_res" type="text" class="form-control" value="<?php echo $fetch['pub_res']; ?>" disabled>
+            </div>
+
+            <div class=" mb-3">
+                <p>การเผยแพร่ผลงานวิจัยทั้งหมด</p>
+                <div class="form-control overflow-auto" rows="3">
+                    <?php
+                    $pubResArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
+                    $sqlALLPubresS5 = "SELECT * FROM question";
+                    $queryALLPubresS5 = mysqli_query($con, $sqlALLPubresS5);
+                    while ($resultALLPubresS5 = mysqli_fetch_assoc($queryALLPubresS5)) : ?>
+                        <?php
+                        if ($resultALLPubresS5['pub_res'] !== "---,---" && trim($resultALLPubresS5['pub_res']) !== "") {
+                            $pubResText = $resultALLPubresS5['pub_res'];
+
+                            if (strpos($pubResText, ',') !== false) {
+                                $pubResItems = explode(',', $pubResText);
+                                $pubResArray = array_merge($pubResArray, $pubResItems);
+                            } else {
+                                $pubResArray[] = $pubResText;
+                            }
+                        }
+                        ?>
+                    <?php endwhile; ?>
+                    <?php
+                    foreach ($pubResArray as $item) {
+                        echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
+                    }
+                    echo 'ผลลัพธ์ : ' . count($pubResArray) . '<br>';
+                    ?>
+                </div>
+            </div>
+
+            <div class=" mb-3">
+                <div class="form-row">
+                    <div class="form-group">
+                        <p> การเผยแพร่ผลงานวิจัยรายจังหวัด</p>
+                        <select name="province_id" id="provincePubresS5" class="form-control mb-3" required>
+                            <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+                            <?php
+                            $sqlProvinPubresS5 = "SELECT * FROM provinces";
+                            $queryProvinPubresS5 = mysqli_query($con, $sqlProvinPubresS5);
+                            while ($resultProvinPubresS5 = mysqli_fetch_assoc($queryProvinPubresS5)) : ?>
+                                <option value="<?= $resultProvinPubresS5['id'] ?>"><?= $resultProvinPubresS5['name_th'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </div>
+                </div>
+                <div id="pubresS5" class="form-control"></div>
+            </div>
         </div>
 
     </div>
@@ -202,11 +231,13 @@
                     }
                 });
 
+                exSportObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
+                exSportObject.append($('<br>')); 
                 $.each(resArray, function(index, resItem) {
-                    exSportObject.append($('<div></div>').html('สาขาความเชี่ยวชาญ : ' + resItem));
+                    exSportObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<center>'+'-'+resItem+'</center>'));
                 });
 
-                exSportObject.append($('<div></div>').text('พบ = ' + resArray.length + ' รายการ '));
+
             }).fail(function() {
                 exSportObject.empty();
                 exSportObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
@@ -251,7 +282,7 @@
                     ResObject.append($('<div></div>').html('งานวิจัย : ' + resItem));
                 });
 
-                ResObject.append($('<div></div>').text('พบ = ' + (resArray.length) + ' รายการ '));
+                ResObject.append($('<div></div>').text('ผลลัพธ์ = ' + (resArray.length) + ' รายการ '));
             }).fail(function() {
                 ResObject.empty();
                 ResObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
@@ -296,7 +327,7 @@
                     pubResObject.append($('<div></div>').html('การเผยแพร่ผลงานวิจัย : ' + resItem));
                 });
 
-                pubResObject.append($('<div></div>').text('พบ = ' + resArray.length + ' รายการ '));
+                pubResObject.append($('<div></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
             }).fail(function() {
                 pubResObject.empty();
                 pubResObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));

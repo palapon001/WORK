@@ -10,7 +10,7 @@ function createInputForm(nameText, nameInput, nameContainer) {
   label.className = "input-group-text";
   div.appendChild(label);
 
-  const input = document.createElement("input");
+  const input = document.createElement("textarea");
   input.type = "text";
   input.name = `${nameInput}[]`;
   input.className = "form-control";

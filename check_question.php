@@ -61,7 +61,7 @@ $eduInput = $_POST["eduInput"];
 $occInput = $_POST["occInput"];
 $maryInput = $_POST["maryInput"];
 $nationInput = $_POST["nationInput"];
-$congenInput = $_POST["congenInput"];
+
 $locationInput = $_POST["locationInput"];
 $motiInput = $_POST["motiInput"];
 $reason1Input = $_POST["reason1Input"];
@@ -147,7 +147,7 @@ $train_exper_input = $_POST["trainExperInput"];
 //func check null
 function checkOption($option, $checkText, $IP)
 {
-	if ($option == $checkText || $option == 'มี') {
+	if ($option == $checkText) {
 		return $IP;
 	} else {
 		return $option;
@@ -183,8 +183,7 @@ $checkTrain_exper = checkEmpty($train_exper, $train_exper_input);
 $checkEDU = checkOption($eduOptions, 'other', $eduInput);
 $checkOCC = checkOption($occOptions, 'other', $eduInput);
 $checkMary = checkOption($maryOptions, 'other', $maryInput);
-$checkNation = checkOption($nationOptions, 'other', $nationInput);
-$checkCongen = checkOption($congenOptions, 'other', $congenInput);
+$checkNation = checkOption($nationOptions, 'other', $nationInput); 
 $checkMoti = checkOption($motiOptions, 'other', $motiInput);
 
 // เช็คว่ามีข้อมูลนี้อยู่หรือไม่
@@ -197,7 +196,7 @@ if ($num > 0) {
         SET username = '$user', name = '$name', surname = '$surname', level = '$level', sex = '$sex', province_id = '$province_id', amphure_id = '$amphure_id', age = '$age', height = '$height', weight = '$weight', pressure = '$pressure',
             pulse = '$pulse', location = '$checkLoc', period = '$checkPer', reason1 = '$checkRes1', reason2 = '$checkRes2', exer = '$checkExer', pulseAfter = '$pulseAfter', week = '$week', duration = '$duration', agency_name1 = '$agency_name1', agency_name2 = '$agency_name2',
             community = '$community', loc_community = '$loc_community', loc_agency = '$loc_agency', business = '$business', exper_sports = '$checkExper_sports', res = '$checkRes', pub_res = '$checkPub_res', train_exper_exer = '$checkTrain_exper_exer', train_exper = '$checkTrain_exper', vol_exper = '$vol_exper',
-            org_heal = '$org_heal', pro_org_exer = '$pro_org_exer', activity = '$activity', eduOptions = '$checkEDU', occOptions = '$checkOCC', maryOptions = '$checkMary', nationOptions = '$checkNation', congenOptions = '$checkCongen',
+            org_heal = '$org_heal', pro_org_exer = '$pro_org_exer', activity = '$activity', eduOptions = '$checkEDU', occOptions = '$checkOCC', maryOptions = '$checkMary', nationOptions = '$checkNation', congenOptions = '$congenOptions',
             motiOptions = '$checkMoti', intensityOptions = '$intensityOptions'
         WHERE username = $user ";  // แทนที่ your_id ด้วยค่า id ที่คุณต้องการอัปเดต
 
@@ -212,7 +211,7 @@ if ($num > 0) {
 			 VALUES('$user','$name', '$surname','$level','$sex','$province_id','$amphure_id','$age','$height','$weight','$pressure',
 								 '$pulse','$checkLoc','$checkPer','$checkRes1','$checkRes2','$checkExer','$pulseAfter','$week','$duration','$agency_name1','$agency_name2',
 								 '$community','$loc_community','$loc_agency','$business','$checkExper_sports','$checkRes','$checkPub_res','$checkTrain_exper_exer','$checkTrain_exper','$vol_exper',
-								 '$org_heal','$pro_org_exer','$activity','$checkEDU','$checkOCC','$checkMary','$checkNation','$checkCongen',
+								 '$org_heal','$pro_org_exer','$activity','$checkEDU','$checkOCC','$checkMary','$checkNation','$congenOptions',
 								 '$checkMoti','$intensityOptions')";
 
 	$result = mysqli_query($con, $sql) or die("Error in query: $sql ");

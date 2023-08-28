@@ -192,7 +192,7 @@ $defaultValueExerFetch = $foundUser == 1 ? $exerFetch : '';
 <!-- pulse after exercise form -->
 <div class="form-control mb-3">
     <p>ชีพจรหลังการออกกำลังกาย (หากท่านทราบข้อมูล)* </p>
-    <input name="pulseAfter" type="text" id="pulseAfter" class="form-control" value="<?php echo $foundUser == 1 ? $pulseAfter : ''; ?>">
+    <input name="pulseAfter" type="text" id="pulseAfter" class="form-control" placeholder="เช่น 60" value="<?php echo $foundUser == 1 ? $pulseAfter : ''; ?>">
 </div>
 
 <!-- week exercise form -->
@@ -220,7 +220,7 @@ $defaultValueExerFetch = $foundUser == 1 ? $exerFetch : '';
 <!-- duration of exercise form -->
 <div class="form-control mb-3">
     <p>ระยะเวลาการออกกำลังกาย</p>
-    <input name="duration" type="number" id="duration" class="form-control" required value="<?php echo $foundUser == 1 ? $duration : ''; ?>">
+    <input name="duration" type="number" id="duration" class="form-control" placeholder="เช่น 70 นาที" required value="<?php echo $foundUser == 1 ? $duration : ''; ?>">
     <div class="alert alert-danger mt-3" id="emptyAlert-duration">
         กรุณากรอกข้อมูล
     </div>

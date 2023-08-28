@@ -56,9 +56,9 @@
                 var result = JSON.parse(data);
 
                 if (result.length === 0) {
-                    $('#myChartphp').show();
+                    $('#myChartphp').hide();
                     $('#myChart1').hide();
-                    resultObject1.append($('<div></div>').html('พบ = ' + result.length + ' รายการ ')); 
+                    resultObject1.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
                     return;
                 }
 
@@ -71,7 +71,7 @@
                         notPassCount++;
                     }
 
-                    getNameTH = item.name_th ;
+                    getNameTH = item.name_th;
                 });
 
                 resultObject1.append($('<div></div>').html('จังหวัด = ' + getNameTH + ' รายการ '));
@@ -103,7 +103,7 @@
                 var result = JSON.parse(data);
 
                 if (result.length === 0) {
-                    $('#myChart2php').show();
+                    $('#myChart2php').hide();
                     $('#myChart2').hide();
                     resultObject2.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
 
@@ -190,11 +190,11 @@ $result = evaluateExercise($week, $intensity, $duration);
             </div>
             <div class="form-group mb-3">
                 <span class="input-group-text"> ผลการประเมินการออกกำลังกาย</span>
+                <input type="text" class="mt-3 form-control <?php echo $result == 'ผ่านเกณฑ์' ? 'bg-success' : 'bg-danger' ?> text-white" value="<?php echo $result; ?>" disabled>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     (พิจารณาจากจำนวนวัน 3 วันต่อสัปดาห์ ความหนักของการออกกำลังกาย ระดับปานกลางถึงระดับหนัก และระยะเวลาการออกกำล้งกาย 10-20 นาทีต่อเนื่อง) => ผ่านเกณฑ์ หรือต่ำกว่าเกณฑ์
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <input type="text" class="form-control bg-info" value="<?php echo $result; ?>" disabled>
             </div>
 
             </p>
@@ -221,9 +221,9 @@ $result = evaluateExercise($week, $intensity, $duration);
                             </div>
                             <input type="text" class="form-control mt-3" value="<?php echo $fetch['level']; ?>" disabled>
                         </div>
+                        <div id="resultCH"></div>
                         <canvas id="myChartphp"></canvas>
                         <canvas id="myChart1"></canvas>
-                        <div id="resultCH"></div>
                         <script>
                             <?php
                             $passChart = 0;
@@ -290,9 +290,9 @@ $result = evaluateExercise($week, $intensity, $duration);
                             <input type="text" class="form-control mt-3" value="-----" disabled>
 
                         </div>
+                        <div id="resultCH2"></div>
                         <canvas id="myChart2php"></canvas>
                         <canvas id="myChart2"></canvas>
-                        <div id="resultCH2"></div>
                 </div>
                 <script>
                     <?php
