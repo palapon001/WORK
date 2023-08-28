@@ -1,3 +1,28 @@
+<?php
+function displayCustomList($text, $items = [])
+{
+    if ($text !== "---,---" && trim($text) !== "") {
+        if (strpos($text, ',') !== false) {
+            $itemList = explode(',', $text);
+            $items = array_merge($items, $itemList);
+        } else {
+            $items[] = $text;
+        }
+    }
+
+    return $items;
+}
+
+function displayCustomItems($items = [])
+{
+    foreach ($items as $item) {
+        echo '<div class="alert alert-secondary" role="alert">';
+        echo '<center>- ' . $item . '</center>';
+        echo '</div>';
+    }
+}
+?>
+
 <section id="exper_info" class="resume">
     <div class="container" data-aos="fade-up">
 
@@ -9,27 +34,12 @@
             <div class="mb-3 form-control">
                 <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของตนเอง</p>
                 <div class="input-group ">
-                    <div class="form-control overflow-auto" id="exampleFormControlTextarea1" style="height: 10rem;">
+                    <div class="form-control overflow-auto" style="height: 10rem;">
                         <?php
-                        $exSportExportArray = array();
-                        $exSportExportText = $fetch['exper_sports'];
-                        if (strpos($exSportExportText, ',') !== false) {
-                            $exSportExportItems = explode(',', $exSportExportText);
-                            $exSportExportArray = array_merge($exSportExportArray, $exSportExportItems);
-                        } else {
-                            $exSportExportArray[] = $exSportExportText;
-                        }
-                        // echo $fetch['exper_sports'];
-
+                        $exSportText = $fetch['exper_sports'];
+                        $exSportItems = displayCustomList($exSportText);
+                        displayCustomItems($exSportItems);
                         ?>
-                        <?php
-                        foreach ($exSportExportArray as $item) { ?>
-                            <div class="alert alert-secondary" role="alert">
-                                <center>
-                                    <?php echo '-' . $item; ?>
-                                </center>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -43,27 +53,12 @@
                     $queryALLexSport = mysqli_query($con, $sqlALLexSport);
                     while ($resultALLexSport = mysqli_fetch_assoc($queryALLexSport)) : ?>
                         <?php
-                        if ($resultALLexSport['exper_sports'] !== "---,---" && trim($resultALLexSport['exper_sports']) !== "") {
-                            $exSportText = $resultALLexSport['exper_sports'];
-
-                            if (strpos($exSportText, ',') !== false) {
-                                $exSportItems = explode(',', $exSportText);
-                                $exSportArray = array_merge($exSportArray, $exSportItems);
-                            } else {
-                                $exSportArray[] = $exSportText;
-                            }
-                        }
+                        $exSportText = $resultALLexSport['exper_sports'];
+                        $exSportArray = displayCustomList($exSportText, $exSportArray);
                         ?>
                     <?php endwhile; ?>
                     <div class="btn btn-primary mb-3 mt-3"> <?php echo 'ผลลัพธ์ = ' . count($exSportArray) . ' รายการ'; ?></div> <br>
-                    <?php
-                    foreach ($exSportArray as $item) { ?>
-                        <div class="alert alert-secondary" role="alert">
-                            <center>
-                                <?php echo '-' . $item; ?>
-                            </center>
-                        </div>
-                    <?php } ?>
+                    <?php displayCustomItems($exSportArray) ?>
                 </div>
             </div>
 
@@ -87,6 +82,9 @@
             <div class=" mb-3">
                 <p>งานวิจัย </p>
                 <input name="pub_res" type="text" class="form-control" value="<?php echo $fetch['res']; ?>" disabled>
+                <div class="form-control overflow-auto" style="height: 10rem;">
+
+                </div>
             </div>
 
             <div class=" mb-3">
@@ -232,9 +230,9 @@
                 });
 
                 exSportObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
-                exSportObject.append($('<br>')); 
+                exSportObject.append($('<br>'));
                 $.each(resArray, function(index, resItem) {
-                    exSportObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<center>'+'-'+resItem+'</center>'));
+                    exSportObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<center>' + '-' + resItem + '</center>'));
                 });
 
 
