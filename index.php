@@ -16,8 +16,12 @@
 <body>
   <!-- partial:index.partial.html -->
   <div class="gtco-testimonials">
-    <h2>Welcome</h2>
-    <h2>Who Are You ?</h2>
+    <div class="card">
+      <h2>Welcome</h2>
+      <img class="rounded mx-auto d-block mb-3" src="./assets/img/logo_200x200.png" alt="logo">
+      <h2>Who Are You ?</h2>
+    </div>
+
     <div class="owl-carousel owl-carousel1 owl-theme">
 
       <?php include 'assets/php/generateCardFunction.php'; ?>
