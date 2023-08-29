@@ -33,14 +33,12 @@ function displayCustomItems($items = [])
         <div class="form-control bg-primary mb-3">
             <div class="mb-3 form-control">
                 <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของตนเอง</p>
-                <div class="input-group ">
-                    <div class="form-control overflow-auto" style="height: 10rem;">
-                        <?php
-                        $exSportText = $fetch['exper_sports'];
-                        $exSportItems = displayCustomList($exSportText);
-                        displayCustomItems($exSportItems);
-                        ?>
-                    </div>
+                <div class="form-control overflow-auto" style="height: 10rem;">
+                    <?php
+                    $exSportText = $fetch['exper_sports'];
+                    $exSportItems = displayCustomList($exSportText);
+                    displayCustomItems($exSportItems);
+                    ?>
                 </div>
             </div>
 
@@ -79,117 +77,94 @@ function displayCustomItems($items = [])
 
         <div class="form-control bg-info mb-3">
 
-            <div class=" mb-3">
+            <div class="form-control mb-3">
                 <p>งานวิจัย </p>
-                <input name="pub_res" type="text" class="form-control" value="<?php echo $fetch['res']; ?>" disabled>
                 <div class="form-control overflow-auto" style="height: 10rem;">
-
+                    <?php
+                    $resText = $fetch['res'];
+                    $resItems = displayCustomList($resText);
+                    displayCustomItems($resItems);
+                    ?>
                 </div>
             </div>
 
-            <div class=" mb-3">
+            <div class="form-control mb-3">
                 <p>งานวิจัยทั้งหมด</p>
-                <div class="form-control overflow-auto" rows="3">
+                <div class="form-control overflow-auto" style="height: 15rem;">
                     <?php
                     $resArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
                     $sqlALLRes = "SELECT * FROM question";
                     $queryALLRes = mysqli_query($con, $sqlALLRes);
                     while ($resultALLRes = mysqli_fetch_assoc($queryALLRes)) : ?>
                         <?php
-                        if ($resultALLRes['res'] !== "---,---" && trim($resultALLRes['res']) !== "") {
-                            $ResText = $resultALLRes['res'];
-
-                            if (strpos($ResText, ',') !== false) {
-                                $ResItems = explode(',', $ResText);
-                                $resArray = array_merge($resArray, $ResItems);
-                            } else {
-                                $resArray[] = $ResText;
-                            }
-                        }
+                        $resText = $resultALLRes['res'];
+                        $resArray = displayCustomList($resText, $resArray);
                         ?>
                     <?php endwhile; ?>
-                    <?php
-                    foreach ($resArray as $item) {
-                        echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
-                    }
-                    echo 'ผลลัพธ์ : ' . count($resArray) . '<br>';
-                    ?>
+                    <div class="btn btn-primary mb-3 mt-3"> <?php echo 'ผลลัพธ์ = ' . count($resArray) . ' รายการ'; ?></div> <br>
+                    <?php displayCustomItems($resArray) ?>
                 </div>
             </div>
 
-            <div class=" mb-3">
-                <div class="form-row">
-                    <div class="form-group">
-                        <p>งานวิจัยทั้งหมดแยกจังหวัด</p>
-                        <select name="province_id" id="provinceResS5" class="form-control mb-3" required>
-                            <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
-                            <?php
-                            $sqlProvinResS5 = "SELECT * FROM provinces";
-                            $queryProvinResS5  = mysqli_query($con, $sqlProvinResS5);
-                            while ($resultProvinResS5 = mysqli_fetch_assoc($queryProvinResS5)) : ?>
-                                <option value="<?= $resultProvinResS5['id'] ?>"><?= $resultProvinResS5['name_th'] ?></option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                </div>
-                <div id="resS5" class="form-control"></div>
+            <div class="form-control mb-3">
+                <p>งานวิจัยทั้งหมดแยกจังหวัด</p>
+                <select name="province_id" id="provinceResS5" class="form-control mb-3" required>
+                    <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+                    <?php
+                    $sqlProvinResS5 = "SELECT * FROM provinces";
+                    $queryProvinResS5  = mysqli_query($con, $sqlProvinResS5);
+                    while ($resultProvinResS5 = mysqli_fetch_assoc($queryProvinResS5)) : ?>
+                        <option value="<?= $resultProvinResS5['id'] ?>"><?= $resultProvinResS5['name_th'] ?></option>
+                    <?php endwhile; ?>
+                </select>
+                <div id="resS5" class="form-control overflow-auto" style="height: 15rem;"></div>
             </div>
 
         </div>
 
         <div class="form-control bg-warning">
 
-            <div class=" mb-3">
+            <div class="form-control mb-3">
                 <p>การเผยแพร่ผลงานวิจัย</p>
-                <input name="pub_res" type="text" class="form-control" value="<?php echo $fetch['pub_res']; ?>" disabled>
+                <div class="form-control overflow-auto" style="height: 10rem;">
+                    <?php
+                    $pubResText = $fetch['pub_res'];
+                    $pubResItems = displayCustomList($pubResText);
+                    displayCustomItems($pubResItems);
+                    ?>
+                </div>
             </div>
 
-            <div class=" mb-3">
+            <div class="form-control mb-3">
                 <p>การเผยแพร่ผลงานวิจัยทั้งหมด</p>
-                <div class="form-control overflow-auto" rows="3">
+                <div class="form-control overflow-auto" style="height: 15rem;">
                     <?php
                     $pubResArray = array(); // สร้างอาเรย์เปล่าไว้ก่อน
                     $sqlALLPubresS5 = "SELECT * FROM question";
                     $queryALLPubresS5 = mysqli_query($con, $sqlALLPubresS5);
                     while ($resultALLPubresS5 = mysqli_fetch_assoc($queryALLPubresS5)) : ?>
                         <?php
-                        if ($resultALLPubresS5['pub_res'] !== "---,---" && trim($resultALLPubresS5['pub_res']) !== "") {
-                            $pubResText = $resultALLPubresS5['pub_res'];
-
-                            if (strpos($pubResText, ',') !== false) {
-                                $pubResItems = explode(',', $pubResText);
-                                $pubResArray = array_merge($pubResArray, $pubResItems);
-                            } else {
-                                $pubResArray[] = $pubResText;
-                            }
-                        }
+                        $pubResText = $resultALLPubresS5['pub_res'];
+                        $pubResArray = displayCustomList($pubResText, $pubResArray);
                         ?>
                     <?php endwhile; ?>
-                    <?php
-                    foreach ($pubResArray as $item) {
-                        echo 'การเผยแพร่ผลงานวิจัย : ' . $item . '<br>';
-                    }
-                    echo 'ผลลัพธ์ : ' . count($pubResArray) . '<br>';
-                    ?>
+                    <div class="btn btn-primary mb-3 mt-3"> <?php echo 'ผลลัพธ์ = ' . count($pubResArray) . ' รายการ'; ?></div> <br>
+                    <?php displayCustomItems($pubResArray) ?>
                 </div>
             </div>
 
-            <div class=" mb-3">
-                <div class="form-row">
-                    <div class="form-group">
-                        <p> การเผยแพร่ผลงานวิจัยรายจังหวัด</p>
-                        <select name="province_id" id="provincePubresS5" class="form-control mb-3" required>
-                            <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
-                            <?php
-                            $sqlProvinPubresS5 = "SELECT * FROM provinces";
-                            $queryProvinPubresS5 = mysqli_query($con, $sqlProvinPubresS5);
-                            while ($resultProvinPubresS5 = mysqli_fetch_assoc($queryProvinPubresS5)) : ?>
-                                <option value="<?= $resultProvinPubresS5['id'] ?>"><?= $resultProvinPubresS5['name_th'] ?></option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                </div>
-                <div id="pubresS5" class="form-control"></div>
+            <div class="form-control mb-3">
+                <p> การเผยแพร่ผลงานวิจัยรายจังหวัด</p>
+                <select name="province_id" id="provincePubresS5" class="form-control mb-3" required>
+                    <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+                    <?php
+                    $sqlProvinPubresS5 = "SELECT * FROM provinces";
+                    $queryProvinPubresS5 = mysqli_query($con, $sqlProvinPubresS5);
+                    while ($resultProvinPubresS5 = mysqli_fetch_assoc($queryProvinPubresS5)) : ?>
+                        <option value="<?= $resultProvinPubresS5['id'] ?>"><?= $resultProvinPubresS5['name_th'] ?></option>
+                    <?php endwhile; ?>
+                </select>
+                <div id="pubresS5" class="form-control overflow-auto" style="height: 15rem;"></div>
             </div>
         </div>
 
@@ -275,12 +250,12 @@ function displayCustomItems($items = [])
                     }
                 });
 
-                // วนลูปเพื่อแทรกข้อมูลใน Array เข้าใน ResObject
+                ResObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
+                ResObject.append($('<br>'));
                 $.each(resArray, function(index, resItem) {
-                    ResObject.append($('<div></div>').html('งานวิจัย : ' + resItem));
+                    ResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<center>' + '-' + resItem + '</center>'));
                 });
 
-                ResObject.append($('<div></div>').text('ผลลัพธ์ = ' + (resArray.length) + ' รายการ '));
             }).fail(function() {
                 ResObject.empty();
                 ResObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
@@ -321,11 +296,12 @@ function displayCustomItems($items = [])
                     }
                 });
 
+                pubResObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
+                pubResObject.append($('<br>'));
                 $.each(resArray, function(index, resItem) {
-                    pubResObject.append($('<div></div>').html('การเผยแพร่ผลงานวิจัย : ' + resItem));
+                    pubResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<center>' + '-' + resItem + '</center>'));
                 });
 
-                pubResObject.append($('<div></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
             }).fail(function() {
                 pubResObject.empty();
                 pubResObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
