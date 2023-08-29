@@ -7,18 +7,28 @@
         </div>
 
         <!-- train_exper_exer form -->
-        <div class="mb-3">
-            <p>ประสบการณ์การอบรมทางด้านการออกกำลังกายเพื่อสุขภาพ</p>
-            <div class="input-group ">
-                <input name="train_exper_exer" type="text" id="train_exper_exer" class="form-control" value="<?php echo $fetch['train_exper_exer']; ?>" disabled>
+        <div class="form-control">
+            <div class="form-control mb-3">
+                <p>ประสบการณ์การอบรมทางด้านการออกกำลังกายเพื่อสุขภาพ</p>
+                <div class="form-control overflow-auto" style="height: 10rem;">
+                    <?php
+                    $trainExperExerText = $fetch['train_exper_exer'];
+                    $trainExperExerItems = displayCustomList($trainExperExerText);
+                    displayCustomItems($trainExperExerItems);
+                    ?>
+                </div>
             </div>
             <!-- end train_exper_exer form -->
 
             <!-- train_exper -->
-            <div class="mb-3">
+            <div class="form-control mb-3">
                 <p>ประสบการณ์การอบรมในสาขาความเชี่ยวชาญ</p>
-                <div class="input-group">
-                    <input name="train_exper" type="text" id="train_exper" class="form-control" value="<?php echo $fetch['train_exper']; ?>" disabled>
+                <div class="form-control overflow-auto" style="height: 10rem;">
+                    <?php
+                    $trainExperText = $fetch['train_exper'];
+                    $trainExperItems = displayCustomList($trainExperText);
+                    displayCustomItems($trainExperItems);
+                    ?>
                 </div>
             </div>
             <!-- end train_exper form -->

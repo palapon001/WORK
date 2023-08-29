@@ -1,28 +1,3 @@
-<?php
-function displayCustomList($text, $items = [])
-{
-    if ($text !== "---,---" && trim($text) !== "") {
-        if (strpos($text, ',') !== false) {
-            $itemList = explode(',', $text);
-            $items = array_merge($items, $itemList);
-        } else {
-            $items[] = $text;
-        }
-    }
-
-    return $items;
-}
-
-function displayCustomItems($items = [])
-{
-    foreach ($items as $item) {
-        echo '<div class="alert alert-secondary" role="alert">';
-        echo '<center>- ' . $item . '</center>';
-        echo '</div>';
-    }
-}
-?>
-
 <section id="exper_info" class="resume">
     <div class="container" data-aos="fade-up">
 
