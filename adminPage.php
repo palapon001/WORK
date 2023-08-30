@@ -209,7 +209,7 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                                 <td><?php echo $fetch_Que_Personal['surname'] ?></td>
 
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $fetch_Que_Personal['qid'] ?>">
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $fetch_Que_Personal['qid'] ?>">
                                         ดูข้อมูล
                                     </button> 
                                     <a href='actions/deleteUserQuestions.php?user_id=<?php echo $fetch_Que_Personal['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
