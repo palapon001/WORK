@@ -7,7 +7,7 @@ if (!$_SESSION["username"]) {  //check session
   Header("Location: index.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
 }
 $q_user = $_SESSION["username"];
-$sql_ques = " SELECT * FROM question where username = $q_user ";
+$sql_ques = " SELECT * FROM question where username = '$q_user' ";
 $queryQues = mysqli_query($con, $sql_ques);
 $foundUser = 0;
 while ($fetch = mysqli_fetch_assoc($queryQues)) {
@@ -143,7 +143,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
 
   <?php if ($foundUser == 1) {
     $q_user = $_SESSION["username"];
-    $sql_ques1 = " SELECT * FROM question where username = $q_user ";
+    $sql_ques1 = " SELECT * FROM question where username = '$q_user' ";
     $queryQues1 = mysqli_query($con, $sql_ques1);
     while ($fetch = mysqli_fetch_assoc($queryQues1)) {
       $sex = $fetch['sex'];
@@ -195,10 +195,10 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
       $activity = $fetch["activity"];
 
 
-      $sql_provin = " SELECT * FROM provinces where id = $provin ";
+      $sql_provin = " SELECT * FROM provinces where id = '$provin' ";
       $queryProvin = mysqli_query($con, $sql_provin);
       
-      $sql_amphure = " SELECT * FROM amphures where id = $amphure ";
+      $sql_amphure = " SELECT * FROM amphures where id = '$amphure' ";
       $queryAmphure = mysqli_query($con, $sql_amphure);
   ?>
       <main id="main">
@@ -295,7 +295,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
             <form name="formRegister" method="post" action="actions/updateUserLogin.php">
               <?php
               $update_username = $_SESSION["username"];
-              $sql_update_user = " SELECT * FROM work_login where username = $update_username";
+              $sql_update_user = " SELECT * FROM work_login where username = '$update_username' ";
               $queryUpdate_user = mysqli_query($con, $sql_update_user);
               while ($fetchUser = mysqli_fetch_assoc($queryUpdate_user)) {
               ?>

@@ -198,7 +198,7 @@ if ($num > 0) {
             community = '$community', loc_community = '$loc_community', loc_agency = '$loc_agency', business = '$business', exper_sports = '$checkExper_sports', res = '$checkRes', pub_res = '$checkPub_res', train_exper_exer = '$checkTrain_exper_exer', train_exper = '$checkTrain_exper', vol_exper = '$vol_exper',
             org_heal = '$org_heal', pro_org_exer = '$pro_org_exer', activity = '$activity', eduOptions = '$checkEDU', occOptions = '$checkOCC', maryOptions = '$checkMary', nationOptions = '$checkNation', congenOptions = '$congenOptions',
             motiOptions = '$checkMoti', intensityOptions = '$intensityOptions'
-        WHERE username = $user ";  // แทนที่ your_id ด้วยค่า id ที่คุณต้องการอัปเดต
+        WHERE username = '$user' ";  // แทนที่ your_id ด้วยค่า id ที่คุณต้องการอัปเดต
 
 	$result = mysqli_query($con, $sql) or die("Error in query: $sql ");
 } else {

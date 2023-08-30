@@ -64,7 +64,7 @@
       <select name="province_id" id="province" class="form-control" required>
         <?php
         if ($foundUser == 1) {
-          $sql_provinEdit = " SELECT * FROM provinces where id = $provin ";
+          $sql_provinEdit = " SELECT * FROM provinces where id = '$provin' ";
           $queryProvinEdit = mysqli_query($con, $sql_provinEdit);
           $resultProvinEdit = '';
           while ($fetchProvinEdit = mysqli_fetch_assoc($queryProvinEdit)) { ?>
