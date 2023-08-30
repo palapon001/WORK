@@ -5,7 +5,7 @@ if (isset($_POST['username'])) {
   include("../condb.php");
   //รับค่า user & password
   $username = $_POST['username'];
-  $password = $_POST['password'];
+  $password = md5($_POST['password']);
   //query 
   $sql = "SELECT * FROM work_login Where username='" . $username . "' and password='" . $password . "' ";
 
@@ -19,7 +19,7 @@ if (isset($_POST['username'])) {
       //ถ้ามี username นี้อยู่ในระบบแล้วให้แจ้งเตือน
       echo "<script>";
       echo "alert(' username รอการตรวจสอบ  !');";
-      echo "window.location='index.php';";
+      echo "window.location='../index.php';";
       echo "</script>";
     } else {
       $row = mysqli_fetch_array($result);

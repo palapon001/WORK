@@ -42,7 +42,7 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
 
         <!-- Login Section -->
         <section id="login">
-            <div class="container form-control table-responsive">
+            <div class="container form-control table-responsive overflow-auto" style="height: 40rem;">
                 <h1>ข้อมูลรายชื่อผู้ใช้</h1>
                 <p>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Singup">
@@ -180,7 +180,7 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
 
         <!-- list Section -->
         <section id="list">
-            <div class="container mt-5 form-control table-responsive">
+            <div class="container mt-5 form-control table-responsive overflow-auto" style="height: 20rem;">
                 <h1>ข้อมูลแบบสอบถาม</h1>
                 <table class="table table-bordered" style="text-align:center;">
                     <thead>

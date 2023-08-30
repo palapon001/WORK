@@ -23,6 +23,9 @@ function generateHead($pageTitle, $faviconUrl) {
     echo '<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">';
     echo '<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">';
     echo '<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">';
+
+    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>';
+    echo '<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css"rel="stylesheet">' ;
     
     echo '<link href="assets/css/style.css" rel="stylesheet">';
     

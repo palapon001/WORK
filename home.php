@@ -326,6 +326,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
                 </div>
                 <p>
                   <input type="hidden" id="typeSelect" value="<?php echo $fetchUser['level']; ?>" name="level" class="form-control">
+                  <input type="hidden" id="typeSelect" value="<?php echo $fetchUser['status']; ?>" name="status" class="form-control">
          
                 </p>
                 <p>

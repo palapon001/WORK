@@ -108,15 +108,43 @@ $result = mysqli_query($con, $sql) or die("Error in query: $sql " );
 mysqli_close($con); //ปิดการเชื่อมต่อ database 
 
 //จาวาสคริปแสดงข้อความเมื่อบันทึกเสร็จและกระโดดกลับไปหน้าฟอร์ม
-
-if ($result) {
-	echo "<script type='text/javascript'>";
-	echo "alert('สำเร็จ');";
-    echo "window.history.back(); ";
-    echo "</script>";
-} else {
-    echo "<script type='text/javascript'>";
-    echo "alert('ผิดพลาด ');";
-    echo "</script>";
-}
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>check_question</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+	<?php
+	//จาวาสคริปแสดงข้อความเมื่อบันทึกเสร็จและกระโดดกลับไปหน้าฟอร์ม
+	if ($result) {
+		echo "<script type='text/javascript'>";
+		echo "Swal.fire({
+				title: 'สำเร็จ!',
+				icon: 'success'
+				}).then(() => {
+				window.history.back();
+			});";
+		echo "</script>";
+	} else {
+		echo "<script type='text/javascript'>";
+		echo "Swal.fire({
+				title: 'ผิดพลาด!', 
+				icon: 'error'
+				}).then(() => {
+				window.history.back();
+			});";
+		echo "</script>";
+	}
+	?>
+</body>
+
+</html>

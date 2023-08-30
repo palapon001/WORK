@@ -10,15 +10,15 @@
 
         <div class="col-lg-3 col-md-6">
           <div class="count-box">
-          <img src = "assets/img/height.svg" width="50px" height="50px" alt="height"/> 
+            <img src="assets/img/height.svg" width="50px" height="50px" alt="height" />
             <span data-purecounter-start="0" data-purecounter-end="<?php echo $fetch['height']; ?>" data-purecounter-duration="1" class="purecounter"></span>
             <p>ส่วนสูง (ซม.)</p>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-          <div class="count-box"> 
-          <img src = "assets/img/weight.svg" width="50px" height="50px" alt="weight"/> 
+          <div class="count-box">
+            <img src="assets/img/weight.svg" width="50px" height="50px" alt="weight" />
             <span data-purecounter-start="0" data-purecounter-end="<?php echo $fetch['weight']; ?>" data-purecounter-duration="1" class="purecounter"></span>
             <p>น้ำหนัก (กก.)</p>
           </div>
@@ -26,7 +26,7 @@
 
         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
-          <img src = "assets/img/bmi.svg" width="50px" height="50px" alt="bmi"/> 
+            <img src="assets/img/bmi.svg" width="50px" height="50px" alt="bmi" />
             <?php
             $w = $fetch['weight'];
             $h = $fetch['height'];
@@ -49,15 +49,15 @@
 
         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
-          <img src = "assets/img/pressure.svg" width="50px" height="50px" alt="pressure"/> 
-            <span data-purecounter-start="0" data-purecounter-end="<?php echo $fetch['pressure']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+            <img src="assets/img/pressure.svg" width="50px" height="50px" alt="pressure" />
+            <span><?php echo $fetch['pressure']; ?></span>
             <p>ความดัน</p>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
-          <img src = "assets/img/pulse.svg" width="50px" height="50px" alt="pulse"/> 
+            <img src="assets/img/pulse.svg" width="50px" height="50px" alt="pulse" />
             <span data-purecounter-start="0" data-purecounter-end="<?php echo $fetch['pulse']; ?>" data-purecounter-duration="1" class="purecounter"></span>
             <p>ชีพจร</p>
           </div>
@@ -65,7 +65,7 @@
 
         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
-          <img src = "assets/img/electricalPulse.svg" width="50px" height="50px" alt="electricalPulse"/> 
+            <img src="assets/img/electricalPulse.svg" width="50px" height="50px" alt="electricalPulse" />
             <span data-purecounter-start="0" data-purecounter-end="<?php echo 220 - $fetch['age']; ?>" data-purecounter-duration="1" class="purecounter"></span>
             <p>ชีพจรสูงสุด</p>
           </div>
