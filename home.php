@@ -111,7 +111,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
           }
           ?>
         <?php } ?>
-        <li><a href="actions/logout.php" class="nav-link scrollto bg-danger active" onclick="return confirm('ต้องการออกจากระบบหรือไม่')"><i class="bi bi-door-closed"></i> <span>ออกจากระบบ</span></a></li>
+        <li><a href="actions/logout.php" class="nav-link scrollto bg-danger active" onclick="return showLogoutConfirmation();"><i class="bi bi-door-closed"></i> <span>ออกจากระบบ</span></a></li>
       </ul>
     </nav><!-- .nav-menu -->
 
