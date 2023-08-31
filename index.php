@@ -16,23 +16,28 @@
 <body>
   <!-- partial:index.partial.html -->
   <div class="gtco-testimonials">
-    <div class="card">
-      <h2>Welcome</h2>
-      <img class="rounded mx-auto d-block mb-3" src="./assets/img/logo_200x200.png" alt="logo">
-      <h2>Who Are You ?</h2>
+    <div class="card align-self-center mt-3 mb-3">
+      <h2 class="btn">Welcome</h2>
+      <center>
+        <h4 class="mt-3 mb-3">A Digital Ecosystem Protoptype <br> of Sport and Exercise <br> for Health Information Management</h4>
+      </center>
     </div>
+    <div class="card align-self-center mt-3 ">
+      <h2 class="mt-5 mb-5">Who Are You ?</h2>
+    </div>
+    <!-- <img class="rounded mx-auto d-block mb-3" src="./assets/img/logo_200x200.png" alt="logo"> -->
+
 
     <div class="owl-carousel owl-carousel1 owl-theme">
-
       <?php include 'assets/php/generateCardFunction.php'; ?>
       <!-- ใช้งานฟังก์ชัน generateCard สำหรับการ์ดแต่ละประเภท -->
-      <?php echo generateCard("assets/img/logo_200x200.png", "Interested-Individual", "Interested-Individual"); ?>
-      <?php echo generateCard("assets/img/logo_200x200.png", "Trainers", "Trainers"); ?>
-      <?php echo generateCard("assets/img/logo_200x200.png", "Sport-professionals", "Sport-professionals"); ?>
-      <?php echo generateCard("assets/img/logo_200x200.png", "Volunteer", "Volunteer"); ?>
-      <?php echo generateCard("assets/img/logo_200x200.png", "Personnel/Support-Staff", "Personnel/Support-Staff"); ?>
-      <?php echo generateCard("assets/img/logo_200x200.png", "Suppliers/Partners", "Suppliers/Partners"); ?>
-      <?php echo generateCard("assets/img/logo_200x200.png", "Community", "Community"); ?>
+      <?php echo generateCard("assets/img/indexIcon/indexIconF1.png", "Interested-Individual", "Interested-Individual"); ?>
+      <?php echo generateCard("assets/img/indexIcon/indexIconF2.png", "Trainers", "Trainers"); ?>
+      <?php echo generateCard("assets/img/indexIcon/indexIconF3.png", "Sport-professionals", "Sport-professionals"); ?>
+      <?php echo generateCard("assets/img/indexIcon/indexIconF4.png", "Volunteer", "Volunteer"); ?>
+      <?php echo generateCard("assets/img/indexIcon/indexIconF5.png", "Personnel/Support-Staff", "Personnel/Support-Staff"); ?>
+      <?php echo generateCard("assets/img/indexIcon/indexIconF6.png", "Suppliers/Partners", "Suppliers/Partners"); ?>
+      <?php echo generateCard("assets/img/indexIcon/indexIconF7.png", "Community", "Community"); ?>
     </div>
   </div>
   <center>
