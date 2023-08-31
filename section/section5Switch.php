@@ -17,7 +17,7 @@ function displayCustomItems($items = [])
 {
     foreach ($items as $item) {
         echo '<div class="alert alert-secondary" role="alert">';
-        echo '<center>- ' . $item . '</center>';
+        echo '<span>- ' . $item . '</span>';
         echo '</div>';
     }
 }

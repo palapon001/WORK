@@ -191,7 +191,7 @@ $defaultValueExerFetch = $foundUser == 1 ? $exerFetch : '';
 
 <!-- pulse after exercise form -->
 <div class="form-control mb-3">
-    <p>ชีพจรหลังการออกกำลังกาย (หากท่านทราบข้อมูล)* </p>
+    <p>ชีพจรหลังการออกกำลังกาย (หากท่านทราบข้อมูล) </p>
     <input name="pulseAfter" type="text" id="pulseAfter" class="form-control" placeholder="เช่น 60" value="<?php echo $foundUser == 1 ? $pulseAfter : ''; ?>">
 </div>
 

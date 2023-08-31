@@ -182,7 +182,7 @@
                 exSportObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
                 exSportObject.append($('<br>'));
                 $.each(resArray, function(index, resItem) {
-                    exSportObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<center>' + '-' + resItem + '</center>'));
+                    exSportObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
                 });
 
 
@@ -228,7 +228,7 @@
                 ResObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
                 ResObject.append($('<br>'));
                 $.each(resArray, function(index, resItem) {
-                    ResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<center>' + '-' + resItem + '</center>'));
+                    ResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
                 });
 
             }).fail(function() {
@@ -274,7 +274,7 @@
                 pubResObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
                 pubResObject.append($('<br>'));
                 $.each(resArray, function(index, resItem) {
-                    pubResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<center>' + '-' + resItem + '</center>'));
+                    pubResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
                 });
 
             }).fail(function() {
