@@ -23,7 +23,7 @@ if (!$_SESSION["username"] && $_SESSION["username"] != 'ADMIN') {  //check sessi
                 <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>หน้าหลัก</span></a></li>
                 <li><a href="#login" class="nav-link scrollto"><i class="bi bi-card-list"></i> <span>ข้อมูลรายชื่อผู้ใช้</span></a></li>
                 <li><a href="#list" class="nav-link scrollto"><i class="bi bi-newspaper"></i><span>ข้อมูลแบบสอบถาม</span></a></li>
-                <li><a href="actions/logout.php" class="nav-link scrollto bg-danger active" onclick="return showLogoutConfirmation();"><i class="bi bi-door-closed"></i> <span>ออกจากระบบ</span></a></li>
+                <li><a href="actions/logout.php" class="nav-link scrollto bg-danger active  " onclick="return showLogoutConfirmation();"><i class="bi bi-door-closed"></i> <span>ออกจากระบบ</span></a></li>
             </ul>
         </nav><!-- .nav-menu -->
 
