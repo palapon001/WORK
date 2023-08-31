@@ -128,7 +128,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
         </button>
         <!-- Button trigger modal -->
         <?php if ($foundUser == 1) { ?>
-          <a href="#personal" class="btn btn-info btn-lg mb-3"><i class="bx bx-user"></i> ข้อมูลส่วนตัว</a>
+          <a href="#personal" class="btn btn-info btn-lg mb-3"><i class="bx bx-user"></i>ดูข้อมูลโปรไฟล์</a>
           <button type="button" class="btn btn-warning btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             แก้ไขข้อมูล แบบสอบถาม
           </button>
