@@ -120,14 +120,15 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h2>ยินต้อนรับคุณ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h2> 
+      <h2>ยินต้อนรับคุณ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h2>
       <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo $_SESSION["level"]; ?>"></span></p>
       <p>
-        <button type="button" class="btn btn-primary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#updateRegis"  >
+        <button type="button" class="btn btn-primary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#updateRegis">
           แก้ไขข้อมูล การเข้าสู่ระบบ
         </button>
         <!-- Button trigger modal -->
         <?php if ($foundUser == 1) { ?>
+          <a href="#personal" class="btn btn-info btn-lg mb-3"><i class="bx bx-user"></i> ข้อมูลส่วนตัว</a>
           <button type="button" class="btn btn-warning btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             แก้ไขข้อมูล แบบสอบถาม
           </button>
@@ -197,7 +198,7 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
 
       $sql_provin = " SELECT * FROM provinces where id = '$provin' ";
       $queryProvin = mysqli_query($con, $sql_provin);
-      
+
       $sql_amphure = " SELECT * FROM amphures where id = '$amphure' ";
       $queryAmphure = mysqli_query($con, $sql_amphure);
   ?>
@@ -327,10 +328,10 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
                 <p>
                   <input type="hidden" id="typeSelect" value="<?php echo $fetchUser['level']; ?>" name="level" class="form-control">
                   <input type="hidden" id="typeSelect" value="<?php echo $fetchUser['status']; ?>" name="status" class="form-control">
-         
+
                 </p>
                 <p>
-                  <input type="submit" name="Submit" value="แก้ไขข้อมูล"  onclick="return confirm('ต้องการแก้ไขข้อมูลหรือไม่')" class="btn btn-primary">
+                  <input type="submit" name="Submit" value="แก้ไขข้อมูล" onclick="return confirm('ต้องการแก้ไขข้อมูลหรือไม่')" class="btn btn-primary">
                 </p>
               <?php } ?>
             </form>
