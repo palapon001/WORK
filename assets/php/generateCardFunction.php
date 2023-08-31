@@ -4,7 +4,7 @@ function generateCard($imageSrc, $buttonId, $buttonText) {
     $html .= '<div class="card text-center">';
     $html .= '<img class="card-img-top" src="' . $imageSrc . '" alt="">';
     $html .= '<div class="card-body">';
-    $html .= '<button type="button" class="zzz btn btn-light rounded-pill" id="' . $buttonId . '"  data-bs-toggle="modal" data-bs-target="#Modal">';
+    $html .= '<button type="button" class="zzz btn btn-warning rounded-pill" id="' . $buttonId . '"  data-bs-toggle="modal" data-bs-target="#Modal">';
     $html .= '<h2>' . $buttonText . '</h2>';
     $html .= '</button>';
     $html .= '</div>';
