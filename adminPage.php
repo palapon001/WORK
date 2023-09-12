@@ -8,7 +8,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
 }
 ?>
 
-<?php generateHead("AdminPage", "assets/img/favicon.png"); ?>
+<?php generateHead("AdminPage", "assets/img/favicon.png"); ?> 
 
 <body>
 
@@ -23,6 +23,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                 <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>หน้าหลัก</span></a></li>
                 <li><a href="#login" class="nav-link scrollto"><i class="bi bi-card-list"></i> <span>ข้อมูลรายชื่อผู้ใช้</span></a></li>
                 <li><a href="#list" class="nav-link scrollto"><i class="bi bi-newspaper"></i><span>ข้อมูลแบบสอบถาม</span></a></li>
+                <li><a href="#report" class="nav-link scrollto"><i class="bi bi-file-bar-graph"></i><span>สรุปรายงานผล</span></a></li>
                 <li><a href="#logout" class="nav-link scrollto bg-danger active" onclick="return showLogoutConfirmation();"><i class="bi bi-door-closed"></i> <span>ออกจากระบบ</span></a></li>
             </ul>
         </nav><!-- .nav-menu -->
@@ -104,7 +105,6 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                 <table class="table  table-bordered table-responsive-sm" style="text-align:center;">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>ชื่อผู้ใช้</th>
                             <th>ประเภท</th>
                             <th>แก้ไข ลบ</th>
@@ -112,11 +112,29 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                     </thead>
                     <tbody>
                         <?php
-                        $sql_login = " SELECT * FROM work_login ";
+                        $levelCounts = array(
+                            'Interested-Individual' => 0,
+                            'Trainers' => 0,
+                            'Sport-professionals' => 0,
+                            'Volunteer' => 0,
+                            'Personnel/Support-Staff' => 0,
+                            'Suppliers/Partners' => 0,
+                            'Community' => 0,
+                        );
+                        $countWorkLogin = 0;
+
+                        $sql_login = "SELECT * FROM work_login";
                         $query_login = mysqli_query($con, $sql_login);
-                        while ($fetch_login = mysqli_fetch_assoc($query_login)) { ?>
+
+                        while ($fetch_login = mysqli_fetch_assoc($query_login)) {
+                            $level = $fetch_login['level'];
+                            if (array_key_exists($level, $levelCounts)) {
+                                $levelCounts[$level]++;
+                            }
+                            $countWorkLogin++;
+                        ?>
+
                             <tr>
-                                <td> <?php echo $fetch_login['ID'] ?> </td>
                                 <td> <?php echo $fetch_login['name'] . ' ' . $fetch_login['surname'] ?> </td>
                                 <td> <?php echo $fetch_login['level'] ?> </td>
                                 <td>
@@ -203,10 +221,26 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             echo '<input type="text" class="form-control mt-1" name="' . $name . '" value="' . $value . '" >';
                             echo '</div>';
                         }
+
+                        $levelQueCounts = array(
+                            'Interested-Individual' => 0,
+                            'Trainers' => 0,
+                            'Sport-professionals' => 0,
+                            'Volunteer' => 0,
+                            'Personnel/Support-Staff' => 0,
+                            'Suppliers/Partners' => 0,
+                            'Community' => 0,
+                        );
+                        $countQueList = 0;
                         $sql_Que_Personal = " SELECT * FROM question ";
                         $query_Que_Personal = mysqli_query($con, $sql_Que_Personal);
-                        while ($fetch_Que_Personal = mysqli_fetch_assoc($query_Que_Personal)) { ?>
-
+                        while ($fetch_Que_Personal = mysqli_fetch_assoc($query_Que_Personal)) {
+                            $level = $fetch_Que_Personal['level'];
+                            if (array_key_exists($level, $levelQueCounts)) {
+                                $levelQueCounts[$level]++;
+                            }
+                            $countQueList++;
+                        ?>
                             <tr>
                                 <td><?php echo $fetch_Que_Personal['name'] ?></td>
                                 <td><?php echo $fetch_Que_Personal['surname'] ?></td>
@@ -227,6 +261,95 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                         <?php }  ?>
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <section id="report">
+            <div class="form-control">
+                <h1>สรุปรายงานผล</h1>
+                <div class="container text-center">
+                    <div class="row align-items-start">
+                        <div class="col">
+
+                            <div class="card" style="width: 30rem;">
+                                <div class="card-body">
+                                    <canvas id="loginUser"></canvas>
+                                    <h5>จำนวนประเภทผู้ใช้ทั้งหมด : (<?php echo $countWorkLogin; ?>)</h5>
+                                    <script>
+                                        const loginUser = document.getElementById('loginUser');
+
+                                        const levelCounts = <?php echo json_encode($levelCounts); ?>;
+                                        const countWorkLogin = <?php echo $countWorkLogin; ?>;
+
+                                        const dataUser = Object.values(levelCounts).map(count => ((count * 100) / countWorkLogin).toFixed(2));
+                                        const labelsUser = Object.keys(levelCounts).map(key => `${key} (${dataUser[Object.keys(levelCounts).indexOf(key)]}%)`);
+
+                                        new Chart(loginUser, {
+                                            type: 'pie',
+                                            data: {
+                                                labels: labelsUser,
+                                                datasets: [{
+                                                    data: dataUser,
+                                                    borderWidth: 1,
+                                                }],
+                                            },
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: false,
+                                                    },
+                                                },
+                                            },
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="card" style="width: 30rem;">
+                                <div class="card-body">
+                                    <canvas id="queUser"></canvas>
+                                    <h5>จำนวนแบบสอบถามจากผู้ใช้ทั้งหมด : (<?php echo $countQueList; ?>)</h5>
+                                    <script>
+                                        const queUser = document.getElementById('queUser');
+
+                                        const levelQueCounts = <?php echo json_encode($levelQueCounts); ?>;
+                                        const countQueList = <?php echo $countQueList; ?>;
+
+                                        const dataQue = Object.values(levelQueCounts).map(count => ((count * 100) / countQueList).toFixed(2));
+                                        const labelsQue = Object.keys(levelQueCounts).map(key => `${key} (${dataQue[Object.keys(levelQueCounts).indexOf(key)]}%)`);
+
+                                        new Chart(queUser, {
+                                            type: 'pie',
+                                            data: {
+                                                labels: labelsQue,
+                                                datasets: [{
+                                                    data: dataQue,
+                                                    borderWidth: 1,
+                                                }],
+                                            },
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: false,
+                                                    },
+                                                },
+                                            },
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+
+
+                        </div> 
+                    </div>
+                </div>
+
+
+
+
             </div>
         </section>
 
