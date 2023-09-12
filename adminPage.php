@@ -190,6 +190,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                         <tr>
                             <th>ชื่อ</th>
                             <th>นามสกุล</th>
+                            <th>ประเภท</th>
                             <th>จัดการข้อมูล</th>
                         </tr>
                     </thead>
@@ -209,6 +210,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             <tr>
                                 <td><?php echo $fetch_Que_Personal['name'] ?></td>
                                 <td><?php echo $fetch_Que_Personal['surname'] ?></td>
+                                <td> <?php echo $fetch_Que_Personal['level'] ?> </td>
 
                                 <td>
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $fetch_Que_Personal['qid'] ?>">
