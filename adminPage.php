@@ -106,6 +106,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                         <tr>
                             <th>ID</th>
                             <th>ชื่อผู้ใช้</th>
+                            <th>ประเภท</th>
                             <th>แก้ไข ลบ</th>
                         </tr>
                     </thead>
@@ -117,6 +118,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             <tr>
                                 <td> <?php echo $fetch_login['ID'] ?> </td>
                                 <td> <?php echo $fetch_login['name'] . ' ' . $fetch_login['surname'] ?> </td>
+                                <td> <?php echo $fetch_login['level'] ?> </td>
                                 <td>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listLogin<?php echo $fetch_login['ID'] ?>">
