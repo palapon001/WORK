@@ -8,7 +8,8 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
 }
 ?>
 
-<?php generateHead("AdminPage", "assets/img/favicon.png"); ?> 
+<?php generateHead("AdminPage", "assets/img/favicon.png"); ?>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <body>
 
@@ -107,7 +108,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                         <tr>
                             <th>ชื่อผู้ใช้</th>
                             <th>ประเภท</th>
-                            <th>แก้ไข ลบ</th>
+                            <th>จัดการข้อมูล</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,7 +124,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                         );
                         $countWorkLogin = 0;
 
-                        $sql_login = "SELECT * FROM work_login";
+                        $sql_login = "SELECT * FROM work_login ORDER BY level ASC";
                         $query_login = mysqli_query($con, $sql_login);
 
                         while ($fetch_login = mysqli_fetch_assoc($query_login)) {
@@ -142,7 +143,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listLogin<?php echo $fetch_login['ID'] ?>">
                                         ดูข้อมูล
                                     </button>
-                                    <a href='actions/deleteUser.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
+                                    <a href='actions/deleteUser.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger mt-3" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
                                 </td>
 
                                 <form method="post" action="actions/updateUserLogin.php">
@@ -232,7 +233,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             'Community' => 0,
                         );
                         $countQueList = 0;
-                        $sql_Que_Personal = " SELECT * FROM question ";
+                        $sql_Que_Personal = " SELECT * FROM question ORDER BY level ASC";
                         $query_Que_Personal = mysqli_query($con, $sql_Que_Personal);
                         while ($fetch_Que_Personal = mysqli_fetch_assoc($query_Que_Personal)) {
                             $level = $fetch_Que_Personal['level'];
@@ -250,7 +251,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $fetch_Que_Personal['qid'] ?>">
                                         ดูข้อมูล
                                     </button>
-                                    <a href='actions/deleteUserQuestions.php?user_id=<?php echo $fetch_Que_Personal['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
+                                    <a href='actions/deleteUserQuestions.php?user_id=<?php echo $fetch_Que_Personal['username'] ?>' class="btn btn-danger mt-3" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
 
                                 </td>
                                 <form method="post" action="actions/updateUserQuestion.php">
@@ -264,92 +265,86 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
             </div>
         </section>
 
+        <!-- report Section -->
         <section id="report">
-            <div class="form-control">
+            <div class="form-control  overflow-auto">
                 <h1>สรุปรายงานผล</h1>
                 <div class="container text-center">
-                    <div class="row align-items-start">
+                    <div class="row">
                         <div class="col">
+                            <div class="form-control" id="loginUser" style="width:80%;  height:500px;"></div>
+                            <script>
+                                google.charts.load('current', {
+                                    'packages': ['corechart']
+                                });
+                                google.charts.setOnLoadCallback(drawChart);
 
-                            <div class="card" style="width: 30rem;">
-                                <div class="card-body">
-                                    <canvas id="loginUser"></canvas>
-                                    <h5>จำนวนประเภทผู้ใช้ทั้งหมด : (<?php echo $countWorkLogin; ?>)</h5>
-                                    <script>
-                                        const loginUser = document.getElementById('loginUser');
+                                function drawChart() {
+                                    const levelCounts = <?php echo json_encode($levelCounts); ?>;
+                                    const countWorkLogin = <?php echo $countWorkLogin; ?>;
 
-                                        const levelCounts = <?php echo json_encode($levelCounts); ?>;
-                                        const countWorkLogin = <?php echo $countWorkLogin; ?>;
+                                    const dataUser = Object.keys(levelCounts).map(key => [key, (levelCounts[key] * 100) / countWorkLogin]);
+                                    dataUser.unshift(['Level', 'Percentage']);
 
-                                        const dataUser = Object.values(levelCounts).map(count => ((count * 100) / countWorkLogin).toFixed(2));
-                                        const labelsUser = Object.keys(levelCounts).map(key => `${key} (${dataUser[Object.keys(levelCounts).indexOf(key)]}%)`);
+                                    const dataTable = google.visualization.arrayToDataTable(dataUser);
 
-                                        new Chart(loginUser, {
-                                            type: 'pie',
-                                            data: {
-                                                labels: labelsUser,
-                                                datasets: [{
-                                                    data: dataUser,
-                                                    borderWidth: 1,
-                                                }],
-                                            },
-                                            options: {
-                                                scales: {
-                                                    y: {
-                                                        beginAtZero: false,
-                                                    },
-                                                },
-                                            },
-                                        });
-                                    </script>
-                                </div>
-                            </div>
+                                    const options = {
+                                        title: 'จำนวนประเภทผู้ใช้ทั้งหมด : (<?php echo $countWorkLogin; ?>)',
+                                        titleTextStyle: {
+                                            fontName: 'Kanit', // ชื่อฟอนต์ Kanit  
+                                            fontSize: 16, // ปรับขนาดตัวอักษร
+                                            bold: true, // ตัวหนา (ถ้าต้องการ)
+                                        },
+                                        pieHole: 0.4, // สร้าง Donut Chart
+                                        chartArea: {
+                                            width: '70%', // กำหนดความกว้างเป็นเปอร์เซ็นต์
+                                            height: '50%', // กำหนดความสูงเป็นเปอร์เซ็นต์
+                                        },
+                                    };
 
+                                    const chart = new google.visualization.PieChart(document.getElementById('loginUser'));
+                                    chart.draw(dataTable, options);
+                                }
+                            </script>
                         </div>
                         <div class="col">
+                            <div class="form-control" id="queUser" style="width:80%;  height:500px;"></div>
+                            <script>
+                                google.charts.load('current', {
+                                    'packages': ['corechart']
+                                });
+                                google.charts.setOnLoadCallback(drawChart);
 
-                            <div class="card" style="width: 30rem;">
-                                <div class="card-body">
-                                    <canvas id="queUser"></canvas>
-                                    <h5>จำนวนแบบสอบถามจากผู้ใช้ทั้งหมด : (<?php echo $countQueList; ?>)</h5>
-                                    <script>
-                                        const queUser = document.getElementById('queUser');
+                                function drawChart() {
+                                    const levelQueCounts = <?php echo json_encode($levelQueCounts); ?>;
+                                    const countQueList = <?php echo $countQueList; ?>;
 
-                                        const levelQueCounts = <?php echo json_encode($levelQueCounts); ?>;
-                                        const countQueList = <?php echo $countQueList; ?>;
+                                    const dataQue = Object.keys(levelQueCounts).map(key => [key, (levelQueCounts[key] * 100) / countQueList]);
+                                    dataQue.unshift(['Level', 'Percentage']);
 
-                                        const dataQue = Object.values(levelQueCounts).map(count => ((count * 100) / countQueList).toFixed(2));
-                                        const labelsQue = Object.keys(levelQueCounts).map(key => `${key} (${dataQue[Object.keys(levelQueCounts).indexOf(key)]}%)`);
+                                    const dataTable = google.visualization.arrayToDataTable(dataQue);
 
-                                        new Chart(queUser, {
-                                            type: 'pie',
-                                            data: {
-                                                labels: labelsQue,
-                                                datasets: [{
-                                                    data: dataQue,
-                                                    borderWidth: 1,
-                                                }],
-                                            },
-                                            options: {
-                                                scales: {
-                                                    y: {
-                                                        beginAtZero: false,
-                                                    },
-                                                },
-                                            },
-                                        });
-                                    </script>
-                                </div>
-                            </div>
+                                    const options = {
+                                        title: 'จำนวนแบบสอบถามจากผู้ใช้ทั้งหมด : (<?php echo $countQueList; ?>)',
+                                        titleTextStyle: {
+                                            fontName: 'Kanit', // ชื่อฟอนต์ Kanit
+                                            fontSize: 16, // ปรับขนาดตัวอักษร
+                                            bold: true, // ตัวหนา (ถ้าต้องการ)
+                                        },
+                                        pieHole: 0.4, // สร้าง Donut Chart
+                                        chartArea: {
+                                            width: '70%', // กำหนดความกว้างเป็นเปอร์เซ็นต์
+                                            height: '50%', // กำหนดความสูงเป็นเปอร์เซ็นต์
+                                        },
+                                    };
 
-
-                        </div> 
+                                    const chart = new google.visualization.PieChart(document.getElementById('queUser'));
+                                    chart.draw(dataTable, options);
+                                }
+                            </script>
+                        </div>
                     </div>
                 </div>
-
-
-
-
             </div>
         </section>
 
