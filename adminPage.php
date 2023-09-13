@@ -519,171 +519,218 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                         </div>
                     </div>
 
+
+                    <script>
+                        <?php
+                        function displayCustomList($text, $items = [])
+                        {
+                            if ($text !== "---,---" && trim($text) !== "") {
+                                if (strpos($text, ',') !== false) {
+                                    $itemList = explode(',', $text);
+                                    $items = array_merge($items, $itemList);
+                                } else {
+                                    $items[] = $text;
+                                }
+                            }
+
+                            return $items;
+                        }
+
+                        function displayCustomItems($items = [])
+                        {
+                            foreach ($items as $item) {
+                                echo '<div class="alert alert-secondary" role="alert">';
+                                echo '<span>- ' . $item . '</span>';
+                                echo '</div>';
+                            }
+                        }
+                        ?>
+                        $(function() {
+                            var provinceExSportObject = $('#provinceEXsportS5');
+                            var exSportObject = $('#exSportS5');
+
+                            exSportObject.hide();
+
+                            provinceExSportObject.on('change', function() {
+                                exSportObject.show();
+                                var provinceId = $(this).val();
+                                exSportObject.empty();
+
+                                var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
+
+                                $.get(url, function(data) {
+                                    var result = JSON.parse(data);
+                                    var itemCount = 0;
+                                    var resArray = [];
+
+                                    $.each(result, function(index, item) {
+                                        if (item.exper_sports !== "---,---" && item.exper_sports.trim() !== "") {
+                                            itemCount++;
+                                            var resText = item.exper_sports;
+
+                                            if (resText.includes(',')) {
+                                                var resItems = resText.split(',');
+                                                resArray = resArray.concat(resItems);
+                                            } else {
+                                                resArray.push(resText);
+                                            }
+                                        }
+                                    });
+
+                                    exSportObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
+                                    exSportObject.append($('<br>'));
+                                    $.each(resArray, function(index, resItem) {
+                                        exSportObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
+                                    });
+
+
+                                }).fail(function() {
+                                    exSportObject.empty();
+                                    exSportObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
+                                });
+                            });
+
+
+
+                            var provinceObject = $('#provinceResS5');
+                            var ResObject = $('#resS5');
+
+                            ResObject.hide();
+
+                            provinceObject.on('change', function() {
+                                ResObject.show();
+                                var provinceId = $(this).val();
+                                ResObject.empty();
+
+                                var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
+
+                                $.get(url, function(data) {
+                                    var result = JSON.parse(data);
+                                    var itemCount = 0;
+                                    var resArray = []; // เพิ่มตัวแปรเพื่อเก็บค่า item.pub_res ที่มี comma
+
+                                    $.each(result, function(index, item) {
+                                        if (item.res !== "---,---" && item.res.trim() !== "") {
+                                            itemCount++;
+                                            var resText = item.res;
+
+                                            if (resText.includes(',')) {
+                                                var resItems = resText.split(','); // แยกข้อมูลด้วย comma เพื่อสร้าง Array
+                                                resArray = resArray.concat(resItems); // เพิ่มข้อมูลใน Array
+                                            } else {
+                                                resArray.push(resText);
+                                            }
+                                        }
+                                    });
+
+                                    ResObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
+                                    ResObject.append($('<br>'));
+                                    $.each(resArray, function(index, resItem) {
+                                        ResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
+                                    });
+
+                                }).fail(function() {
+                                    ResObject.empty();
+                                    ResObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
+                                });
+                            });
+
+
+                            // on change province for publication results
+                            var provincePubresObject = $('#provincePubresS5');
+                            var pubResObject = $('#pubresS5');
+
+                            pubResObject.hide();
+
+                            provincePubresObject.on('change', function() {
+                                var provinceId = $(this).val();
+                                pubResObject.empty();
+
+                                pubResObject.show();
+
+                                var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
+
+                                $.get(url, function(data) {
+                                    var result = JSON.parse(data);
+                                    var itemCount = 0;
+                                    var resArray = [];
+
+                                    $.each(result, function(index, item) {
+                                        if (item.pub_res !== "---,---" && item.pub_res.trim() !== "") {
+                                            itemCount++;
+                                            var resText = item.pub_res;
+
+                                            if (resText.includes(',')) {
+                                                var resItems = resText.split(',');
+                                                resArray = resArray.concat(resItems);
+                                            } else {
+                                                resArray.push(resText);
+                                            }
+                                        }
+                                    });
+
+                                    pubResObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
+                                    pubResObject.append($('<br>'));
+                                    $.each(resArray, function(index, resItem) {
+                                        pubResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
+                                    });
+
+                                }).fail(function() {
+                                    pubResObject.empty();
+                                    pubResObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
+                                });
+                            });
+
+
+                            var provinceVolExperObject = $('#provinceVolExper');
+                            var volExperObject = $('#volExper');
+
+                            volExperObject.hide();
+
+                            provinceVolExperObject.on('change', function() {
+                                var provinceId = $(this).val();
+                                volExperObject.empty();
+
+                                volExperObject.show();
+
+                                var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
+
+                                $.get(url, function(data) {
+                                    var result = JSON.parse(data);
+                                    var itemCount = 0;
+                                    var resArray = [];
+
+                                    $.each(result, function(index, item) {
+                                        if (item.vol_exper !== "---" && item.vol_exper.trim() !== "") {
+                                            itemCount++;
+                                            var resText = item.vol_exper;
+
+                                            if (resText.includes(',')) {
+                                                var resItems = resText.split(',');
+                                                resArray = resArray.concat(resItems);
+                                            } else {
+                                                resArray.push(resText);
+                                            }
+                                        }
+                                    });
+
+                                    volExperObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
+                                    volExperObject.append($('<br>'));
+                                    $.each(resArray, function(index, resItem) {
+                                        volExperObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
+                                    });
+
+                                }).fail(function() {
+                                    volExperObject.empty();
+                                    volExperObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
+                                });
+                            });
+
+
+                        });
+                    </script>
                     <div class="row mt-3 d-flex justify-content-center">
                         <div class="col-lg-5">
-                            <script>
-                                <?php
-                                function displayCustomList($text, $items = [])
-                                {
-                                    if ($text !== "---,---" && trim($text) !== "") {
-                                        if (strpos($text, ',') !== false) {
-                                            $itemList = explode(',', $text);
-                                            $items = array_merge($items, $itemList);
-                                        } else {
-                                            $items[] = $text;
-                                        }
-                                    }
-
-                                    return $items;
-                                }
-
-                                function displayCustomItems($items = [])
-                                {
-                                    foreach ($items as $item) {
-                                        echo '<div class="alert alert-secondary" role="alert">';
-                                        echo '<span>- ' . $item . '</span>';
-                                        echo '</div>';
-                                    }
-                                }
-                                ?>
-                                $(function() {
-                                    var provinceExSportObject = $('#provinceEXsportS5');
-                                    var exSportObject = $('#exSportS5');
-
-                                    exSportObject.hide();
-
-                                    provinceExSportObject.on('change', function() {
-                                        exSportObject.show();
-                                        var provinceId = $(this).val();
-                                        exSportObject.empty();
-
-                                        var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
-
-                                        $.get(url, function(data) {
-                                            var result = JSON.parse(data);
-                                            var itemCount = 0;
-                                            var resArray = [];
-
-                                            $.each(result, function(index, item) {
-                                                if (item.exper_sports !== "---,---" && item.exper_sports.trim() !== "") {
-                                                    itemCount++;
-                                                    var resText = item.exper_sports;
-
-                                                    if (resText.includes(',')) {
-                                                        var resItems = resText.split(',');
-                                                        resArray = resArray.concat(resItems);
-                                                    } else {
-                                                        resArray.push(resText);
-                                                    }
-                                                }
-                                            });
-
-                                            exSportObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
-                                            exSportObject.append($('<br>'));
-                                            $.each(resArray, function(index, resItem) {
-                                                exSportObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
-                                            });
-
-
-                                        }).fail(function() {
-                                            exSportObject.empty();
-                                            exSportObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
-                                        });
-                                    });
-
-
-
-                                    var provinceObject = $('#provinceResS5');
-                                    var ResObject = $('#resS5');
-
-                                    ResObject.hide();
-
-                                    provinceObject.on('change', function() {
-                                        ResObject.show();
-                                        var provinceId = $(this).val();
-                                        ResObject.empty();
-
-                                        var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
-
-                                        $.get(url, function(data) {
-                                            var result = JSON.parse(data);
-                                            var itemCount = 0;
-                                            var resArray = []; // เพิ่มตัวแปรเพื่อเก็บค่า item.pub_res ที่มี comma
-
-                                            $.each(result, function(index, item) {
-                                                if (item.res !== "---,---" && item.res.trim() !== "") {
-                                                    itemCount++;
-                                                    var resText = item.res;
-
-                                                    if (resText.includes(',')) {
-                                                        var resItems = resText.split(','); // แยกข้อมูลด้วย comma เพื่อสร้าง Array
-                                                        resArray = resArray.concat(resItems); // เพิ่มข้อมูลใน Array
-                                                    } else {
-                                                        resArray.push(resText);
-                                                    }
-                                                }
-                                            });
-
-                                            ResObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
-                                            ResObject.append($('<br>'));
-                                            $.each(resArray, function(index, resItem) {
-                                                ResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
-                                            });
-
-                                        }).fail(function() {
-                                            ResObject.empty();
-                                            ResObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
-                                        });
-                                    });
-
-
-                                    // on change province for publication results
-                                    var provincePubresObject = $('#provincePubresS5');
-                                    var pubResObject = $('#pubresS5');
-
-                                    pubResObject.hide();
-
-                                    provincePubresObject.on('change', function() {
-                                        var provinceId = $(this).val();
-                                        pubResObject.empty();
-
-                                        pubResObject.show();
-
-                                        var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
-
-                                        $.get(url, function(data) {
-                                            var result = JSON.parse(data);
-                                            var itemCount = 0;
-                                            var resArray = [];
-
-                                            $.each(result, function(index, item) {
-                                                if (item.pub_res !== "---,---" && item.pub_res.trim() !== "") {
-                                                    itemCount++;
-                                                    var resText = item.pub_res;
-
-                                                    if (resText.includes(',')) {
-                                                        var resItems = resText.split(',');
-                                                        resArray = resArray.concat(resItems);
-                                                    } else {
-                                                        resArray.push(resText);
-                                                    }
-                                                }
-                                            });
-
-                                            pubResObject.append($('<div class="btn btn-primary mb-3 mt-3"></div>').text('ผลลัพธ์ = ' + resArray.length + ' รายการ '));
-                                            pubResObject.append($('<br>'));
-                                            $.each(resArray, function(index, resItem) {
-                                                pubResObject.append($('<div class="alert alert-secondary" role="alert"></div>').html('<span>' + '-' + resItem + '</span>'));
-                                            });
-
-                                        }).fail(function() {
-                                            pubResObject.empty();
-                                            pubResObject.append($('<div></div>').text('เกิดข้อผิดพลาดในการดึงข้อมูล'));
-                                        });
-                                    });
-
-                                });
-                            </script>
                             <div class="form-control mb-3">
                                 <p>สาขาความเชี่ยวชาญทางด้านวิทยาศาสตร์การกีฬาเพื่อสุขภาพของผู้เชี่ยวชาญทั้งหมด</p>
                                 <div class="form-control overflow-auto" style="height: 15rem;">
@@ -755,6 +802,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             </div>
                         </div>
                     </div>
+
                     <div class="row mt-3 d-flex justify-content-center">
                         <div class="col-lg-5">
                             <div class="form-control mb-3">
@@ -791,7 +839,46 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             </div>
                         </div>
                     </div>
-                    
+
+                    <div class="row mt-3 d-flex justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="form-control mb-3">
+                                <p>อาสาสมัครทั้งหมด</p>
+                                <div class="form-control overflow-auto" style="height: 15rem;">
+                                    <?php 
+                                    $volExperArray = array();
+                                    $sqlALLVolExper = "SELECT * FROM question";
+                                    $queryALLVolExper = mysqli_query($con, $sqlALLVolExper);
+                                    while ($resultALLVolExper = mysqli_fetch_assoc($queryALLVolExper)) : ?>
+                                        <?php
+                                        if($resultALLVolExper['vol_exper'] !== '---' ){ 
+                                            $volExperText = $resultALLVolExper['vol_exper'];
+                                            $volExperArray = displayCustomList($volExperText, $volExperArray);
+                                        }  
+                                        ?>
+                                    <?php endwhile; ?>
+                                    <div class="btn btn-primary mb-3 mt-3"> <?php echo 'ผลลัพธ์ = ' . count($volExperArray) . ' รายการ'; ?></div> <br>
+                                    <?php displayCustomItems($volExperArray) ?>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 overflow-auto" style="height: 19rem;">
+                            <div class="form-control mb-3">
+                                <p> อาสาสมัครแยกตามจังหวัด</p>
+                                <select name="province_id" id="provinceVolExper" class="form-control mb-3" required>
+                                    <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+                                    <?php
+                                    $sqlProvinVolExper = "SELECT * FROM provinces";
+                                    $queryProvinVolExper = mysqli_query($con, $sqlProvinVolExper);
+                                    while ($resultProvinVolExper = mysqli_fetch_assoc($queryProvinVolExper)) : ?>
+                                        <option value="<?= $resultProvinVolExper['id'] ?>"><?= $resultProvinVolExper['name_th'] ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                                <div id="volExper" class="form-control"></div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

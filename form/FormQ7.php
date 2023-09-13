@@ -15,7 +15,7 @@
         </label>
     </div>
     <div class="alert alert-danger mb-3" id="emptyAlert-vol_exper" style="display: none;">
-        กรุณากรอกงานวิจัย
+        กรุณากรอกข้อมูล
     </div>
 </div>  
 <!-- end vol_exper form -->
