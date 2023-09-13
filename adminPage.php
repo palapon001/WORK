@@ -3,13 +3,15 @@
 <?php session_start();
 include 'assets/php/generateHead.php';
 include 'condb.php';
+include 'assets/php/evaluateExercise.php';
 if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
     Header("Location: index.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
 }
 ?>
 
 <?php generateHead("AdminPage", "assets/img/favicon.png"); ?>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <body>
 
@@ -271,80 +273,251 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                 <h1>สรุปรายงานผล</h1>
                 <div class="container text-center">
                     <div class="row">
-                        <div class="col">
-                            <div class="form-control" id="loginUser" style="width:80%;  height:500px;"></div>
+                        <div class="col-lg-3">
+                            <canvas class="form-control" id="loginUser"></canvas>
                             <script>
-                                google.charts.load('current', {
-                                    'packages': ['corechart']
+                                const levelCounts = <?php echo json_encode($levelCounts); ?>;
+                                const countWorkLogin = <?php echo $countWorkLogin; ?>;
+
+                                const dataUser = Object.values(levelCounts).map(count => ((count * 100) / countWorkLogin).toFixed(2));
+                                const labelsUser = Object.keys(levelCounts).map(key => `${key} (${dataUser[Object.keys(levelCounts).indexOf(key)]}%)`);
+
+
+                                const loginUserID = document.getElementById('loginUser').getContext('2d');
+                                const loginUser = new Chart(loginUserID, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: labelsUser,
+                                        datasets: [{
+                                            data: dataUser,
+                                            borderWidth: 1,
+                                        }],
+                                    },
+                                    options: {
+                                        plugins: {
+                                            legend: {
+                                                display: true,
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'จำนวนประเภทผู้ใช้ทั้งหมด : (<?php echo $countWorkLogin; ?>)',
+                                                font: {
+                                                    family: 'Kanit', // ชื่อฟอนต์ Kanit
+                                                    size: 16, // ปรับขนาดตัวอักษร
+                                                    weight: 'bold', // ตัวหนา (ถ้าต้องการ)
+                                                },
+                                            },
+                                        },
+                                        cutout: '40%', // สร้าง Donut Chart
+                                    },
                                 });
-                                google.charts.setOnLoadCallback(drawChart);
+                            </script>
 
-                                function drawChart() {
-                                    const levelCounts = <?php echo json_encode($levelCounts); ?>;
-                                    const countWorkLogin = <?php echo $countWorkLogin; ?>;
+                        </div>
+                        <div class="col-lg-3">
+                            <canvas class="form-control" id="queUser"></canvas>
+                            <script>
+                                const levelQueCounts = <?php echo json_encode($levelQueCounts); ?>;
+                                const countQueList = <?php echo $countQueList; ?>;
 
-                                    const dataUser = Object.keys(levelCounts).map(key => [key, (levelCounts[key] * 100) / countWorkLogin]);
-                                    dataUser.unshift(['Level', 'Percentage']);
+                                const dataQue = Object.values(levelQueCounts).map(count => ((count * 100) / countQueList).toFixed(2));
+                                const labelsQue = Object.keys(levelQueCounts).map(key => `${key} (${dataQue[Object.keys(levelQueCounts).indexOf(key)]}%)`);
 
-                                    const dataTable = google.visualization.arrayToDataTable(dataUser);
-
-                                    const options = {
-                                        title: 'จำนวนประเภทผู้ใช้ทั้งหมด : (<?php echo $countWorkLogin; ?>)',
-                                        titleTextStyle: {
-                                            fontName: 'Kanit', // ชื่อฟอนต์ Kanit  
-                                            fontSize: 16, // ปรับขนาดตัวอักษร
-                                            bold: true, // ตัวหนา (ถ้าต้องการ)
+                                const queUserID = document.getElementById('queUser').getContext('2d');
+                                const queUser = new Chart(queUserID, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: labelsQue,
+                                        datasets: [{
+                                            data: dataQue,
+                                            borderWidth: 1,
+                                        }],
+                                    },
+                                    options: {
+                                        plugins: {
+                                            legend: {
+                                                display: true,
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'จำนวนแบบสอบถามจากผู้ใช้ทั้งหมด : (<?php echo $countQueList; ?>)',
+                                                font: {
+                                                    family: 'Kanit', // ชื่อฟอนต์ Kanit
+                                                    size: 16, // ปรับขนาดตัวอักษร
+                                                    weight: 'bold', // ตัวหนา (ถ้าต้องการ)
+                                                },
+                                            },
                                         },
-                                        pieHole: 0.4, // สร้าง Donut Chart
-                                        chartArea: {
-                                            width: '70%', // กำหนดความกว้างเป็นเปอร์เซ็นต์
-                                            height: '50%', // กำหนดความสูงเป็นเปอร์เซ็นต์
-                                        },
-                                    };
+                                        cutout: '40%', // สร้าง Donut Chart
+                                    },
+                                });
+                            </script>
 
-                                    const chart = new google.visualization.PieChart(document.getElementById('loginUser'));
-                                    chart.draw(dataTable, options);
+                        </div>
+                        <div class="col-lg-3">
+                            <canvas class="form-control" id="myChartphp"></canvas>
+                            <script>
+                                <?php
+                                $passChart = 0;
+                                $not_passChart = 0;
+
+                                $sql_quesChart = " SELECT * FROM question ";
+                                $queryQuesChart = mysqli_query($con, $sql_quesChart);
+                                while ($fetchChart = mysqli_fetch_assoc($queryQuesChart)) {
+                                    $evaluationResult = evaluateExercise($fetchChart['week'], $fetchChart['intensityOptions'], $fetchChart['duration']);
+                                    if ($evaluationResult == 'ผ่านเกณฑ์') {
+                                        $passChart++;
+                                    } else {
+                                        $not_passChart++;
+                                    }
                                 }
+                                $passChartPercent = round(($passChart * 100) / ($passChart + $not_passChart), 2);
+                                $notPassChartPercent = round(($not_passChart * 100) / ($passChart + $not_passChart), 2);
+                                ?>
+
+                                const ctx = document.getElementById('myChartphp').getContext('2d');
+                                const myChart = new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['ผ่าน ' + <?php echo $passChart ?> + ' คน (' + <?php echo $passChartPercent ?> + '%)', 'ไม่ผ่าน ' + <?php echo $not_passChart ?> + ' คน (' + <?php echo $notPassChartPercent ?> + '%)'],
+                                        datasets: [{
+                                            data: [<?php echo $passChart ?>, <?php echo $not_passChart ?>],
+                                            borderWidth: 1,
+                                        }],
+                                    },
+                                    options: {
+                                        plugins: {
+                                            legend: {
+                                                display: true,
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'ผลการประเมินของคำถามจากผู้ใช้ทั้งหมด : (<?php echo $countQueList; ?>)',
+                                                font: {
+                                                    family: 'Kanit', // ชื่อฟอนต์ Kanit
+                                                    size: 16, // ปรับขนาดตัวอักษร
+                                                    weight: 'bold', // ตัวหนา (ถ้าต้องการ)
+                                                },
+                                            },
+                                        },
+                                        cutout: '50%',
+                                    },
+                                });
                             </script>
                         </div>
-                        <div class="col">
-                            <div class="form-control" id="queUser" style="width:80%;  height:500px;"></div>
+                        <div class="col-lg-3 overflow-auto" style="height: 19rem;">
+                            <div class="form-control">
+                                <p>ผลการประเมินการออกกำลังกาย รายจังหวัด</p>
+                                <?php
+                                $sqlProvinCH = "SELECT * FROM provinces";
+                                $queryProvinCH = mysqli_query($con, $sqlProvinCH);
+                                ?>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <select name="province_id" id="provinceCH" class="form-control" required>
+                                            <option value="<?php echo $fetch['province_id']; ?>">เลือกจังหวัด</option>
+                                            <?php while ($resultProvinCH = mysqli_fetch_assoc($queryProvinCH)) : ?>
+                                                <option value="<?= $resultProvinCH['id'] ?>"><?= $resultProvinCH['name_th'] ?></option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-2" id="resultCH"></div>
+                                <canvas class="" id="myChart1"></canvas>
+                            </div>
+
                             <script>
-                                google.charts.load('current', {
-                                    'packages': ['corechart']
-                                });
-                                google.charts.setOnLoadCallback(drawChart);
-
-                                function drawChart() {
-                                    const levelQueCounts = <?php echo json_encode($levelQueCounts); ?>;
-                                    const countQueList = <?php echo $countQueList; ?>;
-
-                                    const dataQue = Object.keys(levelQueCounts).map(key => [key, (levelQueCounts[key] * 100) / countQueList]);
-                                    dataQue.unshift(['Level', 'Percentage']);
-
-                                    const dataTable = google.visualization.arrayToDataTable(dataQue);
-
-                                    const options = {
-                                        title: 'จำนวนแบบสอบถามจากผู้ใช้ทั้งหมด : (<?php echo $countQueList; ?>)',
-                                        titleTextStyle: {
-                                            fontName: 'Kanit', // ชื่อฟอนต์ Kanit
-                                            fontSize: 16, // ปรับขนาดตัวอักษร
-                                            bold: true, // ตัวหนา (ถ้าต้องการ)
-                                        },
-                                        pieHole: 0.4, // สร้าง Donut Chart
-                                        chartArea: {
-                                            width: '70%', // กำหนดความกว้างเป็นเปอร์เซ็นต์
-                                            height: '50%', // กำหนดความสูงเป็นเปอร์เซ็นต์
-                                        },
-                                    };
-
-                                    const chart = new google.visualization.PieChart(document.getElementById('queUser'));
-                                    chart.draw(dataTable, options);
+                                function evaluateExercise(daysPerWeek, intensity, duration) {
+                                    if (daysPerWeek >= 3 && (intensity >= 'ระดับปานกลาง' && intensity <= 'ระดับหนัก') && duration >= 20) {
+                                        return "ผ่านเกณฑ์";
+                                    } else {
+                                        return "ต่ำกว่าเกณฑ์";
+                                    }
                                 }
+
+                                function createChart(chartId, passCount, notPassCount) {
+                                    var existingChart = Chart.getChart(chartId);
+                                    if (existingChart) {
+                                        existingChart.destroy();
+                                    }
+                                    var total = passCount + notPassCount;
+                                    var passPercent = ((passCount / total) * 100).toFixed(2);
+                                    var notPassPercent = ((notPassCount / total) * 100).toFixed(2);
+
+                                    const ctx = document.getElementById(chartId);
+                                    new Chart(ctx, {
+                                        type: 'doughnut',
+                                        data: {
+                                            labels: ['ผ่าน ' + passCount + ' คน (' + passPercent + '%)', 'ไม่ผ่าน ' + notPassCount + ' คน (' + notPassPercent + '%)'],
+                                            datasets: [{
+                                                label: '',
+                                                data: [passCount, notPassCount],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+
+                                $(function() {
+                                    var provinceObject1 = $('#provinceCH');
+                                    var resultObject1 = $('#resultCH');
+
+                                    provinceObject1.on('change', function() {
+                                        var provinceId = $(this).val();
+                                        var level = '';
+                                        resultObject1.empty();
+                                        var passCount = 0;
+                                        var notPassCount = 0;
+                                        var getNameTH = '';
+
+                                        var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
+
+                                        $.get(url, function(data) {
+                                            var result = JSON.parse(data);
+
+                                            if (result.length === 0) {
+                                                $('#myChart1').hide();
+                                                resultObject1.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
+                                                return;
+                                            }
+
+                                            $.each(result, function(index, item) {
+                                                var exerciseEvaluation = evaluateExercise(item.week, item.intensityOptions, item.duration);
+
+                                                if (exerciseEvaluation === "ผ่านเกณฑ์") {
+                                                    passCount++;
+                                                } else {
+                                                    notPassCount++;
+                                                }
+
+                                                getNameTH = item.name_th;
+                                            });
+
+                                            resultObject1.append($('<div></div>').html('จังหวัด = ' + getNameTH + ' รายการ '));
+                                            resultObject1.append($('<div></div>').html('พบ = ' + result.length + ' รายการ '));
+                                            resultObject1.append($('<div></div>').html('ผ่านเกณฑ์: ' + passCount + ' รายการ'));
+                                            resultObject1.append($('<div></div>').html('ต่ำกว่าเกณฑ์: ' + notPassCount + ' รายการ'));
+
+                                            $('#myChart1').show();
+
+                                            createChart('myChart1', passCount, notPassCount);
+                                        });
+                                    });
+                                });
                             </script>
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
         </section>
 
