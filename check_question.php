@@ -74,7 +74,7 @@ $train_exper_exer_input = $_POST["trainExperExerInput"];
 $train_exper_input = $_POST["trainExperInput"];
 $pro_org_exer_input = $_POST["trainExperExerInput"];
 $train_exper_input = $_POST["trainExperInput"];
-$org_heal_input = $_POST["orgHealInout"];
+$org_heal_input = $_POST["orgHealInput"];
 $pro_org_exer_input = $_POST["proOrgExerInput"];
 $activity_input = $_POST["activityNameInput"];
 //echo ข้อมูล
