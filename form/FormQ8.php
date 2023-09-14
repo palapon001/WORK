@@ -5,13 +5,13 @@
     <?php if ($_SESSION["level"] == 'Personnel/Support-Staff') { ?>
         <p>ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ</p>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="orgHealInput" value="มี" id="orgHeal" <?php if ($foundUser == 1 && $orgHeal == "มี") echo "checked"; ?>>
+            <input class="form-check-input" type="radio" name="orgHealInput" value="มี" id="orgHeal" <?php if ($foundUser == 1 && $org_heal == "มี") echo "checked"; ?>>
             <label class="form-check-label" for="orgHeal">
                 มี
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="orgHealInput" value="ไม่มี" id="orgHeal" <?php if ($foundUser == 1 && $orgHeal == "ไม่มี") echo "checked"; ?>>
+            <input class="form-check-input" type="radio" name="orgHealInput" value="ไม่มี" id="orgHeal" <?php if ($foundUser == 1 && $org_heal == "ไม่มี") echo "checked"; ?>>
             <label class="form-check-label" for="orgHeal">
                 ไม่มี
             </label>
@@ -44,7 +44,7 @@ if ($_SESSION["level"] !== 'Personnel/Support-Staff') {
 <script src="assets/js/createInputForm.js"></script>
 <script>
     $(document).ready(function() {
-        const radioName = "orgHeal";
+        const radioName = "orgHealInput";
         const formIds = <?php echo json_encode($formIds); ?>;
 
         $(`input[name=${radioName}]`).on("change", checkAndUpdate);
