@@ -43,9 +43,9 @@ $train_exper = $_POST["trainExper"] ?? [];
 $vol_exper = $_POST["vol_exper"];
 
 //F8
-$org_heal = $_POST["org_heal"];
-$pro_org_exer = $_POST["proOrgExer"];
-$activity = $_POST["activityName"];
+$org_heal = $_POST["orgHeal"] ?? [];
+$pro_org_exer = $_POST["proOrgExer"] ?? [];
+$activity = $_POST["activityName"] ?? [];
 
 //Options
 $eduOptions = $_POST["eduOptions"];
@@ -74,6 +74,9 @@ $train_exper_exer_input = $_POST["trainExperExerInput"];
 $train_exper_input = $_POST["trainExperInput"];
 $pro_org_exer_input = $_POST["trainExperExerInput"];
 $train_exper_input = $_POST["trainExperInput"];
+$org_heal_input = $_POST["orgHealInout"];
+$pro_org_exer_input = $_POST["proOrgExerInput"];
+$activity_input = $_POST["activityNameInput"];
 //echo ข้อมูล
 
 // echo "user = " . $user . '<br>';
@@ -179,6 +182,9 @@ $checkExper_sports = checkEmpty($exper_sports, $exper_sports_input);
 $checkPub_res = checkEmpty($pub_res, $pub_res_input);
 $checkTrain_exper_exer = checkEmpty($train_exper_exer, $train_exper_exer_input);
 $checkTrain_exper = checkEmpty($train_exper, $train_exper_input);
+$checkOrgHeal = checkEmpty($org_heal, $org_heal_input);
+$checkProOrgExer = checkEmpty($pro_org_exer, $pro_org_exer_input);
+$checkActivity = checkEmpty($activity, $activity_input);
 
 $checkEDU = checkOption($eduOptions, 'other', $eduInput);
 $checkOCC = checkOption($occOptions, 'other', $eduInput);
@@ -196,7 +202,7 @@ if ($num > 0) {
         SET username = '$user', name = '$name', surname = '$surname', level = '$level', sex = '$sex', province_id = '$province_id', amphure_id = '$amphure_id', age = '$age', height = '$height', weight = '$weight', pressure = '$pressure',
             pulse = '$pulse', location = '$checkLoc', period = '$checkPer', reason1 = '$checkRes1', reason2 = '$checkRes2', exer = '$checkExer', pulseAfter = '$pulseAfter', week = '$week', duration = '$duration', agency_name1 = '$agency_name1', agency_name2 = '$agency_name2',
             community = '$community', loc_community = '$loc_community', loc_agency = '$loc_agency', business = '$business', exper_sports = '$checkExper_sports', res = '$checkRes', pub_res = '$checkPub_res', train_exper_exer = '$checkTrain_exper_exer', train_exper = '$checkTrain_exper', vol_exper = '$vol_exper',
-            org_heal = '$org_heal', pro_org_exer = '$pro_org_exer', activity = '$activity', eduOptions = '$checkEDU', occOptions = '$checkOCC', maryOptions = '$checkMary', nationOptions = '$checkNation', congenOptions = '$congenOptions',
+            org_heal = '$checkOrgHeal', pro_org_exer = '$checkProOrgExer', activity = '$checkActivity', eduOptions = '$checkEDU', occOptions = '$checkOCC', maryOptions = '$checkMary', nationOptions = '$checkNation', congenOptions = '$congenOptions',
             motiOptions = '$checkMoti', intensityOptions = '$intensityOptions'
         WHERE username = '$user' ";  // แทนที่ your_id ด้วยค่า id ที่คุณต้องการอัปเดต
 
@@ -211,7 +217,7 @@ if ($num > 0) {
 			 VALUES('$user','$name', '$surname','$level','$sex','$province_id','$amphure_id','$age','$height','$weight','$pressure',
 								 '$pulse','$checkLoc','$checkPer','$checkRes1','$checkRes2','$checkExer','$pulseAfter','$week','$duration','$agency_name1','$agency_name2',
 								 '$community','$loc_community','$loc_agency','$business','$checkExper_sports','$checkRes','$checkPub_res','$checkTrain_exper_exer','$checkTrain_exper','$vol_exper',
-								 '$org_heal','$pro_org_exer','$activity','$checkEDU','$checkOCC','$checkMary','$checkNation','$congenOptions',
+								 '$checkOrgHeal','$checkProOrgExer','$checkActivity','$checkEDU','$checkOCC','$checkMary','$checkNation','$congenOptions',
 								 '$checkMoti','$intensityOptions')";
 
 	$result = mysqli_query($con, $sql) or die("Error in query: $sql ");

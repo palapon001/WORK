@@ -2,16 +2,16 @@
 <h1>ข้อมูลประสบการณ์การจัดกิจกรรม/โครงการการออกกำลังกายเพื่อสุขภาพ</h1>
 <!-- orgHeal form -->
 <div class="form-control mb-3">
-    <p>ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ</p>
     <?php if ($_SESSION["level"] == 'Personnel/Support-Staff') { ?>
+        <p>ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ</p>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="orgHeal" value="มี" id="orgHeal" <?php if ($foundUser == 1 && $orgHeal == "มี") echo "checked"; ?>>
+            <input class="form-check-input" type="radio" name="orgHealInput" value="มี" id="orgHeal" <?php if ($foundUser == 1 && $orgHeal == "มี") echo "checked"; ?>>
             <label class="form-check-label" for="orgHeal">
                 มี
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="orgHeal" value="ไม่มี" id="orgHeal" <?php if ($foundUser == 1 && $orgHeal == "ไม่มี") echo "checked"; ?>>
+            <input class="form-check-input" type="radio" name="orgHealInput" value="ไม่มี" id="orgHeal" <?php if ($foundUser == 1 && $orgHeal == "ไม่มี") echo "checked"; ?>>
             <label class="form-check-label" for="orgHeal">
                 ไม่มี
             </label>
@@ -21,7 +21,7 @@
         </div>
     <?php } else {
         $defaultValueOrgHeal = $foundUser == 1 ? $org_heal : '';
-        echo generateFormField("orgHealInput", "โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ", "", true, true, $defaultValueOrgHeal, "text", customGenarateFormField('โครงการ', 'orgHeal'));
+        echo generateFormField("orgHealInput", "ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ", "", true, true, $defaultValueOrgHeal, "text", customGenarateFormField('โครงการ', 'orgHeal'));
     } ?>
 </div>
 <!-- end orgHeal form -->
@@ -35,7 +35,7 @@ echo generateFormField("activityNameInput", "กิจกรรม/โครง�
 $formIds = ["proOrgExerInput","activityNameInput"];
 
 if ($_SESSION["level"] !== 'Personnel/Support-Staff') {
-    array_unshift($formIds, "orgHeal");
+    array_unshift($formIds, "orgHealInput");
 }
 ?>
 
