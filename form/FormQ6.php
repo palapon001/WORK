@@ -1,18 +1,6 @@
 <h1>ข้อมูลประสบการณ์การอบรม</h1>
 <?php
-function customGenarateFormField($hname, $name)
-{
-    $nameInput = $name."Input" ;
-    $id = "add-".$nameInput;
-    $contain = "formContainer-".$nameInput;
-    $customText = '';
-    $customText .= <<<HTML
-    <button type="button" class="btn btn-primary " id="$id" onclick="createInputForm('$hname','$name','$contain');" disabled>เพิ่มข้อมูล$hname</button>
-    <div class="form-group mt-3" id="$contain">
-    </div> 
-    HTML;
-    return $customText;
-}
+include 'assets/php/customGenarateFormField.php' ;
 $defaultValueTrainExperExer = $foundUser == 1 ? $train_exper_exer : '';
 $defaultValueTrainExper = $foundUser == 1 ? $train_exper : ''; 
 echo generateFormField("trainExperExerInput", "ประสบการณ์การอบรมทางด้านการออกกำลังกายเพื่อสุขภาพ", "กรอกข้อมูลประสบการณ์", true, true, $defaultValueTrainExperExer, "text", customGenarateFormField('ประสบการณ์', 'trainExperExer'));
