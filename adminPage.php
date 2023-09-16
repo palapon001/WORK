@@ -273,7 +273,46 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                 <h1>สรุปรายงานผล</h1>
                 <div class="container text-center">
 
-                    <div class="row d-flex justify-content-center">
+                    <div class="row mt-3 d-flex justify-content-center">
+                        <?php
+                        function echoLevelCounts($levelArray)
+                        {
+                            $labels = array_map(function ($level) {
+                                return "'$level'";
+                            }, array_keys($levelArray));
+                            echo implode(",", $labels);
+                        }
+
+                        function echoCounts($levelArray, $countWorkLogin)
+                        {
+                            $percentages = array_map(function ($count) use ($countWorkLogin) {
+                                return number_format(($count * 100) / $countWorkLogin, 2);
+                            }, $levelArray);
+
+                            echo implode(",", $percentages);
+                        }
+
+                        ?>
+
+                        <div class="col-lg-5">
+                            <div class="card">
+                                <h5>จำนวนประเภทผู้ใช้ทั้งหมด : (<?php echo $countWorkLogin; ?>)</h5>
+                                <img class="" src="https://quickchart.io/chart?c={type:'pie',data:{labels:[<?php echoLevelCounts($levelCounts) ?>], datasets:[{data:[<?php echoCounts($levelCounts, $countWorkLogin) ?>] }], }, options: { plugins: { datalabels: { display: true, align: 'bottom', backgroundColor: 'white', borderRadius: 3, font: { size: 10, }, }, }, }, }" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="card">
+                                <h5>จำนวนแบบสอบถามจากผู้ใช้ทั้งหมด : (<?php echo $countQueList; ?>)</h5>
+                                <img class="" src="https://quickchart.io/chart?c={type:'pie',data:{labels:[<?php echoLevelCounts($levelQueCounts) ?>], datasets:[{data:[<?php echoCounts($levelQueCounts, $countQueList) ?>] }], }, options: { plugins: { datalabels: { display: true, align: 'bottom', backgroundColor: 'white', borderRadius: 3, font: { size: 10, }, }, }, }, }" alt="">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row mt-3 d-flex justify-content-center">
+
                         <div class="col-lg-5">
                             <canvas class="form-control" id="loginUser"></canvas>
                             <script>
@@ -1125,7 +1164,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                     </div>
 
                 </div>
-            </div> 
+            </div>
         </section>
 
     </main><!-- End #main -->
