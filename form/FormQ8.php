@@ -28,9 +28,13 @@
 <?php
 $defaultValueProOrgExer = $foundUser == 1 ? $pro_org_exer : '';
 $defaultValueActivityName = $foundUser == 1 ? $activity : '';
-echo generateFormField("proOrgExerInput", "โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ", "", true, true, $defaultValueProOrgExer, "text", customGenarateFormField('โครงการ', 'proOrgExer'));
-echo generateFormField("activityNameInput", "กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม", "", true, true, $defaultValueActivityName, "text", customGenarateFormField('โครงการ/กิจกรรม', 'activityName'));
 ?>
+<div class="form-control mb-3">
+<?php echo generateFormField("proOrgExerInput", "โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ", "", true, true, $defaultValueProOrgExer, "text", customGenarateFormField('โครงการ', 'proOrgExer')); ?>
+</div>
+<div class="form-control mb-3">
+<?php echo generateFormField("activityNameInput", "กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม", "", true, true, $defaultValueActivityName, "text", customGenarateFormField('โครงการ/กิจกรรม', 'activityName')); ?>
+</div>
 <?php
 $formIds = ["proOrgExerInput","activityNameInput"];
 
