@@ -1125,11 +1125,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                     </div>
 
                 </div>
-            </div>
-
-
-
-            </div>
+            </div> 
         </section>
 
     </main><!-- End #main -->
