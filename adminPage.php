@@ -1069,15 +1069,15 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             ?>
                         </div>
 
-                        <!-- โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Suppliers/Partners -->
+                        <!-- โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Community -->
                         <div class="col-lg-5">
                             <?php
                             // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
-                            $sqlProOrgLevel  = "SELECT * FROM question where level = 'Suppliers/Partners' ";
+                            $sqlProOrgLevel  = "SELECT * FROM question where level = 'Community' ";
                             // ชื่อคอลัมน์ที่ต้องการแสดงข้อมูล
                             $colProOrgLevel = "pro_org_exer";
                             // หัวเรื่อง
-                            $titleProOrgLevel  = "โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Suppliers/Partners";
+                            $titleProOrgLevel  = "โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Community";
 
                             // เรียกใช้ฟังก์ชันเพื่อแสดงส่วนของประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ
                             displayExperienceSection($con, $sqlProOrgLevel, $colProOrgLevel, $titleProOrgLevel);
@@ -1099,15 +1099,15 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             ?>
                         </div>
 
-                        <!-- กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Suppliers/Partners	 -->
+                        <!-- กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Community	 -->
                         <div class="col-lg-5">
                             <?php
                             // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
-                            $sqlActivityLevel  = "SELECT * FROM question where level = 'Suppliers/Partners' ";
+                            $sqlActivityLevel  = "SELECT * FROM question where level = 'Community' ";
                             // ชื่อคอลัมน์ที่ต้องการแสดงข้อมูล
                             $colActivityLevel  = "activity";
                             // หัวเรื่อง
-                            $titleActivityLevel  = "กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Suppliers/Partners";
+                            $titleActivityLevel  = "กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Community";
 
                             // เรียกใช้ฟังก์ชันเพื่อแสดงส่วนของประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ
                             displayExperienceSection($con, $sqlActivityLevel, $colActivityLevel, $titleActivityLevel);
@@ -1126,7 +1126,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                                     var provinceId = $(this).val();
                                     orgObject.empty();
 
-                                    var url = 'assets/ajax/getQuestionsByProvince.php?province_id=' + provinceId;
+                                    var url = 'assets/ajax/getQuestionsByProvinceAndLevel.php?province_id=%27' + provinceId + '%27&level=%27Community%27';
 
                                     $.get(url, function(data) {
                                         var result = JSON.parse(data);
