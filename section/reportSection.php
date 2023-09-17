@@ -75,8 +75,8 @@
                              options: {
                                  plugins: {
                                      labels: {
-                                         render: (labelsUser) => {
-                                             return labelsUser.label
+                                         render: (labelsQue) => {
+                                             return labelsQue.label
                                          },
                                          fontSize: 13,
                                          fontColor: 'Black',
