@@ -13,7 +13,7 @@
                          const countWorkLogin = <?php echo $countWorkLogin; ?>;
 
                          const dataUser = Object.values(levelCounts).map(count => ((count * 100) / countWorkLogin).toFixed(2));
-                         const labelsUser = Object.keys(levelCounts).map(key => `${key} (${dataUser[Object.keys(levelCounts).indexOf(key)]}%)`);
+                         const labelsUser = Object.keys(levelCounts)
 
 
                          const loginUserID = document.getElementById('loginUser').getContext('2d');
@@ -29,9 +29,7 @@
                              options: {
                                  plugins: {
                                      labels: {
-                                         render: (labelsUser) => {
-                                             return labelsUser.label
-                                         },
+                                         render: (labelsUser) => labelsUser.label + ` (${dataUser[labelsUser.index]}%)`,
                                          fontSize: 13,
                                          fontColor: 'Black',
                                          fontFamily: 'Kanit'
@@ -60,7 +58,7 @@
                          const countQueList = <?php echo $countQueList; ?>;
 
                          const dataQue = Object.values(levelQueCounts).map(count => ((count * 100) / countQueList).toFixed(2));
-                         const labelsQue = Object.keys(levelQueCounts).map(key => `${key} (${dataQue[Object.keys(levelQueCounts).indexOf(key)]}%)`);
+                         const labelsQue = Object.keys(levelQueCounts);
 
                          const queUserID = document.getElementById('queUser').getContext('2d');
                          const queUser = new Chart(queUserID, {
@@ -75,9 +73,7 @@
                              options: {
                                  plugins: {
                                      labels: {
-                                         render: (labelsQue) => {
-                                             return labelsQue.label
-                                         },
+                                         render: (labelsQue) => labelsQue.label + ` (${dataQue[labelsQue.index]}%)`,
                                          fontSize: 13,
                                          fontColor: 'Black',
                                          fontFamily: 'Kanit'
@@ -199,7 +195,7 @@
                              var total = passCount + notPassCount;
                              var passPercent = ((passCount / total) * 100).toFixed(2);
                              var notPassPercent = ((notPassCount / total) * 100).toFixed(2);
-                             var resultLabel = ['ผ่าน ' + passCount + ' คน (' + passPercent + '%)', 'ไม่ผ่าน ' + notPassCount + ' คน (' + notPassPercent + '%)'] ;
+                             var resultLabel = ['ผ่าน ' + passCount + ' คน (' + passPercent + '%)', 'ไม่ผ่าน ' + notPassCount + ' คน (' + notPassPercent + '%)'];
 
                              const ctx = document.getElementById(chartId);
                              new Chart(ctx, {
@@ -213,21 +209,21 @@
                                      }]
                                  },
                                  options: {
-                                 plugins: {
-                                     labels: {
-                                         render: (resultLabel) => {
-                                             return resultLabel.label
+                                     plugins: {
+                                         labels: {
+                                             render: (resultLabel) => {
+                                                 return resultLabel.label
+                                             },
+                                             fontSize: 13,
+                                             fontColor: 'Black',
+                                             fontFamily: 'Kanit'
                                          },
-                                         fontSize: 13,
-                                         fontColor: 'Black',
-                                         fontFamily: 'Kanit'
+                                         legend: {
+                                             display: true,
+                                         },
+
                                      },
-                                     legend: {
-                                         display: true,
-                                     },
-                                      
                                  },
-                             },
                              });
                          }
 
