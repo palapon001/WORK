@@ -146,7 +146,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listLogin<?php echo $fetch_login['ID'] ?>">
                                         ดูข้อมูล
                                     </button>
-                                    <a href='actions/deleteUser.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger mt-3" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
+                                    <a href='actions/deleteUser.php?user_id=<?php echo $fetch_login['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
                                 </td>
 
                                 <form method="post" action="actions/updateUserLogin.php">
@@ -254,7 +254,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $fetch_Que_Personal['qid'] ?>">
                                         ดูข้อมูล
                                     </button>
-                                    <a href='actions/deleteUserQuestions.php?user_id=<?php echo $fetch_Que_Personal['username'] ?>' class="btn btn-danger mt-3" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
+                                    <a href='actions/deleteUserQuestions.php?user_id=<?php echo $fetch_Que_Personal['username'] ?>' class="btn btn-danger" onclick="return confirm('ต้องการจะลบหรือไม่')">ลบ</a>
 
                                 </td>
                                 <form method="post" action="actions/updateUserQuestion.php">

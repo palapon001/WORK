@@ -644,7 +644,7 @@
                  </div>
 
                  <!-- ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ -->
-                 <div class="col-lg-4">
+                 <div class="">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlOrg = "SELECT * FROM question";
@@ -659,7 +659,7 @@
                  </div>
 
                  <!-- ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพของ Suppliers/Partners แยกตามกิจกรรม -->
-                 <div class="col-lg-4">
+                 <div class="">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlOrgLevel = "SELECT * FROM question where level = 'Suppliers/Partners' ";
@@ -674,7 +674,7 @@
                  </div>
 
                  <!-- ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพของ Community แยกตามจังหวัด -->
-                 <div class="col-lg-4 card mb-3">
+                 <div class="card mb-3">
                      <p>ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพของ Community แยกตามจังหวัด</p>
                      <select name="province_id" id="provinceOrgS5" class="form-control mb-3" required>
                          <option disabled>เลือกจังหวัด</option>
@@ -689,7 +689,7 @@
                  </div>
 
                  <!-- โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ -->
-                 <div class="col-lg-4">
+                 <div class="">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlProOrg  = "SELECT * FROM question ";
@@ -704,7 +704,7 @@
                  </div>
 
                  <!-- โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Suppliers/Partners -->
-                 <div class="col-lg-4">
+                 <div class="">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlProOrgLevel  = "SELECT * FROM question where level = 'Suppliers/Partners' ";
@@ -719,7 +719,7 @@
                  </div>
 
                  <!-- โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Community -->
-                 <div class="col-lg-4">
+                 <div class="">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlProOrgLevel  = "SELECT * FROM question where level = 'Community' ";
@@ -735,7 +735,7 @@
 
 
                  <!-- กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม -->
-                 <div class="col-lg-4">
+                 <div class="">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlActivity  = "SELECT * FROM question ";
@@ -750,7 +750,7 @@
                  </div>
 
                  <!-- กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Suppliers/Partners	 -->
-                 <div class="col-lg-4">
+                 <div class="">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlActivityLevel  = "SELECT * FROM question where level = 'Suppliers/Partners' ";
@@ -765,7 +765,7 @@
                  </div>
 
                  <!-- กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Community	 -->
-                 <div class="col-lg-4">
+                 <div class="">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlActivityLevel  = "SELECT * FROM question where level = 'Community' ";
