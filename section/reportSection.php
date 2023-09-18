@@ -57,7 +57,7 @@
                          const levelQueCounts = <?php echo json_encode($levelQueCounts); ?>;
                          const countQueList = <?php echo $countQueList; ?>;
 
-                         const dataQue = Object.values(levelQueCounts).map(count => ((count * 100) / countQueList).toFixed(2));
+                         const dataQue = Object.values(levelQueCounts);
                          const labelsQue = Object.keys(levelQueCounts);
 
                          const queUserID = document.getElementById('queUser').getContext('2d');
@@ -73,7 +73,7 @@
                              options: {
                                  plugins: {
                                      labels: {
-                                         render: (labelsQue) => labelsQue.label + ` (${dataQue[labelsQue.index]}%)`,
+                                         render: (labelsQue) => labelsQue.label + ` (${dataQue[labelsQue.index]} คน)`,
                                          fontSize: 13,
                                          fontColor: 'Black',
                                          fontFamily: 'Kanit'
