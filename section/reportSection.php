@@ -12,7 +12,7 @@
                          const levelCounts = <?php echo json_encode($levelCounts); ?>;
                          const countWorkLogin = <?php echo $countWorkLogin; ?>;
 
-                         const dataUser = Object.values(levelCounts).map(count => ((count * 100) / countWorkLogin).toFixed(2));
+                         const dataUser = Object.values(levelCounts);
                          const labelsUser = Object.keys(levelCounts)
 
 
@@ -29,7 +29,7 @@
                              options: {
                                  plugins: {
                                      labels: {
-                                         render: (labelsUser) => labelsUser.label + ` (${dataUser[labelsUser.index]}%)`,
+                                         render: (labelsUser) => labelsUser.label + ` (${dataUser[labelsUser.index]} คน )`,
                                          fontSize: 13,
                                          fontColor: 'Black',
                                          fontFamily: 'Kanit'
@@ -640,11 +640,11 @@
              <div class="row mt-3 d-flex justify-content-center">
                  <?php include 'assets/php/displayExperienceSection.php'; ?>
                  <div class="section-title ">
-                     <h2>ข้อมูลประสบการณ์การจัดกิจกรรม/โครงการการออกกำลังกายเพื่อสุขภาพ Suppliers/Partners</h2>
+                     <h2>ข้อมูลประสบการณ์การจัดกิจกรรม/โครงการการออกกำลังกายเพื่อสุขภาพ</h2>
                  </div>
 
                  <!-- ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ -->
-                 <div class="col-lg-5">
+                 <div class="col-lg-4">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlOrg = "SELECT * FROM question";
@@ -659,7 +659,7 @@
                  </div>
 
                  <!-- ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพของ Suppliers/Partners แยกตามกิจกรรม -->
-                 <div class="col-lg-5">
+                 <div class="col-lg-4">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlOrgLevel = "SELECT * FROM question where level = 'Suppliers/Partners' ";
@@ -673,8 +673,23 @@
                         ?>
                  </div>
 
+                 <!-- ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพของ Community แยกตามจังหวัด -->
+                 <div class="col-lg-4 card mb-3">
+                     <p>ประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพของ Community แยกตามจังหวัด</p>
+                     <select name="province_id" id="provinceOrgS5" class="form-control mb-3" required>
+                         <option disabled>เลือกจังหวัด</option>
+                         <?php
+                            $sqlProvinceEXsportS5 = "SELECT * FROM provinces";
+                            $queryProvinceEXsportS5 = mysqli_query($con, $sqlProvinceEXsportS5);
+                            while ($resultProvinceEXsportS5 = mysqli_fetch_assoc($queryProvinceEXsportS5)) : ?>
+                             <option value="<?= $resultProvinceEXsportS5['id'] ?>"><?= $resultProvinceEXsportS5['name_th'] ?></option>
+                         <?php endwhile; ?>
+                     </select>
+                     <div id="orgS5" class="form-control overflow-auto" style="height: 15rem;"></div>
+                 </div>
+
                  <!-- โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ -->
-                 <div class="col-lg-5">
+                 <div class="col-lg-4">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlProOrg  = "SELECT * FROM question ";
@@ -689,7 +704,7 @@
                  </div>
 
                  <!-- โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Suppliers/Partners -->
-                 <div class="col-lg-5">
+                 <div class="col-lg-4">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlProOrgLevel  = "SELECT * FROM question where level = 'Suppliers/Partners' ";
@@ -703,8 +718,24 @@
                         ?>
                  </div>
 
+                 <!-- โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Community -->
+                 <div class="col-lg-4">
+                     <?php
+                        // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
+                        $sqlProOrgLevel  = "SELECT * FROM question where level = 'Community' ";
+                        // ชื่อคอลัมน์ที่ต้องการแสดงข้อมูล
+                        $colProOrgLevel = "pro_org_exer";
+                        // หัวเรื่อง
+                        $titleProOrgLevel  = "โครงการการจัดกิจกรรมการออกกำลังกายเพื่อสุขภาพ แยกตาม Community";
+
+                        // เรียกใช้ฟังก์ชันเพื่อแสดงส่วนของประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ
+                        displayExperienceSection($con, $sqlProOrgLevel, $colProOrgLevel, $titleProOrgLevel);
+                        ?>
+                 </div>
+
+
                  <!-- กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม -->
-                 <div class="col-lg-5">
+                 <div class="col-lg-4">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlActivity  = "SELECT * FROM question ";
@@ -719,7 +750,7 @@
                  </div>
 
                  <!-- กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Suppliers/Partners	 -->
-                 <div class="col-lg-5">
+                 <div class="col-lg-4">
                      <?php
                         // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
                         $sqlActivityLevel  = "SELECT * FROM question where level = 'Suppliers/Partners' ";
@@ -733,6 +764,20 @@
                         ?>
                  </div>
 
+                 <!-- กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Community	 -->
+                 <div class="col-lg-4">
+                     <?php
+                        // สร้างคำสั่ง SQL ที่คุณต้องการแสดงข้อมูลจากตาราง
+                        $sqlActivityLevel  = "SELECT * FROM question where level = 'Community' ";
+                        // ชื่อคอลัมน์ที่ต้องการแสดงข้อมูล
+                        $colActivityLevel  = "activity";
+                        // หัวเรื่อง
+                        $titleActivityLevel  = "กิจกรรม/โครงการที่สนับสนุนการจัดกิจกรรม แยกตาม Community";
+
+                        // เรียกใช้ฟังก์ชันเพื่อแสดงส่วนของประสบการณ์การจัดกิจกรรมทางด้านการออกกำลังกายเพื่อสุขภาพ
+                        displayExperienceSection($con, $sqlActivityLevel, $colActivityLevel, $titleActivityLevel);
+                        ?>
+                 </div>
 
              </div>
 
