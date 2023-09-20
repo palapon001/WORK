@@ -2,7 +2,7 @@
 include('../condb.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
 //สร้างตัวแปรเก็บค่าที่รับมาจากฟอร์ม
 $user = $_POST["user"];
-$pass = $_POST["pass"];
+$pass = md5($_POST["pass"]);
 $name = $_POST["name"];
 $surname = $_POST["surname"];
 $bday = $_POST["bday"];
