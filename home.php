@@ -121,7 +121,22 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
   <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
       <h2>ยินต้อนรับคุณ <?php echo $_SESSION["name"] . " " . $_SESSION["surname"]; ?> </h2>
-      <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo $_SESSION["level"] === 'Interested-Individual' ? 'Interested Individual' : $_SESSION["level"]; ?>"></span></p>
+      <?php
+      function formatLevel($level)
+      {
+        switch ($level) {
+          case 'Interested-Individual':
+            return 'Interested Individual';
+          case 'Sport-professionals':
+            return 'Sport Professionals';
+          default:
+            return $level;
+        }
+      }
+
+      ?>
+      <!-- <h1><?php echo $_SESSION["level"] ; ?></h1> -->
+      <p>เข้าสู่ระบบในสถานะ <span class="typed" data-typed-items="<?php echo formatLevel($_SESSION["level"]); ?>"></span></p>
       <p>
         <button type="button" class="btn btn-primary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#updateRegis">
           แก้ไขข้อมูล การเข้าสู่ระบบ
@@ -277,9 +292,9 @@ while ($fetch = mysqli_fetch_assoc($queryQues)) {
     <footer id="footer">
       <div class="container">
 
-        <div class="copyright">
+        <!-- <div class="copyright">
           &copy; Copyright <strong><span>work</span></strong>. All Rights Reserved
-        </div>
+        </div> -->
 
       </div>
     </footer><!-- End Footer -->

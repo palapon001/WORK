@@ -281,10 +281,10 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
     <footer id="footer">
         <div class="container">
 
-            <div class="copyright">
+            <!-- <div class="copyright">
                 &copy; Copyright <strong><span>work</span></strong>. All Rights Reserved
-            </div>
-
+            </div> -->
+            
         </div>
     </footer><!-- End Footer -->
 
