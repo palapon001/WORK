@@ -135,7 +135,9 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             if (array_key_exists($level, $levelCounts)) {
                                 $levelCounts[$level]++;
                             }
-                            $countWorkLogin++;
+                            if ($fetch_login['level'] !== 'ADMIN') {
+                                $countWorkLogin++;
+                            }
                         ?>
 
                             <tr>
@@ -204,7 +206,7 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
 
         <!-- list Section -->
         <section id="list">
-            <div class="container mt-5 form-control table-responsive overflow-auto" style="height: 20rem;">
+            <div class="container mt-5 form-control table-responsive overflow-auto" style="height: 40rem;">
                 <h1>ข้อมูลแบบสอบถาม</h1>
                 <table class="table table-bordered" style="text-align:center;">
                     <thead>
@@ -242,8 +244,10 @@ if (!isset($_SESSION["username"]) || ($_SESSION["level"] !== 'ADMIN')) {
                             $level = $fetch_Que_Personal['level'];
                             if (array_key_exists($level, $levelQueCounts)) {
                                 $levelQueCounts[$level]++;
+                            } 
+                            if ($fetch_Que_Personal['level'] !== 'ADMIN') {
+                                $countQueList++;
                             }
-                            $countQueList++;
                         ?>
                             <tr>
                                 <td><?php echo $fetch_Que_Personal['name'] ?></td>
