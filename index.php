@@ -19,7 +19,7 @@
     <div class="card align-self-center mt-3 mb-3">
       <h2 class="btn">Welcome</h2>
       <center>
-        <h4 class="mt-3 mb-3">A Digital Ecosystem Protoptype of Sport and Exercise for Health Information Management</h4>
+        <h4 class="mt-3 mb-3">A Digital Ecosystem Prototype of Sport and Exercise for Health Information Management</h4>
       </center>
     </div>
     <div class="card align-self-center mt-3 ">
