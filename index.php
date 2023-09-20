@@ -31,7 +31,7 @@
     <div class="owl-carousel owl-carousel1 owl-theme">
       <?php include 'assets/php/generateCardFunction.php'; ?>
       <!-- ใช้งานฟังก์ชัน generateCard สำหรับการ์ดแต่ละประเภท -->
-      <?php echo generateCard("assets/img/indexIcon/indexIconF1.png", "Interested-Individual", "Interested-Individual"); ?>
+      <?php echo generateCard("assets/img/indexIcon/indexIconF1.png", "Interested-Individual", "Interested Individual"); ?>
       <?php echo generateCard("assets/img/indexIcon/indexIconF2.png", "Trainers", "Trainers"); ?>
       <?php echo generateCard("assets/img/indexIcon/indexIconF3.png", "Sport-professionals", "Sport-professionals"); ?>
       <?php echo generateCard("assets/img/indexIcon/indexIconF4.png", "Volunteer", "Volunteer"); ?>

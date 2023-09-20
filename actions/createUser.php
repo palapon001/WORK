@@ -20,6 +20,10 @@
 	$surname = $_POST["surname"];
 	$bday = $_POST["bday"];
 	$level = $_POST["level"];
+
+	if ($level === 'InterestedIndividual') {
+		$level = 'Interested-Individual';
+	}
 	// เช็คว่ามีข้อมูลนี้อยู่หรือไม่
 	$check = "select * from work_login  where username = '$user' ";
 	$result = mysqli_query($con, $check) or die("$check");
